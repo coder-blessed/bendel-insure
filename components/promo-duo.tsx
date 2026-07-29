@@ -16,7 +16,7 @@ export function PromoDuo({
         <Link
           key={promo.slug}
           href={`${hrefBase}/${promo.slug}`}
-          className="group relative flex aspect-[16/10] items-end overflow-hidden sm:aspect-[16/9]"
+          className="group relative flex aspect-[16/10] items-end overflow-hidden rounded-media ring-1 ring-ink/8 transition-all duration-300 sm:aspect-[16/9]"
         >
           <Media
             tone={promo.tone}
@@ -29,13 +29,13 @@ export function PromoDuo({
           />
 
           <div className="relative w-full p-6 md:p-8">
-            <span className="eyebrow block text-[10px] text-gold">
+            <span className="eyebrow inline-block rounded-pill bg-gold/15 px-3 py-1.5 text-[10px] text-gold backdrop-blur-sm">
               {promo.kicker}
             </span>
-            <h3 className="headline mt-2 max-w-md text-2xl text-white uppercase sm:text-3xl">
+            <h3 className="headline mt-3 max-w-md text-2xl text-white uppercase sm:text-3xl">
               {promo.title}
             </h3>
-            <span className="eyebrow mt-4 inline-flex items-center gap-2 border-b-2 border-white/30 pb-1 text-[10px] text-white transition-colors group-hover:border-gold group-hover:text-gold">
+            <span className="eyebrow mt-5 inline-flex items-center gap-2 rounded-pill border border-white/30 bg-white/10 px-4 py-2.5 text-[10px] text-white backdrop-blur-sm transition-colors group-hover:border-gold group-hover:bg-gold group-hover:text-brand-deep">
               Shop now
               <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
             </span>

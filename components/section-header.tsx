@@ -41,10 +41,10 @@ export function SectionHeader({
           {actionLabel && actionHref ? (
             <Link
               href={actionHref}
-              className={`eyebrow group inline-flex items-center gap-2 border-b-2 pb-1 text-[11px] transition-colors ${
+              className={`eyebrow group inline-flex items-center gap-2 rounded-pill border px-4 py-2.5 text-[11px] transition-all duration-300 ${
                 dark
-                  ? "border-gold/40 text-gold hover:border-gold"
-                  : "border-ink/15 text-ink hover:border-brand hover:text-brand"
+                  ? "border-white/20 bg-white/5 text-gold hover:border-gold/60 hover:bg-white/10"
+                  : "border-ink/12 bg-white text-ink hover:border-brand/40 hover:text-brand"
               }`}
             >
               {actionLabel}

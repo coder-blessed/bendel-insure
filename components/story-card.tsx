@@ -15,17 +15,18 @@ export function StoryCard({
   return (
     <Link
       href={`/news/${story.slug}`}
-      className="group flex h-full flex-col overflow-hidden bg-white shadow-[0_1px_0_rgba(0,0,0,0.08)] transition-shadow duration-300 hover:shadow-[0_14px_40px_-12px_rgba(0,0,0,0.35)]"
+      className="group flex h-full flex-col overflow-hidden rounded-card bg-white ring-1 ring-ink/8 transition-all duration-300 hover:ring-brand/25"
     >
       <div
-        className={`relative overflow-hidden ${isLead ? "aspect-[16/10]" : "aspect-[16/9]"
-          }`}
+        className={`relative overflow-hidden ${
+          isLead ? "aspect-[16/10]" : "aspect-[16/9]"
+        }`}
       >
         <Media
           tone={story.tone}
           className="transition-transform duration-700 ease-out group-hover:scale-[1.06]"
         />
-        <span className="eyebrow absolute top-0 left-0 bg-brand px-3 py-1.5 text-[10px] text-white">
+        <span className="eyebrow absolute top-3 left-3 rounded-pill bg-brand px-3 py-1.5 text-[10px] text-white">
           {story.category}
         </span>
       </div>
@@ -35,8 +36,9 @@ export function StoryCard({
           {story.timestamp}
         </span>
         <h3
-          className={`headline uppercase decoration-gold decoration-[3px] underline-offset-4 group-hover:underline ${isLead ? "text-2xl sm:text-3xl" : "text-lg sm:text-xl"
-            }`}
+          className={`headline uppercase decoration-gold decoration-[3px] underline-offset-4 transition-colors group-hover:text-brand ${
+            isLead ? "text-2xl sm:text-3xl" : "text-lg sm:text-xl"
+          }`}
         >
           {story.title}
         </h3>

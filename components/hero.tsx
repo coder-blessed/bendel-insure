@@ -30,7 +30,7 @@ export function Hero() {
     <section
       aria-label="Featured"
       aria-roledescription="carousel"
-      className="relative isolate flex min-h-[34rem] flex-col justify-end overflow-hidden bg-brand-deep lg:min-h-[86vh]"
+      className="relative isolate flex min-h-[34rem] flex-1 flex-col justify-end overflow-hidden bg-brand-deep"
     >
       <AnimatePresence initial={false}>
         <motion.div
@@ -70,10 +70,10 @@ export function Hero() {
             className="max-w-3xl"
           >
             <div className="mb-4 flex items-center gap-3">
-              <span className="eyebrow bg-gold px-2.5 py-1 text-[10px] text-brand-deep">
+              <span className="eyebrow rounded-pill bg-gold px-3 py-1.5 text-[10px] text-brand-deep">
                 {slide.eyebrow}
               </span>
-              <span className="eyebrow text-[10px] text-white/70">
+              <span className="eyebrow rounded-pill border border-white/25 bg-white/10 px-3 py-1.5 text-[10px] text-white/80 backdrop-blur-sm">
                 {slide.duration}
               </span>
             </div>
@@ -88,7 +88,7 @@ export function Hero() {
 
             <Link
               href={`/tv/${slide.slug}`}
-              className="eyebrow group mt-7 inline-flex items-center gap-3 bg-white px-6 py-3.5 text-[11px] text-ink transition-colors hover:bg-gold"
+              className="eyebrow group mt-7 inline-flex items-center gap-3 rounded-pill bg-white px-7 py-4 text-[11px] text-ink transition-all duration-300 hover:bg-gold"
             >
               <Play className="h-3.5 w-3.5 text-brand transition-transform duration-300 group-hover:scale-125" />
               {slide.cta}
@@ -119,12 +119,12 @@ export function Hero() {
                 onClick={() => go(slideIndex)}
                 aria-label={`Show slide ${slideIndex + 1}: ${item.title}`}
                 aria-current={slideIndex === index}
-                className="group relative h-1 flex-1 overflow-hidden bg-white/25"
+                className="group relative h-1.5 flex-1 overflow-hidden rounded-full bg-white/25"
               >
                 {slideIndex === index ? (
                   <motion.span
                     key={`${index}-${paused}`}
-                    className="absolute inset-0 origin-left bg-gold"
+                    className="absolute inset-0 origin-left rounded-full bg-gold"
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: paused || reduceMotion ? 0.06 : 1 }}
                     transition={{
@@ -133,7 +133,7 @@ export function Hero() {
                     }}
                   />
                 ) : (
-                  <span className="absolute inset-0 origin-left scale-x-0 bg-white/60 transition-transform duration-300 group-hover:scale-x-100" />
+                  <span className="absolute inset-0 origin-left scale-x-0 rounded-full bg-white/60 transition-transform duration-300 group-hover:scale-x-100" />
                 )}
               </button>
             ))}

@@ -56,7 +56,7 @@ export function SiteHeader() {
       <div
         className={`transition-all duration-300 ${
           scrolled
-            ? "bg-brand-deep/95 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.8)] backdrop-blur-md"
+            ? "bg-brand-deep/95 backdrop-blur-md"
             : "bg-gradient-to-b from-black/75 to-transparent"
         }`}
       >
@@ -82,7 +82,7 @@ export function SiteHeader() {
                 {item.label}
                 <span
                   aria-hidden="true"
-                  className="absolute bottom-0 left-0 h-[3px] w-full origin-left scale-x-0 bg-gold transition-transform duration-300 group-hover:scale-x-100"
+                  className="absolute bottom-0 left-0 h-[3px] w-full origin-left scale-x-0 rounded-full bg-gold transition-transform duration-300 group-hover:scale-x-100"
                 />
               </Link>
             ))}
@@ -92,20 +92,20 @@ export function SiteHeader() {
             <button
               type="button"
               aria-label="Search the site"
-              className="flex h-10 w-10 items-center justify-center text-white transition-colors hover:text-gold"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-white transition-colors hover:bg-white/10 hover:text-gold"
             >
               <Search className="h-5 w-5" />
             </button>
             <Link
               href="/account"
               aria-label="Your account"
-              className="flex h-10 w-10 items-center justify-center text-white transition-colors hover:text-gold"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-white transition-colors hover:bg-white/10 hover:text-gold"
             >
               <User className="h-5 w-5" />
             </Link>
             <Link
               href="/tickets"
-              className="eyebrow hidden bg-gold px-5 py-3 text-[10px] text-brand-deep transition-colors hover:bg-white sm:block"
+              className="eyebrow hidden rounded-pill bg-gold px-5 py-3 text-[10px] text-brand-deep transition-all duration-300 hover:bg-white sm:block"
             >
               Buy tickets
             </Link>
@@ -114,7 +114,7 @@ export function SiteHeader() {
               onClick={() => setOpen(true)}
               aria-label="Open menu"
               aria-expanded={open}
-              className="flex h-10 w-10 items-center justify-center text-white transition-colors hover:text-gold lg:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-white transition-colors hover:bg-white/10 hover:text-gold lg:hidden"
             >
               <Menu className="h-6 w-6" />
             </button>
@@ -139,7 +139,7 @@ export function SiteHeader() {
               className="absolute inset-0 bg-black/70"
             />
             <motion.div
-              className="absolute inset-y-0 right-0 flex w-[min(88vw,22rem)] flex-col bg-brand-deep"
+              className="absolute inset-y-0 right-0 flex w-[min(88vw,22rem)] flex-col rounded-l-media bg-brand-deep"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -151,7 +151,7 @@ export function SiteHeader() {
                   type="button"
                   onClick={() => setOpen(false)}
                   aria-label="Close menu"
-                  className="text-white transition-colors hover:text-gold"
+                  className="flex h-10 w-10 items-center justify-center rounded-full text-white transition-colors hover:bg-white/10 hover:text-gold"
                 >
                   <Close className="h-6 w-6" />
                 </button>
@@ -175,7 +175,7 @@ export function SiteHeader() {
                     <Link
                       href={item.href}
                       onClick={() => setOpen(false)}
-                      className="headline flex items-center justify-between border-b border-white/10 py-4 text-xl text-white uppercase transition-colors hover:text-gold"
+                      className="headline flex items-center justify-between rounded-control px-3 py-3.5 text-xl text-white uppercase transition-colors hover:bg-white/8 hover:text-gold"
                     >
                       {item.label}
                       <ArrowRight className="h-4 w-4 text-gold" />
@@ -183,13 +183,13 @@ export function SiteHeader() {
                   </motion.div>
                 ))}
 
-                <div className="mt-6 space-y-3">
+                <div className="mt-6 flex flex-wrap gap-2 border-t border-white/10 pt-6">
                   {utilityNav.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
                       onClick={() => setOpen(false)}
-                      className="eyebrow block text-[10px] text-white/60 transition-colors hover:text-white"
+                      className="eyebrow rounded-pill border border-white/15 px-3.5 py-2 text-[10px] text-white/60 transition-colors hover:border-gold/50 hover:text-white"
                     >
                       {item.label}
                     </Link>
@@ -197,13 +197,15 @@ export function SiteHeader() {
                 </div>
               </nav>
 
-              <Link
-                href="/tickets"
-                onClick={() => setOpen(false)}
-                className="eyebrow bg-gold px-5 py-4 text-center text-[11px] text-brand-deep"
-              >
-                Buy tickets
-              </Link>
+              <div className="p-5">
+                <Link
+                  href="/tickets"
+                  onClick={() => setOpen(false)}
+                  className="eyebrow block rounded-pill bg-gold px-5 py-4 text-center text-[11px] text-brand-deep"
+                >
+                  Buy tickets
+                </Link>
+              </div>
             </motion.div>
           </motion.div>
         ) : null}

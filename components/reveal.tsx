@@ -42,7 +42,7 @@ export function RuleReveal({ className = "" }: { className?: string }) {
   return (
     <motion.span
       aria-hidden="true"
-      className={`block h-1 w-full origin-left bg-gold ${className}`}
+      className={`block h-1.5 w-full origin-left rounded-full bg-gold ${className}`}
       initial={reduceMotion ? undefined : { scaleX: 0 }}
       whileInView={reduceMotion ? undefined : { scaleX: 1 }}
       viewport={{ once: true }}

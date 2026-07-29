@@ -23,8 +23,12 @@ const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
 export default function Home() {
   return (
     <>
-      <Hero />
-      <Ticker />
+      {/* Hero flexes to fill whatever height the ticker leaves, so the pair
+          lands exactly on the fold instead of leaving a sliver of page below. */}
+      <div className="flex min-h-svh flex-col">
+        <Hero />
+        <Ticker />
+      </div>
 
       {/* News and views */}
       <section className={`${SHELL} py-14 md:py-20`}>
@@ -40,14 +44,13 @@ export default function Home() {
       </section>
 
       {/* Matches + table */}
-      <section className="bg-brand-deep">
+      <section className="bg-white">
         <div className={`${SHELL} py-14 md:py-20`}>
           <SectionHeader
             title="Matches"
             subtitle={`${club.league} · ${club.stadium}`}
             actionLabel="Fixtures"
             actionHref="/matches/fixtures"
-            dark
           />
           <Reveal delay={0.05}>
             <Matches />
@@ -114,12 +117,27 @@ export default function Home() {
 
       {/* Honours */}
       <section className="relative overflow-hidden bg-brand-dark">
+        {/*
+         * Mown turf bands, not a literal grass texture: wide low-contrast
+         * stripes read as a pitch surface while staying editorial.
+         */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 opacity-15"
+          className="absolute inset-0"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(115deg, #f7c621 0 2px, transparent 2px 26px)",
+              "repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 8.333%, transparent 8.333% 16.666%)",
+          }}
+        />
+        {/* Floodlight falloff so the bands read as depth, not wallpaper. */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0"
+          style={{
+            backgroundImage: [
+              "radial-gradient(115% 75% at 50% -10%, rgba(247,198,33,0.12) 0%, transparent 60%)",
+              "linear-gradient(180deg, transparent 35%, rgba(2,47,23,0.8) 100%)",
+            ].join(", "),
           }}
         />
         <div className={`${SHELL} relative py-14 md:py-20`}>

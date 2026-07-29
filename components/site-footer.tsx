@@ -9,7 +9,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-[1440px] px-4 py-14 md:px-8 md:py-20">
         <div className="grid gap-12 lg:grid-cols-[auto_1fr]">
           <div className="lg:w-64">
-            <Crest className="h-20 w-20" />
+            <Crest className="h-24" />
             <p className="headline mt-5 text-xl uppercase">{club.name}</p>
             <p className="mt-2 text-sm text-white/50">
               {club.stadium}
@@ -54,7 +54,7 @@ export function SiteFooter() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-gold hover:text-gold"
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white/70 transition-all duration-300 hover:border-gold hover:bg-white/5 hover:text-gold"
                   >
                     <SocialIcon name={social.icon} />
                   </a>
@@ -72,7 +72,7 @@ export function SiteFooter() {
                 <Link
                   key={store}
                   href="/app"
-                  className="eyebrow flex h-10 items-center rounded border border-white/20 px-4 text-[9px] text-white/70 transition-colors hover:border-gold hover:text-gold"
+                  className="eyebrow flex h-11 items-center rounded-pill border border-white/20 px-5 text-[9px] text-white/70 transition-colors hover:border-gold hover:bg-white/5 hover:text-gold"
                 >
                   {store}
                 </Link>

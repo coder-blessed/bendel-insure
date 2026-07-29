@@ -233,7 +233,13 @@ export const teamTabs: { key: TeamKey; label: string }[] = [
   { key: "u17", label: "Academy U17" },
 ];
 
-export const matches: Record<TeamKey, { last: Fixture; next: Fixture }> = {
+export type TeamMatches = {
+  last: Fixture;
+  next: Fixture;
+  upcoming: Fixture;
+};
+
+export const matches: Record<TeamKey, TeamMatches> = {
   first: {
     last: {
       competition: "NPFL",
@@ -250,6 +256,14 @@ export const matches: Record<TeamKey, { last: Fixture; next: Fixture }> = {
       venue: "Samuel Ogbemudia Stadium, Benin City",
       home: { name: "Bendel Insurance", tone: 0 },
       away: { name: "Remo Stars", tone: 5 },
+      kickoff: "16:00",
+    },
+    upcoming: {
+      competition: "NPFL",
+      date: "Sat 08 Aug 2026",
+      venue: "Adokiye Amiesimaka Stadium, Port Harcourt",
+      home: { name: "Rivers United", tone: 4 },
+      away: { name: "Bendel Insurance", tone: 0 },
       kickoff: "16:00",
     },
   },
@@ -271,6 +285,14 @@ export const matches: Record<TeamKey, { last: Fixture; next: Fixture }> = {
       away: { name: "Insurance Feeders", tone: 0 },
       kickoff: "15:30",
     },
+    upcoming: {
+      competition: "Nationwide League One",
+      date: "Sat 08 Aug 2026",
+      venue: "Ogbe Stadium, Benin City",
+      home: { name: "Insurance Feeders", tone: 0 },
+      away: { name: "Ekpoma City", tone: 5 },
+      kickoff: "15:30",
+    },
   },
   u17: {
     last: {
@@ -288,6 +310,14 @@ export const matches: Record<TeamKey, { last: Fixture; next: Fixture }> = {
       venue: "Bendel Insurance Academy",
       home: { name: "Insurance U17", tone: 0 },
       away: { name: "Sunshine U17", tone: 3 },
+      kickoff: "10:00",
+    },
+    upcoming: {
+      competition: "Edo Youth Cup",
+      date: "Fri 07 Aug 2026",
+      venue: "Asaba Township Stadium",
+      home: { name: "Delta Force U17", tone: 2 },
+      away: { name: "Insurance U17", tone: 0 },
       kickoff: "10:00",
     },
   },

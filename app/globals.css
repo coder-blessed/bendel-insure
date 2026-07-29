@@ -16,6 +16,12 @@
   --font-display: var(--font-archivo), var(--font-geist-sans), sans-serif;
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
+
+  /* Rounding scale: pill for controls, card for panels, media for imagery. */
+  --radius-pill: 999px;
+  --radius-control: 0.75rem;
+  --radius-card: 1.25rem;
+  --radius-media: 1.5rem;
 }
 
 html {
@@ -109,6 +115,7 @@ body {
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-gold);
-  outline-offset: 2px;
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: var(--radius-control);
 }

@@ -49,7 +49,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col bg-white">
         <a
           href="#main"
-          className="eyebrow sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-gold focus:px-4 focus:py-2 focus:text-[11px] focus:text-brand-deep"
+          className="eyebrow sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-pill focus:bg-gold focus:px-5 focus:py-2.5 focus:text-[11px] focus:text-brand-deep"
         >
           Skip to content
         </a>

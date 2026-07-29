@@ -5,7 +5,7 @@ function LogoTile({ name, large = false }: { name: string; large?: boolean }) {
   return (
     <Link
       href="/partners"
-      className={`flex items-center justify-center border border-ink/10 bg-white px-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-md ${
+      className={`flex items-center justify-center rounded-card border border-ink/12 bg-white px-4 text-center transition-colors duration-300 hover:border-brand ${
         large ? "h-24" : "h-16"
       }`}
     >

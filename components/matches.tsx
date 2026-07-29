@@ -15,63 +15,73 @@ import {
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-function FixturePanel({ fixture, label }: { fixture: Fixture; label: string }) {
+function TeamColumn({ team }: { team: Fixture["home"] }) {
+  return (
+    <div className="flex flex-1 flex-col items-center gap-3 text-center">
+      <TeamBadge name={team.name} tone={team.tone} />
+      <span className="text-sm leading-tight font-semibold text-ink">
+        {team.name}
+      </span>
+    </div>
+  );
+}
+
+function FixtureCard({ fixture, label }: { fixture: Fixture; label: string }) {
   const isResult = Boolean(fixture.score);
 
   return (
-    <div className="flex flex-col border border-white/12 bg-white/[0.04] p-5 backdrop-blur-sm md:p-7">
-      <div className="mb-6 flex items-center justify-between gap-3">
-        <span className="eyebrow text-[10px] text-gold">{label}</span>
-        <span className="eyebrow text-[10px] text-white/55">
+    <div>
+      <h3 className="headline mb-3 text-lg text-ink uppercase">{label}</h3>
+
+      <div className="flex flex-col rounded-card bg-smoke p-5 md:p-6">
+        <p className="mb-5 text-center text-sm font-semibold text-ink">
           {fixture.date}
-        </span>
-      </div>
-
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex flex-1 flex-col items-center gap-3 text-center">
-          <TeamBadge name={fixture.home.name} tone={fixture.home.tone} />
-          <span className="headline text-sm text-white uppercase sm:text-base">
-            {fixture.home.name}
-          </span>
-        </div>
-
-        <div className="flex shrink-0 flex-col items-center gap-1 px-2">
-          <span className="headline text-3xl text-white tabular-nums sm:text-4xl">
-            {isResult ? fixture.score : fixture.kickoff}
-          </span>
-          <span className="eyebrow text-[10px] text-gold">
-            {isResult ? fixture.status : "Kick-off"}
-          </span>
-        </div>
-
-        <div className="flex flex-1 flex-col items-center gap-3 text-center">
-          <TeamBadge name={fixture.away.name} tone={fixture.away.tone} />
-          <span className="headline text-sm text-white uppercase sm:text-base">
-            {fixture.away.name}
-          </span>
-        </div>
-      </div>
-
-      <div className="mt-6 border-t border-white/10 pt-4 text-center">
-        <p className="eyebrow text-[10px] text-white/70">
-          {fixture.competition}
         </p>
-        <p className="mt-1.5 text-xs text-white/50">{fixture.venue}</p>
-      </div>
 
-      <div className="mt-5 grid gap-2 sm:grid-cols-2">
-        <Link
-          href={isResult ? "/matches/results" : "/matches/centre"}
-          className="eyebrow flex items-center justify-center gap-2 border border-white/25 px-4 py-3 text-[10px] text-white transition-colors hover:border-gold hover:text-gold"
-        >
-          {isResult ? "Match report" : "Match centre"}
-        </Link>
-        <Link
-          href={isResult ? "/tv/highlights" : "/tickets"}
-          className="eyebrow flex items-center justify-center gap-2 bg-gold px-4 py-3 text-[10px] text-brand-deep transition-colors hover:bg-white"
-        >
-          {isResult ? "Highlights" : "Buy tickets"}
-        </Link>
+        <div className="flex items-start justify-between gap-2">
+          <TeamColumn team={fixture.home} />
+
+          <div className="flex shrink-0 flex-col items-center gap-1.5 pt-3">
+            <span
+              className={`headline rounded-control px-4 py-2 text-2xl tabular-nums sm:text-3xl ${
+                isResult ? "bg-ink text-white" : "bg-white text-ink"
+              }`}
+            >
+              {isResult ? fixture.score : fixture.kickoff}
+            </span>
+            {isResult ? (
+              <span className="eyebrow text-[10px] text-steel">
+                {fixture.status}
+              </span>
+            ) : (
+              <span className="sr-only">Kick-off</span>
+            )}
+          </div>
+
+          <TeamColumn team={fixture.away} />
+        </div>
+
+        <div className="mt-6 text-center">
+          <p className="text-sm font-semibold text-ink">
+            {fixture.competition}
+          </p>
+          <p className="mt-1 text-xs text-steel">{fixture.venue}</p>
+        </div>
+
+        <div className="mt-5 grid grid-cols-2 gap-3">
+          <Link
+            href={isResult ? "/matches/results" : "/matches/centre"}
+            className="eyebrow flex items-center justify-center rounded-pill bg-brand px-3 py-3 text-center text-[10px] text-white transition-colors hover:bg-brand-dark"
+          >
+            {isResult ? "Match report" : "Match centre"}
+          </Link>
+          <Link
+            href={isResult ? "/tv/highlights" : "/tickets"}
+            className="eyebrow flex items-center justify-center rounded-pill border border-ink/15 bg-white px-3 py-3 text-center text-[10px] text-ink transition-colors hover:border-brand/40 hover:text-brand"
+          >
+            {isResult ? "Highlights" : "Buy tickets"}
+          </Link>
+        </div>
       </div>
     </div>
   );
@@ -79,12 +89,12 @@ function FixturePanel({ fixture, label }: { fixture: Fixture; label: string }) {
 
 function LeagueTable() {
   return (
-    <div className="border border-white/12 bg-white/[0.04] p-5 md:p-7">
-      <div className="mb-5 flex items-center justify-between gap-3">
-        <span className="eyebrow text-[10px] text-gold">NPFL table</span>
+    <div className="rounded-card bg-smoke p-5 md:p-6">
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <h3 className="headline text-lg text-ink uppercase">NPFL table</h3>
         <Link
           href="/matches/table"
-          className="eyebrow group inline-flex items-center gap-1.5 text-[10px] text-white/70 hover:text-white"
+          className="eyebrow group inline-flex items-center gap-1.5 rounded-pill px-2.5 py-1.5 text-[10px] text-steel transition-colors hover:text-brand"
         >
           Full table
           <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
@@ -96,7 +106,7 @@ function LeagueTable() {
           Nigeria Premier Football League standings, top six
         </caption>
         <thead>
-          <tr className="eyebrow text-[9px] text-white/45">
+          <tr className="eyebrow text-[9px] text-steel">
             <th scope="col" className="pb-3 font-medium">
               Pos
             </th>
@@ -120,14 +130,14 @@ function LeagueTable() {
             return (
               <tr
                 key={row.team}
-                className={`border-t border-white/8 text-sm ${
-                  isClub ? "bg-brand/25 text-white" : "text-white/70"
+                className={`border-t border-ink/8 text-sm ${
+                  isClub
+                    ? "bg-brand/8 text-brand-dark [&>td:first-child]:rounded-l-control [&>td:last-child]:rounded-r-control"
+                    : "text-ink/75"
                 }`}
               >
-                <td className="py-3 pl-2 tabular-nums">{row.position}</td>
-                <td
-                  className={`py-3 ${isClub ? "headline text-sm uppercase" : "font-medium"}`}
-                >
+                <td className="py-3 pl-3 tabular-nums">{row.position}</td>
+                <td className={`py-3 ${isClub ? "font-bold" : "font-medium"}`}>
                   {row.team}
                 </td>
                 <td className="py-3 text-right tabular-nums">{row.played}</td>
@@ -136,7 +146,7 @@ function LeagueTable() {
                     ? `+${row.goalDifference}`
                     : row.goalDifference}
                 </td>
-                <td className="headline py-3 pr-2 text-right text-base tabular-nums">
+                <td className="headline py-3 pr-3 text-right text-base tabular-nums">
                   {row.points}
                 </td>
               </tr>
@@ -157,7 +167,7 @@ export function Matches() {
       <div
         role="tablist"
         aria-label="Select a team"
-        className="mb-6 flex flex-wrap gap-x-6 gap-y-2 border-b border-white/12"
+        className="mb-8 inline-flex flex-wrap gap-1 rounded-pill bg-smoke p-1.5"
       >
         {teamTabs.map((tab) => {
           const selected = tab.key === team;
@@ -168,18 +178,18 @@ export function Matches() {
               role="tab"
               aria-selected={selected}
               onClick={() => setTeam(tab.key)}
-              className={`eyebrow relative pb-3 text-[11px] transition-colors ${
-                selected ? "text-white" : "text-white/50 hover:text-white/80"
+              className={`relative rounded-pill px-4 py-2.5 text-[13px] font-semibold transition-colors ${
+                selected ? "text-white" : "text-steel hover:text-ink"
               }`}
             >
-              {tab.label}
               {selected ? (
                 <motion.span
-                  layoutId="team-tab-underline"
-                  className="absolute -bottom-px left-0 h-[3px] w-full bg-gold"
+                  layoutId="team-tab-pill"
+                  className="absolute inset-0 rounded-pill bg-ink"
                   transition={{ duration: 0.4, ease: EASE }}
                 />
               ) : null}
+              <span className="relative">{tab.label}</span>
             </button>
           );
         })}
@@ -192,11 +202,16 @@ export function Matches() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.4, ease: EASE }}
-          className="grid gap-5 lg:grid-cols-3"
         >
-          <FixturePanel fixture={fixtures.last} label="Last match" />
-          <FixturePanel fixture={fixtures.next} label="Next match" />
-          <LeagueTable />
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <FixtureCard fixture={fixtures.last} label="Last match" />
+            <FixtureCard fixture={fixtures.next} label="Next match" />
+            <FixtureCard fixture={fixtures.upcoming} label="Upcoming match" />
+          </div>
+
+          <div className="mt-8">
+            <LeagueTable />
+          </div>
         </motion.div>
       </AnimatePresence>
     </div>

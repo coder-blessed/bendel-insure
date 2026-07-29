@@ -44,7 +44,7 @@ export function Rail({
   };
 
   const arrowBase = dark
-    ? "border-white/25 bg-black/40 text-white hover:border-gold hover:text-gold"
+    ? "border-white/25 bg-ink text-white hover:border-gold hover:bg-gold hover:text-brand-deep"
     : "border-ink/15 bg-white text-ink hover:border-brand hover:text-brand";
 
   return (
@@ -65,7 +65,7 @@ export function Rail({
         onClick={() => scrollByPage(-1)}
         disabled={atStart}
         aria-label={`Scroll ${label} backwards`}
-        className={`absolute top-1/2 -left-5 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border shadow-lg transition-all disabled:pointer-events-none disabled:opacity-0 md:flex ${arrowBase}`}
+        className={`absolute top-1/2 -left-5 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border transition-all disabled:pointer-events-none disabled:opacity-0 md:flex ${arrowBase}`}
       >
         <ChevronLeft className="h-5 w-5" />
       </button>
@@ -74,7 +74,7 @@ export function Rail({
         onClick={() => scrollByPage(1)}
         disabled={atEnd}
         aria-label={`Scroll ${label} forwards`}
-        className={`absolute top-1/2 -right-5 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border shadow-lg transition-all disabled:pointer-events-none disabled:opacity-0 md:flex ${arrowBase}`}
+        className={`absolute top-1/2 -right-5 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border transition-all disabled:pointer-events-none disabled:opacity-0 md:flex ${arrowBase}`}
       >
         <ChevronRight className="h-5 w-5" />
       </button>

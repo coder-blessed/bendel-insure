@@ -13,7 +13,7 @@ export function SquadRail() {
           href={`/teams/first/${player.name.toLowerCase().replaceAll(" ", "-")}`}
           className="group w-[13rem] shrink-0 snap-start sm:w-[15rem]"
         >
-          <div className="relative aspect-[3/4] overflow-hidden bg-ink">
+          <div className="relative aspect-[3/4] overflow-hidden rounded-media bg-ink ring-1 ring-ink/10 transition-all duration-300">
             <Media
               tone={player.tone}
               monogram={false}
@@ -32,7 +32,7 @@ export function SquadRail() {
             </span>
 
             <div className="absolute inset-x-0 bottom-0 p-4">
-              <span className="eyebrow block text-[9px] text-gold">
+              <span className="eyebrow inline-block rounded-pill bg-gold/15 px-2.5 py-1 text-[9px] text-gold backdrop-blur-sm">
                 {player.position}
               </span>
               <span className="headline mt-1 block text-lg text-white uppercase">

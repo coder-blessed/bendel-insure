@@ -1,50 +1,33 @@
-export function Crest({ className = "h-9 w-9" }: { className?: string }) {
+import Image from "next/image";
+import crestImage from "@/public/Bendel_Insurance_F.C._logo.png";
+
+/**
+ * The official club crest. Defaults to `alt=""` because it is almost always
+ * paired with the club name in text, and announcing both is redundant.
+ */
+export function Crest({
+  className = "h-9 w-auto",
+  alt = "",
+  priority = false,
+}: {
+  className?: string;
+  alt?: string;
+  priority?: boolean;
+}) {
   return (
-    <svg
-      viewBox="0 0 64 72"
-      className={className}
-      role="img"
-      aria-label="Bendel Insurance FC crest"
-    >
-      <title>Bendel Insurance FC crest</title>
-      <path
-        d="M32 1 61 9v30c0 15-12 26-29 32C15 65 3 54 3 39V9L32 1Z"
-        fill="#046a32"
-        stroke="#f7c621"
-        strokeWidth="2.5"
-      />
-      <path d="M32 8 55 14v25c0 12-9 21-23 26V8Z" fill="#04582a" />
-      <text
-        x="32"
-        y="41"
-        textAnchor="middle"
-        fill="#f7c621"
-        fontSize="21"
-        fontWeight="800"
-        fontFamily="var(--font-display), sans-serif"
-      >
-        BI
-      </text>
-      <text
-        x="32"
-        y="55"
-        textAnchor="middle"
-        fill="#ffffff"
-        fontSize="9"
-        fontWeight="700"
-        letterSpacing="0.6"
-        fontFamily="var(--font-display), sans-serif"
-      >
-        1972
-      </text>
-    </svg>
+    <Image
+      src={crestImage}
+      alt={alt}
+      priority={priority}
+      className={`w-auto object-contain ${className}`}
+    />
   );
 }
 
 export function Wordmark({ className = "" }: { className?: string }) {
   return (
     <span className={`flex items-center gap-2.5 ${className}`}>
-      <Crest className="h-9 w-9 shrink-0" />
+      <Crest className="h-10 shrink-0" priority />
       <span className="hidden leading-[0.9] sm:block">
         <span className="headline block text-[15px] tracking-tight uppercase">
           Bendel Insurance
@@ -57,7 +40,12 @@ export function Wordmark({ className = "" }: { className?: string }) {
   );
 }
 
-/** Small circular team badge used in fixture strips and the league table. */
+/** Our own sides get the real crest; opponents fall back to initial badges. */
+function isOurTeam(name: string) {
+  return name.includes("Insurance");
+}
+
+/** Small team badge used in fixture strips and the league table. */
 export function TeamBadge({
   name,
   tone = 0,
@@ -67,6 +55,17 @@ export function TeamBadge({
   tone?: number;
   className?: string;
 }) {
+  if (isOurTeam(name)) {
+    return (
+      <span
+        className={`inline-flex items-center justify-center ${className}`}
+        aria-hidden="true"
+      >
+        <Crest className="h-full" />
+      </span>
+    );
+  }
+
   const palettes = [
     ["#046a32", "#f7c621"],
     ["#0a5140", "#4fc79b"],
