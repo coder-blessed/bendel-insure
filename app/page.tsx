@@ -1,65 +1,180 @@
-import Image from "next/image";
+import { Hero } from "@/components/hero";
+import { HonoursBand } from "@/components/honours-band";
+import { Matches } from "@/components/matches";
+import { Partners } from "@/components/partners";
+import { PromoDuo } from "@/components/promo-duo";
+import { Reveal } from "@/components/reveal";
+import { SectionHeader } from "@/components/section-header";
+import { SquadRail } from "@/components/squad-rail";
+import { StoryGrid } from "@/components/story-card";
+import { Ticker } from "@/components/ticker";
+import { VideoRail } from "@/components/video-rail";
+import {
+  club,
+  featureStories,
+  kitPromos,
+  membershipPromos,
+  newsStories,
+  ticketPromos,
+} from "@/lib/content";
+
+const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      <Hero />
+      <Ticker />
+
+      {/* News and views */}
+      <section className={`${SHELL} py-14 md:py-20`}>
+        <SectionHeader
+          title={`Welcome to ${club.shortName}`}
+          subtitle="News and views from the Benin Arsenal"
+          actionLabel="All news"
+          actionHref="/news"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+        <Reveal delay={0.05}>
+          <StoryGrid stories={newsStories} />
+        </Reveal>
+      </section>
+
+      {/* Matches + table */}
+      <section className="bg-brand-deep">
+        <div className={`${SHELL} py-14 md:py-20`}>
+          <SectionHeader
+            title="Matches"
+            subtitle={`${club.league} · ${club.stadium}`}
+            actionLabel="Fixtures"
+            actionHref="/matches/fixtures"
+            dark
+          />
+          <Reveal delay={0.05}>
+            <Matches />
+          </Reveal>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Insurance TV */}
+      <section className="bg-ink">
+        <div className={`${SHELL} py-14 md:py-20`}>
+          <SectionHeader
+            title="Insurance TV"
+            subtitle="Highlights, full matches and behind the scenes"
+            actionLabel="Watch all"
+            actionHref="/tv"
+            dark
+          />
+          <Reveal delay={0.05}>
+            <VideoRail />
+          </Reveal>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Features and opinion */}
+      <section className={`${SHELL} py-14 md:py-20`}>
+        <SectionHeader
+          title="Features and opinion"
+          subtitle="Essential reading from Benin City"
+          actionLabel="All features"
+          actionHref="/news/features"
+        />
+        <Reveal delay={0.05}>
+          <StoryGrid stories={featureStories} />
+        </Reveal>
+      </section>
+
+      {/* Club store */}
+      <section className="bg-smoke">
+        <div className={`${SHELL} py-14 md:py-20`}>
+          <SectionHeader
+            title="The club store"
+            subtitle="Green and gold for every supporter"
+            actionLabel="Shop all"
+            actionHref="/store"
+          />
+          <Reveal delay={0.05}>
+            <PromoDuo promos={kitPromos} hrefBase="/store" />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Squad */}
+      <section className={`${SHELL} py-14 md:py-20`}>
+        <SectionHeader
+          title="First team"
+          subtitle="The squad wearing the green and gold this season"
+          actionLabel="Full squad"
+          actionHref="/teams/first"
+        />
+        <Reveal delay={0.05}>
+          <SquadRail />
+        </Reveal>
+      </section>
+
+      {/* Honours */}
+      <section className="relative overflow-hidden bg-brand-dark">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 opacity-15"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(115deg, #f7c621 0 2px, transparent 2px 26px)",
+          }}
+        />
+        <div className={`${SHELL} relative py-14 md:py-20`}>
+          <SectionHeader
+            title="Since 1972"
+            subtitle="Founding members of the Nigerian league, originally the Vipers of Benin"
+            actionLabel="Club history"
+            actionHref="/club/history"
+            dark
+          />
+          <Reveal delay={0.05}>
+            <HonoursBand />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Tickets and tours */}
+      <section className={`${SHELL} py-14 md:py-20`}>
+        <SectionHeader
+          title="Tickets and tours"
+          subtitle="Experiences for the Insurance family"
+          actionLabel="All tickets"
+          actionHref="/tickets"
+        />
+        <Reveal delay={0.05}>
+          <PromoDuo promos={ticketPromos} hrefBase="/tickets" />
+        </Reveal>
+      </section>
+
+      {/* Membership */}
+      <section className="bg-smoke">
+        <div className={`${SHELL} py-14 md:py-20`}>
+          <SectionHeader
+            title="Become a member"
+            subtitle="Priority tickets, exclusive video and members-only merch"
+            actionLabel="Join now"
+            actionHref="/membership"
+          />
+          <Reveal delay={0.05}>
+            <PromoDuo promos={membershipPromos} hrefBase="/membership" />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Partners */}
+      <section className={`${SHELL} pb-16 md:pb-24`}>
+        <SectionHeader
+          title="Our partners"
+          actionLabel="All partners"
+          actionHref="/partners"
+        />
+        <Reveal delay={0.05}>
+          <Partners />
+        </Reveal>
+      </section>
+    </>
   );
 }
