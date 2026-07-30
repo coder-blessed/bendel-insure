@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const TONES = [
   { a: "#012512", b: "#046a32", c: "#f7c621" },
   { a: "#02170f", b: "#0a5140", c: "#4fc79b" },
@@ -8,19 +10,44 @@ const TONES = [
 ];
 
 /**
- * Gradient stand-in for club photography. Fills its nearest positioned ancestor,
- * so wrap it in a `relative` element that owns the aspect ratio. Swap for
- * `next/image` once real match photography is available.
+ * Fills its nearest positioned ancestor, so wrap it in a `relative` element
+ * that owns the aspect ratio.
+ *
+ * Renders real photography when `src` is set, and falls back to a branded
+ * gradient when it is not, so sections still look intentional while assets
+ * are missing. Images are decorative by default: every call site sits next to
+ * a visible headline, so a description here would just be announced twice.
  */
 export function Media({
+  src,
+  alt = "",
   tone = 0,
   className = "",
   monogram = true,
+  priority = false,
+  sizes = "(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw",
 }: {
+  src?: string;
+  alt?: string;
   tone?: number;
   className?: string;
   monogram?: boolean;
+  priority?: boolean;
+  sizes?: string;
 }) {
+  if (src) {
+    return (
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes={sizes}
+        priority={priority}
+        className={`object-cover ${className}`}
+      />
+    );
+  }
+
   const t = TONES[tone % TONES.length];
 
   return (

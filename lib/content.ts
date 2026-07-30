@@ -7,6 +7,18 @@
  * placeholder sample data — wire them to a feed or CMS before going live.
  */
 
+/**
+ * DEV ONLY placeholder photography. Deterministic per seed so images stay
+ * stable across reloads instead of flickering between renders.
+ *
+ * To go live: drop real assets in `public/images/` and replace each `image`
+ * value below with its local path (e.g. `/images/remo-stars-preview.jpg`),
+ * then delete this helper and the `images.remotePatterns` entries in
+ * `next.config.ts`.
+ */
+const photo = (seed: string, width = 1200, height = 800) =>
+  `https://picsum.photos/seed/${seed}/${width}/${height}`;
+
 export const club = {
   name: "Bendel Insurance FC",
   shortName: "Insurance",
@@ -22,6 +34,7 @@ export type Story = {
   slug: string;
   category: string;
   timestamp: string;
+  image: string;
   title: string;
   excerpt?: string;
   tone: number;
@@ -31,6 +44,7 @@ export type VideoItem = {
   slug: string;
   title: string;
   duration: string;
+  image: string;
   locked?: boolean;
   tone: number;
 };
@@ -38,6 +52,7 @@ export type VideoItem = {
 export type Promo = {
   slug: string;
   kicker: string;
+  image: string;
   title: string;
   tone: number;
 };
@@ -45,6 +60,7 @@ export type Promo = {
 export const heroSlides = [
   {
     slug: "all-the-goals-federation-cup",
+    image: photo("all-the-goals-federation-cup"),
     eyebrow: "All The Goals",
     title: "Every goal on the road to Asaba",
     excerpt:
@@ -55,6 +71,7 @@ export const heroSlides = [
   },
   {
     slug: "back-home-at-the-ogbemudia",
+    image: photo("back-home-at-the-ogbemudia"),
     eyebrow: "Matchday",
     title: "Back home at the Ogbemudia",
     excerpt:
@@ -65,6 +82,7 @@ export const heroSlides = [
   },
   {
     slug: "six-academy-graduates",
+    image: photo("six-academy-graduates"),
     eyebrow: "Academy",
     title: "Six graduates, one first-team squad",
     excerpt:
@@ -78,6 +96,7 @@ export const heroSlides = [
 export const newsStories: Story[] = [
   {
     slug: "how-to-watch-insurance-v-remo-stars",
+    image: photo("how-to-watch-insurance-v-remo-stars"),
     category: "Match Preview",
     timestamp: "3 hours ago",
     title: "How to watch Insurance v Remo Stars",
@@ -87,6 +106,7 @@ export const newsStories: Story[] = [
   },
   {
     slug: "loan-news-osagie-joins-warri-wolves",
+    image: photo("loan-news-osagie-joins-warri-wolves"),
     category: "News",
     timestamp: "a day ago",
     title: "Loan news: Osagie joins Warri Wolves",
@@ -94,16 +114,34 @@ export const newsStories: Story[] = [
   },
   {
     slug: "season-tickets-members-first",
+    image: photo("season-tickets-members-first"),
     category: "Tickets",
     timestamp: "2 days ago",
     title: "Season tickets on sale for members first",
     tone: 5,
+  },
+  {
+    slug: "igbinoba-signs-new-deal",
+    image: photo("igbinoba-signs-new-deal"),
+    category: "Transfers",
+    timestamp: "3 days ago",
+    title: "Igbinoba signs new three-year deal",
+    tone: 1,
+  },
+  {
+    slug: "academy-trials-how-to-register",
+    image: photo("academy-trials-how-to-register"),
+    category: "Academy",
+    timestamp: "4 days ago",
+    title: "Academy trials: how to register in Edo State",
+    tone: 2,
   },
 ];
 
 export const featureStories: Story[] = [
   {
     slug: "1979-the-year-benin-ruled",
+    image: photo("1979-the-year-benin-ruled"),
     category: "Features",
     timestamp: "5 hours ago",
     title: "1979: the year Benin ruled Nigerian football",
@@ -113,6 +151,7 @@ export const featureStories: Story[] = [
   },
   {
     slug: "writers-picks-npfl-run-in",
+    image: photo("writers-picks-npfl-run-in"),
     category: "Opinion",
     timestamp: "2 days ago",
     title: "Writers' picks: the fixtures that decide our season",
@@ -120,6 +159,7 @@ export const featureStories: Story[] = [
   },
   {
     slug: "vipers-to-arsenal-the-crest",
+    image: photo("vipers-to-arsenal-the-crest"),
     category: "Features",
     timestamp: "4 days ago",
     title: "From Vipers to Arsenal: the story of the crest",
@@ -130,12 +170,14 @@ export const featureStories: Story[] = [
 export const videos: VideoItem[] = [
   {
     slug: "highlights-insurance-2-rangers-0",
+    image: photo("highlights-insurance-2-rangers-0"),
     title: "Highlights: Insurance 2 Rangers 0",
     duration: "3m 51s",
     tone: 0,
   },
   {
     slug: "access-all-areas-asaba",
+    image: photo("access-all-areas-asaba"),
     title: "Access All Areas: cup final in Asaba",
     duration: "23m 38s",
     locked: true,
@@ -143,18 +185,21 @@ export const videos: VideoItem[] = [
   },
   {
     slug: "inside-training-ogbemudia",
+    image: photo("inside-training-ogbemudia"),
     title: "Inside training at the Ogbemudia",
     duration: "6m 03s",
     tone: 1,
   },
   {
     slug: "top-10-goals-2025",
+    image: photo("top-10-goals-2025"),
     title: "Top 10 goals of 2025",
     duration: "8m 47s",
     tone: 3,
   },
   {
     slug: "press-conference-matchday-14",
+    image: photo("press-conference-matchday-14"),
     title: "Press conference: matchday 14",
     duration: "11m 08s",
     locked: true,
@@ -162,6 +207,7 @@ export const videos: VideoItem[] = [
   },
   {
     slug: "academy-derby-full-match",
+    image: photo("academy-derby-full-match"),
     title: "Academy derby: full match replay",
     duration: "1h 46m",
     locked: true,
@@ -172,12 +218,14 @@ export const videos: VideoItem[] = [
 export const kitPromos: Promo[] = [
   {
     slug: "home-kit",
+    image: photo("home-kit"),
     kicker: "2026/27 home kit",
     title: "Green and gold, out now",
     tone: 0,
   },
   {
     slug: "away-kit",
+    image: photo("away-kit"),
     kicker: "New away shirt",
     title: "Away days in white",
     tone: 3,
@@ -187,12 +235,14 @@ export const kitPromos: Promo[] = [
 export const ticketPromos: Promo[] = [
   {
     slug: "home-tickets",
+    image: photo("home-tickets"),
     kicker: "Be here in 2026/27",
     title: "Football at the Ogbemudia",
     tone: 1,
   },
   {
     slug: "stadium-tours",
+    image: photo("stadium-tours"),
     kicker: "Walk the tunnel",
     title: "Stadium tours from ₦3,500",
     tone: 4,
@@ -202,12 +252,14 @@ export const ticketPromos: Promo[] = [
 export const membershipPromos: Promo[] = [
   {
     slug: "membership-premium",
+    image: photo("membership-premium"),
     kicker: "Membership Premium",
     title: "For the ultimate Arsenal",
     tone: 2,
   },
   {
     slug: "membership-official",
+    image: photo("membership-official"),
     kicker: "Membership Official",
     title: "For our loyal supporters",
     tone: 0,
@@ -374,19 +426,74 @@ export type Player = {
   number: number;
   name: string;
   position: string;
+  image: string;
   tone: number;
 };
 
 export const squad: Player[] = [
-  { number: 1, name: "Amas Obasogie", position: "Goalkeeper", tone: 1 },
-  { number: 4, name: "Ndifreke Effiong", position: "Defender", tone: 0 },
-  { number: 6, name: "Tosin Adegbite", position: "Defender", tone: 2 },
-  { number: 8, name: "Chinedu Okoye", position: "Midfielder", tone: 3 },
-  { number: 10, name: "Osaretin Igbinoba", position: "Midfielder", tone: 0 },
-  { number: 11, name: "Kelvin Itoya", position: "Winger", tone: 4 },
-  { number: 14, name: "Sadiq Yakubu", position: "Winger", tone: 5 },
-  { number: 19, name: "Efe Oghenekaro", position: "Forward", tone: 0 },
-  { number: 23, name: "Peter Uwaifo", position: "Forward", tone: 2 },
+  {
+    number: 1,
+    name: "Amas Obasogie",
+    position: "Goalkeeper",
+    tone: 1,
+    image: photo("amas-obasogie", 900, 1200),
+  },
+  {
+    number: 4,
+    name: "Ndifreke Effiong",
+    position: "Defender",
+    tone: 0,
+    image: photo("ndifreke-effiong", 900, 1200),
+  },
+  {
+    number: 6,
+    name: "Tosin Adegbite",
+    position: "Defender",
+    tone: 2,
+    image: photo("tosin-adegbite", 900, 1200),
+  },
+  {
+    number: 8,
+    name: "Chinedu Okoye",
+    position: "Midfielder",
+    tone: 3,
+    image: photo("chinedu-okoye", 900, 1200),
+  },
+  {
+    number: 10,
+    name: "Osaretin Igbinoba",
+    position: "Midfielder",
+    tone: 0,
+    image: photo("osaretin-igbinoba", 900, 1200),
+  },
+  {
+    number: 11,
+    name: "Kelvin Itoya",
+    position: "Winger",
+    tone: 4,
+    image: photo("kelvin-itoya", 900, 1200),
+  },
+  {
+    number: 14,
+    name: "Sadiq Yakubu",
+    position: "Winger",
+    tone: 5,
+    image: photo("sadiq-yakubu", 900, 1200),
+  },
+  {
+    number: 19,
+    name: "Efe Oghenekaro",
+    position: "Forward",
+    tone: 0,
+    image: photo("efe-oghenekaro", 900, 1200),
+  },
+  {
+    number: 23,
+    name: "Peter Uwaifo",
+    position: "Forward",
+    tone: 2,
+    image: photo("peter-uwaifo", 900, 1200),
+  },
 ];
 
 export const honours = [

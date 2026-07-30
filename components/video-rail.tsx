@@ -13,23 +13,26 @@ export function VideoRail() {
           href={`/tv/${video.slug}`}
           className="group w-[17rem] shrink-0 snap-start sm:w-[21rem]"
         >
-          <div className="relative aspect-video overflow-hidden rounded-media ring-1 ring-white/10 transition-all duration-300 group-hover:ring-gold/40">
+          <div className="relative aspect-video overflow-hidden rounded-media">
             <Media
+              src={video.image}
               tone={video.tone}
-              className="transition-transform duration-700 ease-out group-hover:scale-[1.07]"
+              monogram={false}
+              sizes="(max-width: 640px) 272px, 336px"
+              className="transition-transform duration-700 ease-out group-hover:scale-[1.06]"
             />
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"
+              className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"
             />
 
-            <span className="absolute inset-0 flex items-center justify-center">
-              <span className="flex h-14 w-14 items-center justify-center rounded-full border border-white/50 bg-white/15 text-white backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-gold group-hover:text-brand-deep">
-                <Play className="h-5 w-5" />
-              </span>
+            {/* Compact play affordance instead of a large centred circle, so
+                the thumbnail itself stays the focus. */}
+            <span className="absolute bottom-3 left-3 flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md transition-colors duration-300 group-hover:bg-gold group-hover:text-brand-deep">
+              <Play className="h-4 w-4" />
             </span>
 
-            <span className="eyebrow absolute right-3 bottom-3 rounded-pill bg-black/70 px-2.5 py-1 text-[10px] text-white tabular-nums backdrop-blur-sm">
+            <span className="eyebrow absolute right-3 bottom-4 text-[10px] text-white tabular-nums">
               {video.duration}
             </span>
 
@@ -41,11 +44,11 @@ export function VideoRail() {
             ) : null}
           </div>
 
-          <h3 className="headline mt-3 text-base text-white uppercase transition-colors group-hover:text-gold">
+          <h3 className="headline mt-3 line-clamp-2 text-base text-white uppercase transition-colors group-hover:text-gold">
             {video.title}
           </h3>
-          <p className="eyebrow mt-1.5 text-[10px] text-white/50">
-            {video.locked ? "Log in to watch" : "Watch now"}
+          <p className="eyebrow mt-1.5 text-[10px] text-white/45">
+            {video.locked ? "Members only" : "Watch now"}
           </p>
         </Link>
       ))}

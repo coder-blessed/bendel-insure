@@ -6,7 +6,7 @@ import { PromoDuo } from "@/components/promo-duo";
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
 import { SquadRail } from "@/components/squad-rail";
-import { StoryGrid } from "@/components/story-card";
+import { StoryGrid, StoryShowcase } from "@/components/story-card";
 import { Ticker } from "@/components/ticker";
 import { VideoRail } from "@/components/video-rail";
 import {
@@ -39,7 +39,7 @@ export default function Home() {
           actionHref="/news"
         />
         <Reveal delay={0.05}>
-          <StoryGrid stories={newsStories} />
+          <StoryShowcase stories={newsStories} />
         </Reveal>
       </section>
 

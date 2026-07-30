@@ -15,8 +15,10 @@ export function SquadRail() {
         >
           <div className="relative aspect-[3/4] overflow-hidden rounded-media bg-ink ring-1 ring-ink/10 transition-all duration-300">
             <Media
+              src={player.image}
               tone={player.tone}
               monogram={false}
+              sizes="(max-width: 640px) 208px, 240px"
               className="transition-transform duration-700 ease-out group-hover:scale-[1.06]"
             />
             <div

@@ -41,10 +41,6 @@ export function HonoursBand() {
           key={item.label}
           className="rounded-card border border-white/12 bg-brand-deep/70 p-5 backdrop-blur-sm transition-colors duration-300 hover:border-gold/40 md:p-6"
         >
-          <span
-            aria-hidden="true"
-            className="mb-4 block h-1.5 w-10 rounded-full bg-gold"
-          />
           <dd className="headline text-4xl text-white sm:text-5xl lg:text-6xl">
             <Counter value={item.value} raw={item.raw} />
           </dd>
