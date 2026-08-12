@@ -1,13 +1,14 @@
 "use client";
 
-import { animate, useInView, useReducedMotion } from "motion/react";
+import { animate, useInView } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { honours } from "@/lib/content";
+import { useReducedMotionSafe } from "@/lib/use-reduced-motion-safe";
 
 function Counter({ value, raw }: { value: number; raw?: boolean }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotionSafe();
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {

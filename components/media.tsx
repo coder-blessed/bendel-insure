@@ -25,6 +25,7 @@ export function Media({
   className = "",
   monogram = true,
   priority = false,
+  eager = false,
   sizes = "(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw",
 }: {
   src?: string;
@@ -33,6 +34,12 @@ export function Media({
   className?: string;
   monogram?: boolean;
   priority?: boolean;
+  /**
+   * Loads immediately without the preload hint. Next 16 deprecated `priority`
+   * in favour of `preload`, and recommends plain eager loading for anything
+   * that is not unambiguously the LCP element.
+   */
+  eager?: boolean;
   sizes?: string;
 }) {
   if (src) {
@@ -43,6 +50,7 @@ export function Media({
         fill
         sizes={sizes}
         priority={priority}
+        loading={eager ? "eager" : undefined}
         className={`object-cover ${className}`}
       />
     );

@@ -1,17 +1,18 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { Pause, Play } from "@/components/icons";
 import { Media } from "@/components/media";
 import { heroSlides } from "@/lib/content";
+import { useReducedMotionSafe } from "@/lib/use-reduced-motion-safe";
 
 const SLIDE_MS = 7000;
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function Hero() {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotionSafe();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const slide = heroSlides[index];

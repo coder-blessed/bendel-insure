@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import { Archivo, Geist, Geist_Mono } from "next/font/google";
-import { CookieBanner } from "@/components/cookie-banner";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -36,6 +33,12 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Root layout owns only the document shell: fonts, global styles and the
+ * default metadata. The public club chrome lives in `(site)/layout.tsx` and
+ * the dashboard shell in `admin/layout.tsx`, so `/admin` does not inherit a
+ * header and footer meant for supporters.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -46,20 +49,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${archivo.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-white">
-        <a
-          href="#main"
-          className="eyebrow sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-pill focus:bg-gold focus:px-5 focus:py-2.5 focus:text-[11px] focus:text-brand-deep"
-        >
-          Skip to content
-        </a>
-        <SiteHeader />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <SiteFooter />
-        <CookieBanner />
-      </body>
+      <body className="flex min-h-full flex-col bg-white">{children}</body>
     </html>
   );
 }

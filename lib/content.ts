@@ -531,6 +531,7 @@ export const partners = {
 
 export const primaryNav = [
   { label: "News", href: "/news" },
+  { label: "Blog", href: "/blog" },
   { label: "Matches", href: "/matches" },
   { label: "Teams", href: "/teams" },
   { label: "Insurance TV", href: "/tv" },
