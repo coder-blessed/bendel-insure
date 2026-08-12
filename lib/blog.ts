@@ -47,6 +47,89 @@ export const postCategories = [
 ];
 
 export const posts: BlogPost[] = [
+
+    {
+  id: "p-007",
+  slug: "bendel-insurance-begin-2026-27-campaign-against-warri-wolves",
+  title: "Bendel Insurance FC Begin 2026/27 Campaign Against Warri Wolves In Benin",
+  excerpt:
+    "The Benin Arsenal will begin their 2026/27 NPFL campaign at home against Warri Wolves on Sunday, August 30, as Bendel Insurance prepare to welcome supporters back to Samuel Ogbemudia Stadium.",
+  category: "Matchday",
+  author: "Club Media",
+  image: "/images/warri-wolves-matchday-1.jpg",
+  tone: 0,
+  status: "published",
+  publishedAt: "2026-08-07",
+  updatedAt: "2026-08-07",
+  readMinutes: 5,
+  body: `
+Bendel Insurance Football Club will begin their 2026/27 Nigeria Premier Football League (NPFL) campaign at home against Warri Wolves on Sunday, August 30.
+
+The opening-day fixture will see the Benin Arsenal return to Samuel Ogbemudia Stadium for what promises to be an exciting Niger Delta derby.
+
+## Insurance begin at home
+
+The NPFL management has confirmed Friday, August 28 as the official kick-off date for the 2026/27 season.
+
+The announcement was made during the NPFL Annual General Meeting and draws ceremony held in Ibadan, Oyo State, on Friday, August 7, 2026.
+
+Bendel Insurance were drawn at home against Warri Wolves for Matchday 1, giving the Benin Arsenal an immediate opportunity to start the new campaign in front of their supporters.
+
+The fixture is scheduled for:
+
+- **Match:** Bendel Insurance FC vs Warri Wolves
+- **Competition:** Nigeria Premier Football League
+- **Matchday:** 1
+- **Date:** Sunday, August 30, 2026
+- **Venue:** Samuel Ogbemudia Stadium, Benin City
+
+## A Niger Delta derby to open the campaign
+
+The meeting with Warri Wolves will give Insurance a challenging start to the new season.
+
+After finishing fifth in the 2025/26 NPFL campaign, the Benin Arsenal will be looking to improve on that performance and compete strongly throughout the new season.
+
+The opening fixture also carries additional significance for supporters, with Bendel Insurance having completed their three-match punishment that required the club to play behind closed doors.
+
+Fans can therefore look forward to returning to Samuel Ogbemudia Stadium to support the team.
+
+> The Benin Arsenal are ready to begin another NPFL campaign, and the first challenge comes against Warri Wolves in a Niger Delta derby.
+
+## The first five fixtures
+
+The draw has also revealed a demanding opening sequence for Bendel Insurance.
+
+After the home fixture against Warri Wolves, the Benin Arsenal travel to Lafia for Matchday 2 against Nasarawa United.
+
+The opening five fixtures are:
+
+1. **Bendel Insurance vs Warri Wolves** — Home
+2. **Nasarawa United vs Bendel Insurance** — Away
+3. **Bendel Insurance vs Kun Khalifat** — Home
+4. **Ranchers Bees vs Bendel Insurance** — Away
+5. **Bendel Insurance vs Ikorodu City** — Home
+
+The sequence gives Insurance three home fixtures from their first five matches and provides an early opportunity to build momentum.
+
+## Enabulele commends NPFL management
+
+Meanwhile, the Executive Chairman of the Edo State Sports Commission, Hon. Amadin Desmond Enabulele, has commended the leadership of the NPFL management under Hon. Otunba Gbenga Elegbeleye.
+
+Enabulele praised the league management for what he described as visionary and pragmatic leadership, particularly the stability and consistency of the NPFL calendar.
+
+He noted that the league has maintained a clear direction in recent seasons, with kick-offs and conclusions taking place according to schedule.
+
+> "Our premier league has impressed tremendously in the operational standard and has been stable and consistent following the calendar for the past three seasons with a clear sense of direction."
+
+## Looking ahead
+
+Bendel Insurance finished fifth in the 2025/26 season and will be determined to surpass that position in the new campaign.
+
+With the supporters returning to Samuel Ogbemudia Stadium and a home derby against Warri Wolves opening the season, the Benin Arsenal have an opportunity to make a strong statement from Matchday 1.
+
+The 2026/27 campaign starts in Benin.
+`,
+},
   {
     id: "p-001",
     slug: "what-the-remo-stars-win-tells-us",
