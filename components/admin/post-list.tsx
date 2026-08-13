@@ -117,7 +117,7 @@ export function PostList({ posts }: { posts: BlogPost[] }) {
                   >
                     <Pencil className="h-4 w-4" />
                   </Link>
-                  <DeletePostDialog title={post.title} />
+                  <DeletePostDialog id={post.id} slug={post.slug} title={post.title} />
                 </div>
               </li>
             ))}

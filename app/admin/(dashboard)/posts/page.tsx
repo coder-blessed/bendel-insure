@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PostList } from "@/components/admin/post-list";
 import { Plus } from "@/components/icons";
-import { getAllPosts } from "@/lib/blog";
+import { getAllPosts } from "@/lib/blog-server";
 
 export const metadata: Metadata = {
   title: "Posts",
 };
 
-export default function AdminPostsPage() {
-  const posts = getAllPosts();
+export default async function AdminPostsPage() {
+  const posts = await getAllPosts();
 
   return (
     <>

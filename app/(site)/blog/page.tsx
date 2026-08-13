@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BlogCard, BlogGrid } from "@/components/blog-card";
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
-import { getPublishedPosts } from "@/lib/blog";
+import { getPublishedPosts } from "@/lib/blog-server";
 import { club } from "@/lib/content";
 
 const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
     "Longer reads from Bendel Insurance FC: analysis, academy features, club history and matchday guides from Benin City.",
 };
 
-export default function BlogPage() {
-  const posts = getPublishedPosts();
+export default async function BlogPage() {
+  const posts = await getPublishedPosts();
   const [lead, ...rest] = posts;
 
   return (

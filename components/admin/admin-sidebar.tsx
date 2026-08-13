@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { logoutAction } from "@/app/admin/(auth)/login/actions";
 import { Crest } from "@/components/brand";
 import {
   Close,
@@ -25,8 +26,7 @@ const EASE = [0.16, 1, 0.3, 1] as const;
  */
 const NAV = [
   { label: "Posts", href: "/admin/posts", icon: FileText, ready: true },
-  { label: "Media", href: "/admin/media", icon: Photo, ready: false },
-  { label: "Settings", href: "/admin/settings", icon: Settings, ready: false },
+  { label: "Settings", href: "/admin/settings", icon: Settings, ready: true },
 ];
 
 function NavList({ onNavigate }: { onNavigate?: () => void }) {
@@ -101,13 +101,15 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
           <Eye className="h-4.5 w-4.5 shrink-0" />
           View blog
         </Link>
-        <button
-          type="button"
-          className="flex items-center gap-3 rounded-control px-3 py-2.5 text-left text-sm font-medium text-white/60 transition-colors hover:bg-white/8 hover:text-white"
-        >
-          <Logout className="h-4.5 w-4.5 shrink-0" />
-          Sign out
-        </button>
+        <form action={logoutAction}>
+          <button
+            type="submit"
+            className="flex w-full items-center gap-3 rounded-control px-3 py-2.5 text-left text-sm font-medium text-white/60 transition-colors hover:bg-white/8 hover:text-white"
+          >
+            <Logout className="h-4.5 w-4.5 shrink-0" />
+            Sign out
+          </button>
+        </form>
       </div>
     </>
   );

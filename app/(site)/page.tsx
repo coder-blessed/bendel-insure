@@ -17,16 +17,39 @@ import {
   newsStories,
   ticketPromos,
 } from "@/lib/content";
+import { getHeroSlides, getSiteSettings } from "@/lib/site-content-server";
 
 const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
 
-export default function Home() {
+export default async function Home() {
+  const slides = await getHeroSlides();
+  const settings = await getSiteSettings();
+
+  const customKitPromos = kitPromos.map((p) => {
+    if (p.slug === "home-kit" && settings.homeKitImage)
+      return { ...p, image: settings.homeKitImage };
+    if (p.slug === "away-kit" && settings.awayKitImage)
+      return { ...p, image: settings.awayKitImage };
+    return p;
+  });
+
+  const customTicketPromos = ticketPromos.map((p) => {
+    if (p.slug === "stadium-tours" && settings.stadiumTourImage)
+      return { ...p, image: settings.stadiumTourImage };
+    return p;
+  });
+
+  const customMembershipPromos = membershipPromos.map((p) => {
+    if (settings.membershipImage) return { ...p, image: settings.membershipImage };
+    return p;
+  });
+
   return (
     <>
       {/* Hero flexes to fill whatever height the ticker leaves, so the pair
           lands exactly on the fold instead of leaving a sliver of page below. */}
       <div className="flex min-h-svh flex-col">
-        <Hero />
+        <Hero slides={slides} />
         <Ticker />
       </div>
 
@@ -97,7 +120,7 @@ export default function Home() {
             actionHref="/store"
           />
           <Reveal delay={0.05}>
-            <PromoDuo promos={kitPromos} hrefBase="/store" />
+            <PromoDuo promos={customKitPromos} hrefBase="/store" />
           </Reveal>
         </div>
       </section>
@@ -117,10 +140,6 @@ export default function Home() {
 
       {/* Honours */}
       <section className="relative overflow-hidden bg-brand-dark">
-        {/*
-         * Mown turf bands, not a literal grass texture: wide low-contrast
-         * stripes read as a pitch surface while staying editorial.
-         */}
         <div
           aria-hidden="true"
           className="absolute inset-0"
@@ -129,7 +148,6 @@ export default function Home() {
               "repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 8.333%, transparent 8.333% 16.666%)",
           }}
         />
-        {/* Floodlight falloff so the bands read as depth, not wallpaper. */}
         <div
           aria-hidden="true"
           className="absolute inset-0"
@@ -163,7 +181,7 @@ export default function Home() {
           actionHref="/tickets"
         />
         <Reveal delay={0.05}>
-          <PromoDuo promos={ticketPromos} hrefBase="/tickets" />
+          <PromoDuo promos={customTicketPromos} hrefBase="/tickets" />
         </Reveal>
       </section>
 
@@ -177,7 +195,7 @@ export default function Home() {
             actionHref="/membership"
           />
           <Reveal delay={0.05}>
-            <PromoDuo promos={membershipPromos} hrefBase="/membership" />
+            <PromoDuo promos={customMembershipPromos} hrefBase="/membership" />
           </Reveal>
         </div>
       </section>
