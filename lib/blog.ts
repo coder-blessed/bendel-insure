@@ -124,7 +124,6 @@ The 2026/27 campaign starts in Benin.
       "Three points, a clean sheet and the first real sign that the shape the coaching staff have drilled since pre-season is starting to hold under pressure.",
     category: "Analysis",
     author: "Efosa Aigbe",
-    image: photo("what-the-remo-stars-win-tells-us"),
     tone: 0,
     status: "published",
     publishedAt: "2026-08-03",
