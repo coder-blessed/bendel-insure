@@ -1,11 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useActionState } from "react";
+import { useCallback, useState } from "react";
 import { FIELD_CONTROL, Field } from "@/components/admin/field";
 import { ArrowLeft, Check, ChevronDown, Eye } from "@/components/icons";
 import { Markdown } from "@/components/markdown";
 import { type BlogPost, postCategories, slugify } from "@/lib/blog";
+import {
+  type PostActionState,
+  savePostAction,
+  updatePostAction,
+} from "@/app/admin/(dashboard)/posts/actions";
 
 const STATUSES = [
   { value: "draft", label: "Draft" },
@@ -24,9 +30,8 @@ Then the paragraph under it. **Bold**, *italic*, \`code\` and [links](https://ex
 > A pull quote, for when someone says it better than you can.`;
 
 /**
- * Shared by the new and edit routes — the two differ only in whether a post
- * was passed in. Nothing here saves: this pass is about settling the layout
- * before choosing a store.
+ * Shared by the new and edit routes. When a post is provided it binds
+ * updatePostAction to that post's id; otherwise it uses savePostAction.
  */
 export function PostEditor({ post }: { post?: BlogPost }) {
   const isEdit = Boolean(post);
@@ -35,8 +40,7 @@ export function PostEditor({ post }: { post?: BlogPost }) {
   const [slug, setSlug] = useState(post?.slug ?? "");
   const [body, setBody] = useState(post?.body ?? "");
 
-  /* Once the slug has been typed into by hand, the title stops driving it —
-     silently rewriting a deliberate URL would be worse than a stale one. */
+  /* Once the slug has been typed into by hand, the title stops driving it. */
   const [slugTouched, setSlugTouched] = useState(isEdit);
 
   const onTitleChange = (value: string) => {
@@ -44,8 +48,26 @@ export function PostEditor({ post }: { post?: BlogPost }) {
     if (!slugTouched) setSlug(slugify(value));
   };
 
+  // Bind update to the specific post id
+  const boundUpdateAction = useCallback(
+    (prev: PostActionState, formData: FormData) =>
+      updatePostAction(post!.id, prev, formData),
+    [post],
+  );
+
+  const action = isEdit ? boundUpdateAction : savePostAction;
+  const [state, formAction, pending] = useActionState<PostActionState, FormData>(
+    action,
+    undefined,
+  );
+
   return (
-    <form onSubmit={(event) => event.preventDefault()}>
+    <form action={formAction}>
+      {/* Hidden fields carry the controlled values into the FormData */}
+      <input type="hidden" name="title" value={title} />
+      <input type="hidden" name="slug" value={slug} />
+      <input type="hidden" name="body" value={body} />
+
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <Link
@@ -70,33 +92,55 @@ export function PostEditor({ post }: { post?: BlogPost }) {
               View
             </Link>
           ) : null}
+
+          {/* Save as draft */}
           <button
             type="submit"
-            className="eyebrow rounded-pill border border-ink/15 bg-white px-5 py-3 text-[10px] text-ink transition-colors hover:border-ink/30"
+            name="status"
+            value="draft"
+            disabled={pending}
+            className="eyebrow rounded-pill border border-ink/15 bg-white px-5 py-3 text-[10px] text-ink transition-colors hover:border-ink/30 disabled:opacity-50"
           >
             Save draft
           </button>
+
+          {/* Publish */}
           <button
             type="submit"
-            className="eyebrow inline-flex items-center gap-2 rounded-pill bg-brand px-5 py-3 text-[10px] text-white transition-colors hover:bg-brand-dark"
+            name="status"
+            value="published"
+            disabled={pending}
+            className="eyebrow inline-flex items-center gap-2 rounded-pill bg-brand px-5 py-3 text-[10px] text-white transition-colors hover:bg-brand-dark disabled:opacity-50"
           >
-            <Check className="h-4 w-4" />
+            {pending ? (
+              <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-current border-t-transparent" />
+            ) : (
+              <Check className="h-4 w-4" />
+            )}
             {isEdit ? "Update" : "Publish"}
           </button>
         </div>
       </div>
 
+      {state?.error && (
+        <p
+          role="alert"
+          className="mt-4 rounded-control bg-red-50 px-4 py-3 text-sm text-red-700"
+        >
+          {state.error}
+        </p>
+      )}
+
       <div className="mt-8 grid gap-6 lg:grid-cols-3 lg:gap-8">
-        {/* Main column: the writing surface and what it will look like. */}
+        {/* Main column */}
         <div className="flex flex-col gap-6 lg:col-span-2">
           <div className="rounded-card bg-white p-5 md:p-6">
             <Field label="Title" htmlFor="post-title">
               <input
                 id="post-title"
-                name="title"
                 type="text"
                 value={title}
-                onChange={(event) => onTitleChange(event.target.value)}
+                onChange={(e) => onTitleChange(e.target.value)}
                 placeholder="What the post is called"
                 className={`${FIELD_CONTROL} headline text-lg uppercase`}
               />
@@ -110,10 +154,9 @@ export function PostEditor({ post }: { post?: BlogPost }) {
               >
                 <textarea
                   id="post-body"
-                  name="body"
                   rows={18}
                   value={body}
-                  onChange={(event) => setBody(event.target.value)}
+                  onChange={(e) => setBody(e.target.value)}
                   placeholder={BODY_PLACEHOLDER}
                   className={`${FIELD_CONTROL} resize-y font-mono text-[13px] leading-relaxed`}
                 />
@@ -136,42 +179,20 @@ export function PostEditor({ post }: { post?: BlogPost }) {
           </div>
         </div>
 
-        {/* Sidebar: everything about the post that is not the post. */}
+        {/* Sidebar */}
         <div className="flex flex-col gap-5 rounded-card bg-white p-5 md:p-6">
-          <fieldset>
-            <legend className="eyebrow text-[10px] text-ink">Status</legend>
-            <div className="mt-2 flex gap-2">
-              {STATUSES.map((option) => (
-                <label
-                  key={option.value}
-                  className="flex-1 cursor-pointer rounded-control border border-ink/12 px-3 py-2.5 text-center text-sm font-semibold text-steel transition-colors hover:border-ink/25 has-checked:border-brand has-checked:bg-brand/8 has-checked:text-brand-dark"
-                >
-                  <input
-                    type="radio"
-                    name="status"
-                    value={option.value}
-                    defaultChecked={(post?.status ?? "draft") === option.value}
-                    className="sr-only"
-                  />
-                  {option.label}
-                </label>
-              ))}
-            </div>
-          </fieldset>
-
           <Field
             label="Slug"
-            htmlFor="post-slug"
+            htmlFor="post-slug-display"
             hint={`/blog/${slug || "your-post"}`}
           >
             <input
-              id="post-slug"
-              name="slug"
+              id="post-slug-display"
               type="text"
               value={slug}
-              onChange={(event) => {
+              onChange={(e) => {
                 setSlugTouched(true);
-                setSlug(event.target.value);
+                setSlug(e.target.value);
               }}
               placeholder="auto-generated-from-title"
               className={`${FIELD_CONTROL} font-mono text-[13px]`}

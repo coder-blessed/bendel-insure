@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PostEditor } from "@/components/admin/post-editor";
-import { getPostById } from "@/lib/blog";
+import { getPostById } from "@/lib/blog-server";
 
 export async function generateMetadata({
   params,
@@ -9,7 +9,7 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const post = getPostById(id);
+  const post = await getPostById(id);
 
   return { title: post ? `Edit: ${post.title}` : "Post not found" };
 }
@@ -20,7 +20,7 @@ export default async function EditPostPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const post = getPostById(id);
+  const post = await getPostById(id);
 
   if (!post) {
     notFound();

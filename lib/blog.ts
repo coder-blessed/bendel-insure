@@ -1,21 +1,8 @@
 /**
- * Bendel Insurance FC — blog posts.
- *
- * Sample data for the design pass. Nothing here persists: the admin dashboard
- * lays out create, edit and delete but does not write back. Replace these
- * fixtures with a CMS or database read before wiring the forms up.
+ * Pure types and formatting helpers for blog posts.
+ * Contains no server-only dependencies so it can be safely imported by
+ * both Client Components and Server Components.
  */
-
-/**
- * DEV ONLY placeholder photography. Deterministic per seed so images stay
- * stable across reloads instead of flickering between renders.
- *
- * To go live: drop real assets in `public/images/` and replace each `image`
- * value below with its local path, then delete this helper and the matching
- * `images.remotePatterns` entries in `next.config.ts`.
- */
-const photo = (seed: string, width = 1200, height = 800) =>
-  `https://picsum.photos/seed/${seed}/${width}/${height}`;
 
 export type PostStatus = "draft" | "published";
 
@@ -24,7 +11,7 @@ export type BlogPost = {
   slug: string;
   title: string;
   excerpt: string;
-  /** Markdown. See `components/markdown.tsx` for the supported subset. */
+  /** Markdown body */
   body: string;
   category: string;
   author: string;
@@ -45,7 +32,6 @@ export const postCategories = [
   "Opinion",
   "History",
 ];
-
 export const posts: BlogPost[] = [
 
     {
@@ -363,6 +349,7 @@ export function getRelatedPosts(post: BlogPost, limit = 3): BlogPost[] {
   return [...sameCategory, ...rest].slice(0, limit);
 }
 
+
 const MONTHS = [
   "January",
   "February",
@@ -378,13 +365,8 @@ const MONTHS = [
   "December",
 ];
 
-/**
- * Formats `YYYY-MM-DD` by hand rather than through `toLocaleDateString`.
- * The locale APIs resolve against the host's locale and timezone, so server
- * and client can disagree and break hydration — the same class of bug as the
- * one `useReducedMotionSafe` exists to avoid.
- */
 export function formatPostDate(iso: string): string {
+  if (!iso) return "";
   const [year, month, day] = iso.split("-");
   const monthName = MONTHS[Number(month) - 1];
   if (!monthName) return iso;
