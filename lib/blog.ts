@@ -230,6 +230,7 @@ The trophy has been back once since, in a different competition and a different 
       "From the Vipers of Benin to the Benin Arsenal. A short history of the badge, the two name changes, and the argument about the colours that never quite went away.",
     category: "Club",
     author: "Nkechi Obaseki",
+    image:"",
     tone: 4,
     status: "published",
     publishedAt: "2026-07-11",
