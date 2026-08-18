@@ -1,21 +1,8 @@
 /**
- * Bendel Insurance FC — blog posts.
- *
- * Sample data for the design pass. Nothing here persists: the admin dashboard
- * lays out create, edit and delete but does not write back. Replace these
- * fixtures with a CMS or database read before wiring the forms up.
+ * Pure types and formatting helpers for blog posts.
+ * Contains no server-only dependencies so it can be safely imported by
+ * both Client Components and Server Components.
  */
-
-/**
- * DEV ONLY placeholder photography. Deterministic per seed so images stay
- * stable across reloads instead of flickering between renders.
- *
- * To go live: drop real assets in `public/images/` and replace each `image`
- * value below with its local path, then delete this helper and the matching
- * `images.remotePatterns` entries in `next.config.ts`.
- */
-const photo = (seed: string, width = 1200, height = 800) =>
-  `https://picsum.photos/seed/${seed}/${width}/${height}`;
 
 export type PostStatus = "draft" | "published";
 
@@ -24,7 +11,7 @@ export type BlogPost = {
   slug: string;
   title: string;
   excerpt: string;
-  /** Markdown. See `components/markdown.tsx` for the supported subset. */
+  /** Markdown body */
   body: string;
   category: string;
   author: string;
@@ -45,7 +32,6 @@ export const postCategories = [
   "Opinion",
   "History",
 ];
-
 export const posts: BlogPost[] = [
 
     {
@@ -138,7 +124,7 @@ The 2026/27 campaign starts in Benin.
       "Three points, a clean sheet and the first real sign that the shape the coaching staff have drilled since pre-season is starting to hold under pressure.",
     category: "Analysis",
     author: "Efosa Aigbe",
-    image: photo("what-the-remo-stars-win-tells-us"),
+    image:"",
     tone: 0,
     status: "published",
     publishedAt: "2026-08-03",
@@ -174,7 +160,7 @@ The run-in gives us four home games in six. If the shape holds the way it held f
       "Six graduates in one season is not luck. We spent a week at the academy to find out how a modestly funded setup keeps turning out first-team footballers.",
     category: "Academy",
     author: "Nkechi Obaseki",
-    image: photo("inside-the-edo-academy-pipeline"),
+    image:"",
     tone: 2,
     status: "published",
     publishedAt: "2026-07-28",
@@ -210,7 +196,7 @@ The ones who stay arrive in the first-team dressing room already knowing the sha
       "Forty-seven years on, the surviving members of the title-winning squad remember the season that took the Nigerian league trophy to Benin City.",
     category: "History",
     author: "Osaze Idahosa",
-    image: photo("1979-in-their-own-words"),
+    image: "",
     tone: 1,
     status: "published",
     publishedAt: "2026-07-19",
@@ -244,7 +230,7 @@ The trophy has been back once since, in a different competition and a different 
       "From the Vipers of Benin to the Benin Arsenal. A short history of the badge, the two name changes, and the argument about the colours that never quite went away.",
     category: "Club",
     author: "Nkechi Obaseki",
-    image: photo("the-crest-and-what-it-carries"),
+    image:"",
     tone: 4,
     status: "published",
     publishedAt: "2026-07-11",
@@ -276,7 +262,7 @@ The current mark dates from the last redesign and keeps the elements that surviv
       "Ten games left, four points off the top, and a fixture list that is kinder than it looks. An early draft of where this season might actually land.",
     category: "Opinion",
     author: "Efosa Aigbe",
-    image: photo("notes-on-the-run-in"),
+    image: "",
     tone: 3,
     status: "draft",
     publishedAt: "2026-08-08",
@@ -306,7 +292,7 @@ That third one is doing a lot of work. Our midfield has three goals between them
       "Travel, tickets, the away end at the Adokiye Amiesimaka, and everything else supporters making the trip to Port Harcourt need to know.",
     category: "Matchday",
     author: "Club Media",
-    image: photo("matchday-guide-rivers-united-away"),
+    image: "",
     tone: 5,
     status: "draft",
     publishedAt: "2026-08-06",
@@ -363,6 +349,7 @@ export function getRelatedPosts(post: BlogPost, limit = 3): BlogPost[] {
   return [...sameCategory, ...rest].slice(0, limit);
 }
 
+
 const MONTHS = [
   "January",
   "February",
@@ -378,13 +365,8 @@ const MONTHS = [
   "December",
 ];
 
-/**
- * Formats `YYYY-MM-DD` by hand rather than through `toLocaleDateString`.
- * The locale APIs resolve against the host's locale and timezone, so server
- * and client can disagree and break hydration — the same class of bug as the
- * one `useReducedMotionSafe` exists to avoid.
- */
 export function formatPostDate(iso: string): string {
+  if (!iso) return "";
   const [year, month, day] = iso.split("-");
   const monthName = MONTHS[Number(month) - 1];
   if (!monthName) return iso;

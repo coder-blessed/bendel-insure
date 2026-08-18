@@ -7,12 +7,12 @@ import { Markdown } from "@/components/markdown";
 import { Media } from "@/components/media";
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
+import { formatPostDate } from "@/lib/blog";
 import {
-  formatPostDate,
   getPostBySlug,
   getPublishedPosts,
   getRelatedPosts,
-} from "@/lib/blog";
+} from "@/lib/blog-server";
 
 const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
 
@@ -20,9 +20,7 @@ const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
  * `params` is the one place it stays synchronous — everywhere else in Next 16
  * it is a Promise that has to be awaited.
  */
-export function generateStaticParams() {
-  return getPublishedPosts().map((post) => ({ slug: post.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -30,7 +28,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post || post.status !== "published") {
     return { title: "Post not found" };
@@ -53,7 +51,7 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   /* Drafts are addressable by slug in the mock data, so the status check has
      to happen here too or an unpublished post would be readable by URL. */
@@ -61,7 +59,7 @@ export default async function BlogPostPage({
     notFound();
   }
 
-  const related = getRelatedPosts(post);
+  const related = await getRelatedPosts(post);
 
   return (
     <>

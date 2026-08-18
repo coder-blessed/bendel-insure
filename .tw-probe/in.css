@@ -1,0 +1,4 @@
+@import "tailwindcss";
+@theme inline { --color-aaa: #111111; }
+@theme { --color-bbb: #222222; }
+@source inline("bg-aaa bg-bbb");

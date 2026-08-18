@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useTransition } from "react";
+import { deletePostAction } from "@/app/admin/(dashboard)/posts/actions";
 import { Trash } from "@/components/icons";
 
 /**
@@ -8,8 +9,24 @@ import { Trash } from "@/components/icons";
  * focus trapping, inertness of the page behind, and Escape-to-close with no
  * dependency and no bespoke keyboard handling.
  */
-export function DeletePostDialog({ title }: { title: string }) {
+export function DeletePostDialog({
+  id,
+  slug,
+  title,
+}: {
+  id: string;
+  slug: string;
+  title: string;
+}) {
   const ref = useRef<HTMLDialogElement>(null);
+  const [isPending, startTransition] = useTransition();
+
+  function handleDelete() {
+    startTransition(async () => {
+      await deletePostAction(id, slug);
+      ref.current?.close();
+    });
+  }
 
   return (
     <>
@@ -41,15 +58,17 @@ export function DeletePostDialog({ title }: { title: string }) {
         <div className="mt-6 flex flex-wrap gap-3">
           <button
             type="button"
-            onClick={() => ref.current?.close()}
-            className="eyebrow flex-1 rounded-pill bg-red-600 px-5 py-3 text-[10px] text-white transition-colors hover:bg-red-700"
+            onClick={handleDelete}
+            disabled={isPending}
+            className="eyebrow flex-1 rounded-pill bg-red-600 px-5 py-3 text-[10px] text-white transition-colors hover:bg-red-700 disabled:opacity-60"
           >
-            Delete post
+            {isPending ? "Deleting…" : "Delete post"}
           </button>
           <button
             type="button"
             onClick={() => ref.current?.close()}
-            className="eyebrow flex-1 rounded-pill border border-ink/15 bg-white px-5 py-3 text-[10px] text-ink transition-colors hover:border-ink/30"
+            disabled={isPending}
+            className="eyebrow flex-1 rounded-pill border border-ink/15 bg-white px-5 py-3 text-[10px] text-ink transition-colors hover:border-ink/30 disabled:opacity-60"
           >
             Cancel
           </button>
