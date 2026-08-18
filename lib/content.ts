@@ -418,14 +418,21 @@ export const membershipPromos: Promo[] = [
  * FIXTURES
  */
 export type Fixture = {
+  id?: string;
+  matchday?: number;
   competition: string;
+  competitionCode?: "NPFL" | "CUP" | "WAFU" | "CAF" | "FRIENDLY";
   date: string;
+  month?: string;
   venue: string;
-  home: { name: string; tone: number };
-  away: { name: string; tone: number };
+  isHome?: boolean;
+  home: { name: string; tone: number; shortName?: string };
+  away: { name: string; tone: number; shortName?: string };
   score?: string;
   status?: string;
   kickoff?: string;
+  broadcast?: string;
+  ticketAvailable?: boolean;
 };
 
 export type TeamKey = "first" | "feeder" | "u17";
@@ -589,82 +596,733 @@ export const matches: Record<TeamKey, TeamMatches> = {
 };
 
 /**
- * OPENING FIVE 2026/27 NPFL FIXTURES
+ * COMPLETE 2026/27 SEASON FIXTURES (NPFL & FEDERATION CUP)
  */
 export const seasonFixtures: Fixture[] = [
+  // AUGUST 2026
   {
+    id: "md-1",
+    matchday: 1,
     competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
     date: "Sun 30 Aug 2026",
+    month: "Aug 2026",
     venue: "Samuel Ogbemudia Stadium, Benin City",
-    home: {
-      name: "Bendel Insurance",
-      tone: 0,
-    },
-    away: {
-      name: "Warri Wolves",
-      tone: 1,
-    },
-    kickoff: "TBA",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Warri Wolves", tone: 1, shortName: "WAR" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NPFL Live",
+    ticketAvailable: true,
   },
 
+  // SEPTEMBER 2026
   {
+    id: "md-2",
+    matchday: 2,
     competition: "NPFL 2026/27",
-    date: "TBA",
-    venue: "Lafia",
-    home: {
-      name: "Nasarawa United",
-      tone: 4,
-    },
-    away: {
-      name: "Bendel Insurance",
-      tone: 0,
-    },
-    kickoff: "TBA",
+    competitionCode: "NPFL",
+    date: "Sun 06 Sep 2026",
+    month: "Sep 2026",
+    venue: "Lafia Township Stadium, Lafia",
+    isHome: false,
+    home: { name: "Nasarawa United", tone: 4, shortName: "NAS" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live",
+    ticketAvailable: false,
   },
-
   {
+    id: "md-3",
+    matchday: 3,
     competition: "NPFL 2026/27",
-    date: "TBA",
+    competitionCode: "NPFL",
+    date: "Sun 13 Sep 2026",
+    month: "Sep 2026",
     venue: "Samuel Ogbemudia Stadium, Benin City",
-    home: {
-      name: "Bendel Insurance",
-      tone: 0,
-    },
-    away: {
-      name: "Kun Khalifat",
-      tone: 2,
-    },
-    kickoff: "TBA",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Kun Khalifat", tone: 2, shortName: "KUN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NPFL Live",
+    ticketAvailable: true,
   },
-
   {
+    id: "md-4",
+    matchday: 4,
     competition: "NPFL 2026/27",
-    date: "TBA",
-    venue: "TBA",
-    home: {
-      name: "Ranchers Bees",
-      tone: 4,
-    },
-    away: {
-      name: "Bendel Insurance",
-      tone: 0,
-    },
-    kickoff: "TBA",
+    competitionCode: "NPFL",
+    date: "Sun 20 Sep 2026",
+    month: "Sep 2026",
+    venue: "Ahmadu Bello Stadium, Kaduna",
+    isHome: false,
+    home: { name: "Ranchers Bees", tone: 4, shortName: "RAN" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live",
+    ticketAvailable: false,
   },
-
   {
+    id: "md-5",
+    matchday: 5,
     competition: "NPFL 2026/27",
-    date: "TBA",
+    competitionCode: "NPFL",
+    date: "Sun 27 Sep 2026",
+    month: "Sep 2026",
     venue: "Samuel Ogbemudia Stadium, Benin City",
-    home: {
-      name: "Bendel Insurance",
-      tone: 0,
-    },
-    away: {
-      name: "Ikorodu City",
-      tone: 5,
-    },
-    kickoff: "TBA",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Ikorodu City", tone: 5, shortName: "IKO" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NPFL Live",
+    ticketAvailable: true,
+  },
+
+  // OCTOBER 2026
+  {
+    id: "md-6",
+    matchday: 6,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 04 Oct 2026",
+    month: "Oct 2026",
+    venue: "Adokiye Amiesimaka Stadium, Port Harcourt",
+    isHome: false,
+    home: { name: "Rivers United", tone: 3, shortName: "RIV" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live",
+    ticketAvailable: false,
+  },
+  {
+    id: "md-7",
+    matchday: 7,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 11 Oct 2026",
+    month: "Oct 2026",
+    venue: "Samuel Ogbemudia Stadium, Benin City",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Enyimba International", tone: 1, shortName: "ENY" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / SuperSport",
+    ticketAvailable: true,
+  },
+  {
+    id: "cup-r64",
+    matchday: undefined,
+    competition: "Federation Cup 2026/27 (R64)",
+    competitionCode: "CUP",
+    date: "Wed 14 Oct 2026",
+    month: "Oct 2026",
+    venue: "Samuel Ogbemudia Stadium, Benin City",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Calabar Rovers", tone: 2, shortName: "ROV" },
+    kickoff: "15:30 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV",
+    ticketAvailable: true,
+  },
+  {
+    id: "md-8",
+    matchday: 8,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 18 Oct 2026",
+    month: "Oct 2026",
+    venue: "Nnamdi Azikiwe Stadium, Enugu",
+    isHome: false,
+    home: { name: "Enugu Rangers", tone: 1, shortName: "RAN" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live",
+    ticketAvailable: false,
+  },
+  {
+    id: "md-9",
+    matchday: 9,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 25 Oct 2026",
+    month: "Oct 2026",
+    venue: "Samuel Ogbemudia Stadium, Benin City",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Remo Stars", tone: 2, shortName: "REM" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NPFL Live",
+    ticketAvailable: true,
+  },
+
+  // NOVEMBER 2026
+  {
+    id: "md-10",
+    matchday: 10,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 01 Nov 2026",
+    month: "Nov 2026",
+    venue: "Lekan Salami Stadium, Ibadan",
+    isHome: false,
+    home: { name: "Shooting Stars 3SC", tone: 3, shortName: "3SC" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live",
+    ticketAvailable: false,
+  },
+  {
+    id: "md-11",
+    matchday: 11,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 08 Nov 2026",
+    month: "Nov 2026",
+    venue: "Samuel Ogbemudia Stadium, Benin City",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Kano Pillars", tone: 4, shortName: "PIL" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NPFL Live",
+    ticketAvailable: true,
+  },
+  {
+    id: "md-12",
+    matchday: 12,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 15 Nov 2026",
+    month: "Nov 2026",
+    venue: "New Jos Stadium, Jos",
+    isHome: false,
+    home: { name: "Plateau United", tone: 5, shortName: "PLA" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live",
+    ticketAvailable: false,
+  },
+  {
+    id: "cup-r32",
+    matchday: undefined,
+    competition: "Federation Cup 2026/27 (R32)",
+    competitionCode: "CUP",
+    date: "Wed 18 Nov 2026",
+    month: "Nov 2026",
+    venue: "Stephen Keshi Stadium, Asaba (Neutral)",
+    isHome: false,
+    home: { name: "Crown FC", tone: 3, shortName: "CRO" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "15:30 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV",
+    ticketAvailable: true,
+  },
+  {
+    id: "md-13",
+    matchday: 13,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 22 Nov 2026",
+    month: "Nov 2026",
+    venue: "Samuel Ogbemudia Stadium, Benin City",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Sunshine Stars", tone: 1, shortName: "SUN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NPFL Live",
+    ticketAvailable: true,
+  },
+  {
+    id: "md-14",
+    matchday: 14,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 29 Nov 2026",
+    month: "Nov 2026",
+    venue: "Dan Anyiam Stadium, Owerri",
+    isHome: false,
+    home: { name: "Heartland FC", tone: 2, shortName: "HEA" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live",
+    ticketAvailable: false,
+  },
+
+  // DECEMBER 2026
+  {
+    id: "md-15",
+    matchday: 15,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 06 Dec 2026",
+    month: "Dec 2026",
+    venue: "Samuel Ogbemudia Stadium, Benin City",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Kwara United", tone: 3, shortName: "KWA" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NPFL Live",
+    ticketAvailable: true,
+  },
+  {
+    id: "md-16",
+    matchday: 16,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 13 Dec 2026",
+    month: "Dec 2026",
+    venue: "Muhammadu Dikko Stadium, Katsina",
+    isHome: false,
+    home: { name: "Katsina United", tone: 4, shortName: "KAT" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live",
+    ticketAvailable: false,
+  },
+  {
+    id: "cup-r16",
+    matchday: undefined,
+    competition: "Federation Cup 2026/27 (R16)",
+    competitionCode: "CUP",
+    date: "Wed 16 Dec 2026",
+    month: "Dec 2026",
+    venue: "Samuel Ogbemudia Stadium, Benin City",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Gombe United", tone: 4, shortName: "GOM" },
+    kickoff: "15:30 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV",
+    ticketAvailable: true,
+  },
+  {
+    id: "md-17",
+    matchday: 17,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 20 Dec 2026",
+    month: "Dec 2026",
+    venue: "Samuel Ogbemudia Stadium, Benin City",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Abia Warriors", tone: 2, shortName: "ABI" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NPFL Live",
+    ticketAvailable: true,
+  },
+
+  // JANUARY 2027
+  {
+    id: "md-18",
+    matchday: 18,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 03 Jan 2027",
+    month: "Jan 2027",
+    venue: "Samson Siasia Stadium, Yenagoa",
+    isHome: false,
+    home: { name: "Bayelsa United", tone: 5, shortName: "BAY" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live",
+    ticketAvailable: false,
+  },
+  {
+    id: "md-19",
+    matchday: 19,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 10 Jan 2027",
+    month: "Jan 2027",
+    venue: "Samuel Ogbemudia Stadium, Benin City",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Akwa United", tone: 1, shortName: "AKW" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NPFL Live",
+    ticketAvailable: true,
+  },
+  {
+    id: "md-20",
+    matchday: 20,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 24 Jan 2027",
+    month: "Jan 2027",
+    venue: "Warri Township Stadium, Warri",
+    isHome: false,
+    home: { name: "Warri Wolves", tone: 1, shortName: "WAR" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live",
+    ticketAvailable: false,
+  },
+  {
+    id: "md-21",
+    matchday: 21,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 31 Jan 2027",
+    month: "Jan 2027",
+    venue: "Samuel Ogbemudia Stadium, Benin City",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Nasarawa United", tone: 4, shortName: "NAS" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NPFL Live",
+    ticketAvailable: true,
+  },
+
+  // FEBRUARY 2027
+  {
+    id: "md-22",
+    matchday: 22,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 07 Feb 2027",
+    month: "Feb 2027",
+    venue: "Dan Anyiam Stadium, Owerri",
+    isHome: false,
+    home: { name: "Kun Khalifat", tone: 2, shortName: "KUN" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live",
+    ticketAvailable: false,
+  },
+  {
+    id: "md-23",
+    matchday: 23,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 14 Feb 2027",
+    month: "Feb 2027",
+    venue: "Samuel Ogbemudia Stadium, Benin City",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Ranchers Bees", tone: 4, shortName: "RAN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NPFL Live",
+    ticketAvailable: true,
+  },
+  {
+    id: "cup-qf",
+    matchday: undefined,
+    competition: "Federation Cup 2026/27 (Quarter-Final)",
+    competitionCode: "CUP",
+    date: "Wed 17 Feb 2027",
+    month: "Feb 2027",
+    venue: "Stephen Keshi Stadium, Asaba (Neutral)",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Wikki Tourists", tone: 2, shortName: "WIK" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV",
+    ticketAvailable: true,
+  },
+  {
+    id: "md-24",
+    matchday: 24,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 21 Feb 2027",
+    month: "Feb 2027",
+    venue: "Mobolaji Johnson Arena, Onikan, Lagos",
+    isHome: false,
+    home: { name: "Ikorodu City", tone: 5, shortName: "IKO" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live",
+    ticketAvailable: false,
+  },
+  {
+    id: "md-25",
+    matchday: 25,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 28 Feb 2027",
+    month: "Feb 2027",
+    venue: "Samuel Ogbemudia Stadium, Benin City",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Rivers United", tone: 3, shortName: "RIV" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NPFL Live",
+    ticketAvailable: true,
+  },
+
+  // MARCH 2027
+  {
+    id: "md-26",
+    matchday: 26,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 07 Mar 2027",
+    month: "Mar 2027",
+    venue: "Enyimba International Stadium, Aba",
+    isHome: false,
+    home: { name: "Enyimba International", tone: 1, shortName: "ENY" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live",
+    ticketAvailable: false,
+  },
+  {
+    id: "md-27",
+    matchday: 27,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 14 Mar 2027",
+    month: "Mar 2027",
+    venue: "Samuel Ogbemudia Stadium, Benin City",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Enugu Rangers", tone: 1, shortName: "RAN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / SuperSport",
+    ticketAvailable: true,
+  },
+  {
+    id: "md-28",
+    matchday: 28,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 21 Mar 2027",
+    month: "Mar 2027",
+    venue: "Remo Stars Stadium, Ikenne",
+    isHome: false,
+    home: { name: "Remo Stars", tone: 2, shortName: "REM" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live",
+    ticketAvailable: false,
+  },
+  {
+    id: "cup-sf",
+    matchday: undefined,
+    competition: "Federation Cup 2026/27 (Semi-Final)",
+    competitionCode: "CUP",
+    date: "Wed 24 Mar 2027",
+    month: "Mar 2027",
+    venue: "Stephen Keshi Stadium, Asaba (Neutral)",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Enugu Rangers", tone: 1, shortName: "RAN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NTA Live",
+    ticketAvailable: true,
+  },
+  {
+    id: "md-29",
+    matchday: 29,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 28 Mar 2027",
+    month: "Mar 2027",
+    venue: "Samuel Ogbemudia Stadium, Benin City",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Shooting Stars 3SC", tone: 3, shortName: "3SC" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NPFL Live",
+    ticketAvailable: true,
+  },
+
+  // APRIL 2027
+  {
+    id: "md-30",
+    matchday: 30,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 04 Apr 2027",
+    month: "Apr 2027",
+    venue: "Sani Abacha Stadium, Kano",
+    isHome: false,
+    home: { name: "Kano Pillars", tone: 4, shortName: "PIL" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live",
+    ticketAvailable: false,
+  },
+  {
+    id: "md-31",
+    matchday: 31,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 11 Apr 2027",
+    month: "Apr 2027",
+    venue: "Samuel Ogbemudia Stadium, Benin City",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Plateau United", tone: 5, shortName: "PLA" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NPFL Live",
+    ticketAvailable: true,
+  },
+  {
+    id: "md-32",
+    matchday: 32,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 18 Apr 2027",
+    month: "Apr 2027",
+    venue: "Akure Township Stadium, Akure",
+    isHome: false,
+    home: { name: "Sunshine Stars", tone: 1, shortName: "SUN" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live",
+    ticketAvailable: false,
+  },
+  {
+    id: "md-33",
+    matchday: 33,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 25 Apr 2027",
+    month: "Apr 2027",
+    venue: "Samuel Ogbemudia Stadium, Benin City",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Heartland FC", tone: 2, shortName: "HEA" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NPFL Live",
+    ticketAvailable: true,
+  },
+
+  // MAY 2027
+  {
+    id: "md-34",
+    matchday: 34,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 02 May 2027",
+    month: "May 2027",
+    venue: "Kwara State Stadium, Ilorin",
+    isHome: false,
+    home: { name: "Kwara United", tone: 3, shortName: "KWA" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live",
+    ticketAvailable: false,
+  },
+  {
+    id: "md-35",
+    matchday: 35,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 09 May 2027",
+    month: "May 2027",
+    venue: "Samuel Ogbemudia Stadium, Benin City",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Katsina United", tone: 4, shortName: "KAT" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NPFL Live",
+    ticketAvailable: true,
+  },
+  {
+    id: "md-36",
+    matchday: 36,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 16 May 2027",
+    month: "May 2027",
+    venue: "Umuahia Township Stadium, Umuahia",
+    isHome: false,
+    home: { name: "Abia Warriors", tone: 2, shortName: "ABI" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live",
+    ticketAvailable: false,
+  },
+  {
+    id: "md-37",
+    matchday: 37,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 23 May 2027",
+    month: "May 2027",
+    venue: "Samuel Ogbemudia Stadium, Benin City",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Bayelsa United", tone: 5, shortName: "BAY" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NPFL Live",
+    ticketAvailable: true,
+  },
+  {
+    id: "md-38",
+    matchday: 38,
+    competition: "NPFL 2026/27",
+    competitionCode: "NPFL",
+    date: "Sun 30 May 2027",
+    month: "May 2027",
+    venue: "Godswill Akpabio International Stadium, Uyo",
+    isHome: false,
+    home: { name: "Akwa United", tone: 1, shortName: "AKW" },
+    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    kickoff: "16:00 WAT",
+    status: "Upcoming",
+    broadcast: "NPFL Live / SuperSport",
+    ticketAvailable: false,
+  },
+
+  // JUNE 2027 (FEDERATION CUP FINAL)
+  {
+    id: "cup-final",
+    matchday: undefined,
+    competition: "Federation Cup 2026/27 (Final)",
+    competitionCode: "CUP",
+    date: "Sat 12 Jun 2027",
+    month: "Jun 2027",
+    venue: "Mobolaji Johnson Arena, Lagos (Neutral)",
+    isHome: true,
+    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    away: { name: "Rivers United", tone: 3, shortName: "RIV" },
+    kickoff: "16:30 WAT",
+    status: "Upcoming",
+    broadcast: "Insurance TV / NTA / SuperSport",
+    ticketAvailable: true,
   },
 ];
 
@@ -815,33 +1473,296 @@ export const honours = [
 ];
 
 /**
- * DETAILED TROPHY CABINET
+ * DETAILED TROPHY CABINET & HONOURS
  */
-export const trophyCabinet = [
+export type TrophyCabinetItem = {
+  id: string;
+  competition: string;
+  category: "Continental" | "Regional" | "League" | "National Cup" | "Division" | "State";
+  titles: number;
+  winningYears: string[];
+  description: string;
+  heroStory: string;
+  keyFinal?: {
+    year: string;
+    opponent: string;
+    score: string;
+    venue: string;
+    summary: string;
+  };
+  honourLevel: string;
+};
+
+export const trophyCabinet: TrophyCabinetItem[] = [
   {
+    id: "caf-cup",
     competition: "CAF Cup",
+    category: "Continental",
     titles: 1,
     winningYears: ["1994"],
+    description: "The peak of African continental glory. Bendel Insurance conquered the continent in 1994, lifting the prestigious CAF Cup in front of a thunderous Benin crowd.",
+    heroStory: "Trailing 1–0 after the first leg against Primeiro de Maio of Angola in Luanda, Bendel Insurance produced a legendary comeback at the Samuel Ogbemudia Stadium in Benin City, storming to a 3–0 win (3–1 aggregate) to be crowned African champions.",
+    keyFinal: {
+      year: "1994",
+      opponent: "Primeiro de Maio (Angola)",
+      score: "3–1 agg (0–1 away, 3–0 home)",
+      venue: "Samuel Ogbemudia Stadium, Benin City",
+      summary: "A thrilling second-leg turnaround delivered the ultimate continental trophy to Edo State.",
+    },
+    honourLevel: "Continental Silverware",
   },
   {
-    competition: "West African Club Championship (UFOA/WAFU)",
+    id: "wafu-cup",
+    competition: "West African Club Championship (UFOA / WAFU Cup)",
+    category: "Regional",
     titles: 3,
     winningYears: ["1993", "1994", "1995"],
+    description: "An unprecedented three-year dominance across West Africa. Bendel Insurance achieved a historic hat-trick of UFOA titles.",
+    heroStory: "Between 1993 and 1995, the Benin Arsenal swept aside the top clubs from Ghana, Côte d'Ivoire, Senegal, and Togo to establish unrivaled supremacy in West African football.",
+    keyFinal: {
+      year: "1995",
+      opponent: "West African Champions",
+      score: "3-in-a-Row Champions",
+      venue: "West Africa",
+      summary: "Became the first club in West African history to win three consecutive UFOA club titles.",
+    },
+    honourLevel: "Regional 3-Peat Dynasty",
   },
   {
-    competition: "Nigerian Premier League",
+    id: "npfl-league",
+    competition: "Nigerian Premier Football League (NPFL)",
+    category: "League",
     titles: 2,
     winningYears: ["1973", "1979"],
+    description: "Top-tier Nigerian champions. Won the national league crown in 1973 just one year after foundation, followed by another triumphant title in 1979.",
+    heroStory: "Under Pa Alabi Aisien's tactical brilliance and Dr. Samuel Ogbemudia's visionary support, Bendel Insurance became the standard-bearers of attacking football in Nigeria.",
+    keyFinal: {
+      year: "1979",
+      opponent: "Nigerian First Division",
+      score: "League Champions",
+      venue: "National League",
+      summary: "Topped the league table with a ruthless offensive record and iron-clad defense.",
+    },
+    honourLevel: "National Top Flight",
   },
   {
-    competition: "Nigerian FA Cup / Federation Cup",
+    id: "federation-cup",
+    competition: "Nigerian FA Cup / Challenge Cup / Federation Cup",
+    category: "National Cup",
     titles: 4,
     winningYears: ["1972", "1978", "1980", "2023"],
+    description: "Nigeria's oldest and most prestigious cup competition. Won in the inaugural founding year (1972), followed by the legendary 1978 3–0 demolition and the historic 2023 victory in Asaba.",
+    heroStory: "In 1978, Bendel Insurance thrashed Enugu Rangers 3–0 at the National Stadium in Lagos in one of Nigerian football's greatest finals. On June 21, 2023, after a 28-year wait, Imade Osarenkhoe scored to defeat Rangers 1–0 at Stephen Keshi Stadium in Asaba and claim the trophy once more.",
+    keyFinal: {
+      year: "2023",
+      opponent: "Enugu Rangers",
+      score: "1–0",
+      venue: "Stephen Keshi Stadium, Asaba",
+      summary: "Imade Osarenkhoe's first-half goal ended a 28-year major silverware drought.",
+    },
+    honourLevel: "National Cup Champions",
   },
   {
-    competition: "Nigeria National League",
+    id: "nnl-super-8",
+    competition: "Nigeria National League (NNL) Super 8",
+    category: "Division",
     titles: 1,
     winningYears: ["2022"],
+    description: "The championship that launched the modern renaissance. Unbeaten NNL Super 8 champions in 2022 under Coach Monday Odigie.",
+    heroStory: "Bendel Insurance dominated the 2021/22 Nigeria National League season, winning the Super 8 tournament in Asaba to secure promotion back to the NPFL where they immediately went 21 games unbeaten.",
+    keyFinal: {
+      year: "2022",
+      opponent: "NNL Super 8 Playoff",
+      score: "Super 8 Champions",
+      venue: "Asaba / Edo",
+      summary: "Clinched top honors and sealed an emotional return to top-flight football.",
+    },
+    honourLevel: "National Division Title",
+  },
+  {
+    id: "edo-fa-cup",
+    competition: "Edo State FA Cup",
+    category: "State",
+    titles: 10,
+    winningYears: ["2018", "2019", "2021", "2022", "2023", "2024"],
+    description: "The undisputed kings of Edo State football. Dominant record holders of the Edo State FA Cup with multiple consecutive titles.",
+    heroStory: "Bendel Insurance have consistently dominated state competitions, representing Benin City with distinction on the road to the national Federation Cup.",
+    keyFinal: {
+      year: "2024",
+      opponent: "Edo State Challengers",
+      score: "Champions",
+      venue: "Samuel Ogbemudia Stadium, Benin City",
+      summary: "Successfully defended the Edo State FA Cup crown.",
+    },
+    honourLevel: "State Championship Record",
+  },
+];
+
+/**
+ * HISTORICAL MILESTONES & ERAS
+ */
+export type HistoryMilestone = {
+  year: string;
+  era: string;
+  title: string;
+  summary: string;
+  details: string[];
+  keyFigures: string[];
+  badgeText?: string;
+};
+
+export const historyMilestones: HistoryMilestone[] = [
+  {
+    year: "1972",
+    era: "The Genesis",
+    title: "Founding of the Vipers & Maiden FA Cup",
+    summary:
+      "Established by military administrator Dr. Samuel Osaigbovo Ogbemudia as the sporting arm of Bendel Insurance Limited, the club was originally named the Vipers of Benin. Pa Alabi Aisien led them to win the Challenge Cup in their first year of existence.",
+    details: [
+      "Founded by Dr. Samuel Ogbemudia to inspire youth and foster sports excellence in the Midwest.",
+      "Pioneer tactician Pa Alabi Aisien appointed as the club's inaugural head coach.",
+      "Won the 1972 Challenge Cup in their debut season, defeating Mighty Jets in the final.",
+      "Became founding members of the Nigerian Premier Football League.",
+    ],
+    keyFigures: ["Dr. Samuel Osaigbovo Ogbemudia", "Pa Alabi Aisien"],
+    badgeText: "Club Founded",
+  },
+  {
+    year: "1973–1980",
+    era: "The First Golden Era",
+    title: "League Supremacy & The 1978 Lagos Masterclass",
+    summary:
+      "A golden decade of dominance. Insurance won the National League in 1973 and 1979, and dismantled Enugu Rangers 3–0 in the 1978 FA Cup final in Lagos.",
+    details: [
+      "1973: Won the Nigerian Premier League title in only their second year of existence.",
+      "1978: Produced one of Nigerian football's most celebrated cup final performances, crushing Enugu Rangers 3–0 at the National Stadium, Lagos.",
+      "1979: Crowned champions of Nigeria for the second time with free-scoring attacking football.",
+      "1980: Added their third Challenge Cup trophy to establish absolute national superiority.",
+    ],
+    keyFigures: ["Pa Alabi Aisien", "Felix Agbonifo", "Francis Monidafe", "George Omokaro"],
+    badgeText: "2 Leagues · 3 Cups",
+  },
+  {
+    year: "1993–1995",
+    era: "Continental & West African Kings",
+    title: "CAF Cup Triumph & WAFU 3-in-a-Row Dynasty",
+    summary:
+      "The 1990s marked the club's highest peak on the international stage, winning the 1994 CAF Cup and three consecutive West African Club Championships.",
+    details: [
+      "1993: Lifted the West African Club Championship (UFOA Cup) against the best clubs in the sub-region.",
+      "1994: Reached the CAF Cup final, overturning a 1–0 first leg deficit to beat Primeiro de Maio 3–0 at the Samuel Ogbemudia Stadium.",
+      "1994 & 1995: Defended the UFOA title back-to-back, completing an unprecedented 3-peat.",
+      "Cemented Benin City as a recognized fortress in African club football.",
+    ],
+    keyFigures: ["Charles Ihimekpen", "Alabi Aisien", "Roland Ewere"],
+    badgeText: "CAF Cup Champions",
+  },
+  {
+    year: "2008–2021",
+    era: "Trials & Rebuilding",
+    title: "Perseverance in the NNL & The Support of Benin",
+    summary:
+      "Following relegation in 2008, the club faced difficult years in the second tier. Passionate Benin City supporters and structural reforms laid the groundwork for a resurgence.",
+    details: [
+      "2008: Suffered relegation after financial and administrative challenges.",
+      "The loyal supporters never deserted the club, maintaining massive home crowds in Benin City.",
+      "The Edo State Government under Governor Godwin Obaseki initiated deep sports infrastructure reform.",
+      "The Samuel Ogbemudia Stadium underwent multi-billion naira modernization into a world-class facility.",
+    ],
+    keyFigures: ["Charles Ihimekpen", "Edo State Supporters Club"],
+    badgeText: "Resilience",
+  },
+  {
+    year: "2022–2023",
+    era: "The Modern Renaissance",
+    title: "NNL Championship, 21-Game Unbeaten Run & 2023 Federation Cup",
+    summary:
+      "Under Coach Monday Odigie, Bendel Insurance won the 2022 NNL Super 8, set a record 21-game unbeaten NPFL run in 2023, and lifted the Federation Cup in Asaba ending a 28-year wait.",
+    details: [
+      "2022: Crowned NNL Super 8 Champions with an unbeaten tournament campaign.",
+      "2023: Stunned the NPFL upon return by going 21 matches unbeaten across the regular season.",
+      "June 21, 2023: Imade Osarenkhoe's goal secured a 1–0 victory over Enugu Rangers in Asaba to win the Federation Cup.",
+      "Qualified for the CAF Confederation Cup, returning the Benin Arsenal to the continental stage.",
+    ],
+    keyFigures: ["Monday Odigie", "Imade Osarenkhoe", "Amas Obasogie", "Hon. Amadin Desmond Enabulele"],
+    badgeText: "Federation Cup 2023",
+  },
+  {
+    year: "2026/27",
+    era: "The Present Day",
+    title: "The Benin Arsenal: Ambition at the Ogbemudia",
+    summary:
+      "Chaired by Jarret Tenebe with Technical Manager Kennedy Boboye, the club enters the 2026/27 campaign aiming to build on a fifth-place finish and challenge for major honours.",
+    details: [
+      "Head coach Greg Ikhenoba and Technical Manager Kennedy Boboye lead the first team squad.",
+      "Edo State Sports Commission ensures elite facilities and robust youth academy structure.",
+      "Samuel Ogbemudia Stadium ready to welcome back thousands of passionate supporters.",
+      "Aiming for NPFL title contention and Federation Cup defense.",
+    ],
+    keyFigures: ["Jarret Tenebe", "Kennedy Boboye", "Greg Ikhenoba", "Hon. Amadin Desmond Enabulele"],
+    badgeText: "2026/27 Campaign",
+  },
+];
+
+/**
+ * CLUB LEGENDS & ICONS
+ */
+export type ClubLegend = {
+  name: string;
+  role: string;
+  period: string;
+  achievements: string;
+  summary: string;
+};
+
+export const clubLegends: ClubLegend[] = [
+  {
+    name: "Pa Alabi Aisien",
+    role: "Pioneer Head Coach & Tactical Mastermind",
+    period: "1972–1982",
+    achievements: "1972 Challenge Cup, 1973 League, 1978 FA Cup, 1979 League, 1980 FA Cup",
+    summary:
+      "The legendary founding tactician who defined the flowing, fearless football philosophy of the Benin Arsenal and won 5 major national trophies.",
+  },
+  {
+    name: "Dr. Samuel Osaigbovo Ogbemudia",
+    role: "Club Founder & Visionary Statesman",
+    period: "1972",
+    achievements: "Founded Bendel Insurance FC & built the iconic stadium named in his honour",
+    summary:
+      "Military Governor of Mid-Western State whose passionate love for sports birthed one of Nigeria's greatest football institutions.",
+  },
+  {
+    name: "Felix Agbonifo",
+    role: "Captain & Defensive Stalwart",
+    period: "1970s",
+    achievements: "Led Insurance to the 1978 3–0 FA Cup triumph over Enugu Rangers",
+    summary:
+      "The inspirational captain who led the team during their first golden era, anchoring a legendary defensive unit.",
+  },
+  {
+    name: "Charles Ihimekpen",
+    role: "Former Captain & Current General Manager",
+    period: "1990s–Present",
+    achievements: "1994 CAF Cup Champion, 3x WAFU Champion, 2023 Federation Cup GM",
+    summary:
+      "A stalwart of the 1994 continental campaign who later transitioned to club administration, guiding the team back to national silverware in 2023.",
+  },
+  {
+    name: "Monday Odigie",
+    role: "Championship Coach",
+    period: "2022–2024",
+    achievements: "2022 NNL Super 8, 21-Game NPFL Unbeaten Run, 2023 Federation Cup",
+    summary:
+      "The tactician who masterminded the modern renaissance, transforming the Benin Arsenal into a defensive fortress and national cup champions.",
+  },
+  {
+    name: "Imade Osarenkhoe",
+    role: "Star Striker & 2023 Cup Final Hero",
+    period: "2022–2024",
+    achievements: "Match-winning goal in 2023 Federation Cup Final",
+    summary:
+      "The clinical center-forward whose heroic goal against Enugu Rangers in Asaba sealed the club's first major national trophy in 28 years.",
   },
 ];
 
@@ -850,10 +1771,11 @@ export const trophyCabinet = [
  */
 export const tickerItems = [
   "NPFL 2026/27 begins August 28",
-  "Insurance v Warri Wolves — Sunday, August 30",
+  "Insurance v Warri Wolves — Sunday, August 30 at Samuel Ogbemudia Stadium",
   "The Benin Arsenal return to the Ogbemudia",
-  "Insurance finished fifth in the 2025/26 NPFL season",
+  "Explore the Trophy Room — 11 Major Honours Won",
   "2023 Federation Cup champions",
+  "1994 CAF Cup & 3x West African Champions",
 ];
 
 /**
@@ -892,12 +1814,20 @@ export const primaryNav = [
     href: "/news",
   },
   {
-    label: "Blog",
-    href: "/blog",
+    label: "Fixtures",
+    href: "/fixtures",
   },
   {
-    label: "Matches",
-    href: "/matches",
+    label: "History",
+    href: "/history",
+  },
+  {
+    label: "Trophy Room",
+    href: "/history/trophies",
+  },
+  {
+    label: "Blog",
+    href: "/blog",
   },
   {
     label: "Teams",
@@ -927,7 +1857,15 @@ export const primaryNav = [
 export const utilityNav = [
   {
     label: "Fixtures",
-    href: "/matches/fixtures",
+    href: "/fixtures",
+  },
+  {
+    label: "History",
+    href: "/history",
+  },
+  {
+    label: "Trophy Room",
+    href: "/history/trophies",
   },
   {
     label: "Table",
@@ -936,10 +1874,6 @@ export const utilityNav = [
   {
     label: "Academy",
     href: "/teams/academy",
-  },
-  {
-    label: "History",
-    href: "/club/history",
   },
   {
     label: "Help",
@@ -952,18 +1886,22 @@ export const utilityNav = [
  */
 export const footerColumns = [
   {
-    title: "Club",
+    title: "Club & Heritage",
     links: [
       {
-        label: "Club info",
+        label: "Club overview",
         href: "/club",
       },
       {
-        label: "History",
-        href: "/club/history",
+        label: "Club history",
+        href: "/history",
       },
       {
-        label: "The Ogbemudia",
+        label: "Trophy room",
+        href: "/history/trophies",
+      },
+      {
+        label: "The Ogbemudia Stadium",
         href: "/club/stadium",
       },
       {
@@ -978,18 +1916,18 @@ export const footerColumns = [
   },
 
   {
-    title: "Matches",
+    title: "Matches & Season",
     links: [
       {
-        label: "Fixtures",
-        href: "/matches/fixtures",
+        label: "Season fixtures",
+        href: "/fixtures",
       },
       {
         label: "Results",
         href: "/matches/results",
       },
       {
-        label: "NPFL table",
+        label: "NPFL league table",
         href: "/matches/table",
       },
       {
@@ -1000,18 +1938,18 @@ export const footerColumns = [
   },
 
   {
-    title: "Fans",
+    title: "Fans & Matchday",
     links: [
       {
         label: "Membership",
         href: "/membership",
       },
       {
-        label: "Tickets",
+        label: "Buy tickets",
         href: "/tickets",
       },
       {
-        label: "Stadium",
+        label: "Stadium guide",
         href: "/club/stadium",
       },
       {
@@ -1019,14 +1957,14 @@ export const footerColumns = [
         href: "/fans/clubs",
       },
       {
-        label: "Club store",
+        label: "Official store",
         href: "/store",
       },
     ],
   },
 
   {
-    title: "Legal",
+    title: "Legal & Info",
     links: [
       {
         label: "Terms of use",

@@ -50,7 +50,7 @@ export default function Home() {
             title="Matches"
             subtitle={`${club.league} · ${club.stadium}`}
             actionLabel="Fixtures"
-            actionHref="/matches/fixtures"
+            actionHref="/fixtures"
           />
           <Reveal delay={0.05}>
             <Matches />
@@ -144,8 +144,8 @@ export default function Home() {
           <SectionHeader
             title="Since 1972"
             subtitle="Founding members of the Nigerian league, originally the Vipers of Benin"
-            actionLabel="Club history"
-            actionHref="/club/history"
+            actionLabel="Trophy Room & History"
+            actionHref="/history"
             dark
           />
           <Reveal delay={0.05}>

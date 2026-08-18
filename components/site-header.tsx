@@ -71,13 +71,13 @@ export function SiteHeader() {
 
           <nav
             aria-label="Primary"
-            className="ml-6 hidden flex-1 items-center gap-7 lg:flex"
+            className="ml-4 hidden flex-1 items-center gap-3.5 xl:gap-5.5 lg:flex"
           >
             {primaryNav.map((item) => (
               <Link
-                key={item.href}
+                key={item.href + item.label}
                 href={item.href}
-                className="eyebrow group relative py-2 text-[11px] text-white/85 transition-colors hover:text-white"
+                className="eyebrow group relative py-2 text-[10px] xl:text-[11px] whitespace-nowrap text-white/85 transition-colors hover:text-white"
               >
                 {item.label}
                 <span
@@ -163,7 +163,7 @@ export function SiteHeader() {
               >
                 {primaryNav.map((item, itemIndex) => (
                   <motion.div
-                    key={item.href}
+                    key={item.href + item.label}
                     initial={{ opacity: 0, x: 24 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{
