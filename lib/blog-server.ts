@@ -1,6 +1,14 @@
 import "server-only";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import type { BlogPost, PostStatus } from "@/lib/blog";
+import {
+  type BlogPost,
+  type PostStatus,
+  getPublishedPosts as getStaticPublishedPosts,
+  getPostBySlug as getStaticPostBySlug,
+  getRelatedPosts as getStaticRelatedPosts,
+  getAllPosts as getStaticAllPosts,
+  getPostById as getStaticPostById,
+} from "@/lib/blog";
 
 // biome-ignore lint/suspicious/noExplicitAny: Supabase row shape
 function rowToPost(row: any): BlogPost {
@@ -23,89 +31,119 @@ function rowToPost(row: any): BlogPost {
 
 /** Newest published first. Used by the public blog. */
 export async function getPublishedPosts(): Promise<BlogPost[]> {
-  const supabase = await createSupabaseServerClient();
-  const { data, error } = await supabase
-    .from("posts")
-    .select("*")
-    .eq("status", "published")
-    .order("published_at", { ascending: false });
+  try {
+    const supabase = await createSupabaseServerClient();
+    const { data, error } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("status", "published")
+      .order("published_at", { ascending: false });
 
-  if (error) {
-    console.error("getPublishedPosts:", error.message);
-    return [];
+    if (error || !data || data.length === 0) {
+      return getStaticPublishedPosts();
+    }
+    return data.map(rowToPost);
+  } catch {
+    return getStaticPublishedPosts();
   }
-  return (data ?? []).map(rowToPost);
 }
 
 export async function getPostBySlug(
   slug: string,
 ): Promise<BlogPost | undefined> {
-  const supabase = await createSupabaseServerClient();
-  const { data, error } = await supabase
-    .from("posts")
-    .select("*")
-    .eq("slug", slug)
-    .single();
+  try {
+    const supabase = await createSupabaseServerClient();
+    const { data, error } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("slug", slug)
+      .single();
 
-  if (error || !data) return undefined;
-  return rowToPost(data);
+    if (error || !data) {
+      return getStaticPostBySlug(slug);
+    }
+    return rowToPost(data);
+  } catch {
+    return getStaticPostBySlug(slug);
+  }
 }
 
 export async function getRelatedPosts(
   post: BlogPost,
   limit = 3,
 ): Promise<BlogPost[]> {
-  const supabase = await createSupabaseServerClient();
+  try {
+    const supabase = await createSupabaseServerClient();
 
-  const { data: sameCategory } = await supabase
-    .from("posts")
-    .select("*")
-    .eq("status", "published")
-    .eq("category", post.category)
-    .neq("id", post.id)
-    .order("published_at", { ascending: false })
-    .limit(limit);
+    const { data: sameCategory, error } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("status", "published")
+      .eq("category", post.category)
+      .neq("id", post.id)
+      .order("published_at", { ascending: false })
+      .limit(limit);
 
-  const samePosts = (sameCategory ?? []).map(rowToPost);
-  if (samePosts.length >= limit) return samePosts.slice(0, limit);
+    if (error || !sameCategory) {
+      return getStaticRelatedPosts(post, limit);
+    }
 
-  const { data: others } = await supabase
-    .from("posts")
-    .select("*")
-    .eq("status", "published")
-    .neq("category", post.category)
-    .neq("id", post.id)
-    .order("published_at", { ascending: false })
-    .limit(limit - samePosts.length);
+    const samePosts = (sameCategory ?? []).map(rowToPost);
+    if (samePosts.length >= limit) return samePosts.slice(0, limit);
 
-  return [...samePosts, ...(others ?? []).map(rowToPost)].slice(0, limit);
+    const { data: others } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("status", "published")
+      .neq("category", post.category)
+      .neq("id", post.id)
+      .order("published_at", { ascending: false })
+      .limit(limit - samePosts.length);
+
+    const combined = [...samePosts, ...(others ?? []).map(rowToPost)].slice(0, limit);
+    if (combined.length === 0) {
+      return getStaticRelatedPosts(post, limit);
+    }
+    return combined;
+  } catch {
+    return getStaticRelatedPosts(post, limit);
+  }
 }
 
 /** Every post regardless of status. Newest updated first. */
 export async function getAllPosts(): Promise<BlogPost[]> {
-  const supabase = await createSupabaseServerClient();
-  const { data, error } = await supabase
-    .from("posts")
-    .select("*")
-    .order("updated_at", { ascending: false });
+  try {
+    const supabase = await createSupabaseServerClient();
+    const { data, error } = await supabase
+      .from("posts")
+      .select("*")
+      .order("updated_at", { ascending: false });
 
-  if (error) {
-    console.error("getAllPosts:", error.message);
-    return [];
+    if (error || !data || data.length === 0) {
+      return getStaticAllPosts();
+    }
+    return data.map(rowToPost);
+  } catch {
+    return getStaticAllPosts();
   }
-  return (data ?? []).map(rowToPost);
 }
 
 export async function getPostById(
   id: string,
 ): Promise<BlogPost | undefined> {
-  const supabase = await createSupabaseServerClient();
-  const { data, error } = await supabase
-    .from("posts")
-    .select("*")
-    .eq("id", id)
-    .single();
+  try {
+    const supabase = await createSupabaseServerClient();
+    const { data, error } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("id", id)
+      .single();
 
-  if (error || !data) return undefined;
-  return rowToPost(data);
+    if (error || !data) {
+      return getStaticPostById(id);
+    }
+    return rowToPost(data);
+  } catch {
+    return getStaticPostById(id);
+  }
 }
