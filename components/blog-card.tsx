@@ -8,14 +8,17 @@ type BlogCardProps = {
   post: BlogPost;
 };
 
+type BlogGridProps = {
+  posts: BlogPost[];
+};
+
 export function BlogCard({ post }: BlogCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
       <article className="group overflow-hidden rounded-card border border-ink/8 bg-white">
-        {/* Image */}
-        {post.image && (
+        {post.image ? (
           <div className="aspect-[16/10] overflow-hidden bg-brand-deep">
             <img
               src={post.image}
@@ -23,9 +26,14 @@ export function BlogCard({ post }: BlogCardProps) {
               className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
             />
           </div>
+        ) : (
+          <div className="flex aspect-[16/10] items-center justify-center bg-brand-deep">
+            <span className="headline text-4xl text-gold">
+              B.I.F.C.
+            </span>
+          </div>
         )}
 
-        {/* Content */}
         <div className="p-6">
           <div className="flex items-center justify-between gap-3">
             <span className="eyebrow text-[9px] text-brand">
@@ -62,5 +70,15 @@ export function BlogCard({ post }: BlogCardProps) {
         onClose={() => setIsModalOpen(false)}
       />
     </>
+  );
+}
+
+export function BlogGrid({ posts }: BlogGridProps) {
+  return (
+    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {posts.map((post) => (
+        <BlogCard key={post.id} post={post} />
+      ))}
+    </div>
   );
 }
