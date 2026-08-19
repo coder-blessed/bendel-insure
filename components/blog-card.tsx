@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import type { BlogPost } from "@/lib/blog";
 import { formatPostDate } from "@/lib/blog";
 import { Media } from "@/components/media";
