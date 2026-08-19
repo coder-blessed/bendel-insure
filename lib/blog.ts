@@ -33,61 +33,7 @@ export const postCategories = [
   "History",
 ];
 export const posts: BlogPost[] = [
-  {
-    id: "p-008",
-    slug: "tenebe-vows-to-reposition-bendel-insurance-for-global-success",
-    title: "2026/27: Bendel Insurance FC boss Tenebe Vows to Reposition Club for Global Success",
-    excerpt:
-      "Chairman Emperor Jarrett Tenebe meets with international brand strategist Dr Drew Uyi in London, unveiling a bold roadmap for player branding, global exposure and commercialization ahead of the 2026/27 NPFL season.",
-    category: "Club",
-    author: "Club Media",
-    image: "",
-    tone: 1,
-    status: "published",
-    publishedAt: "2026-08-19",
-    updatedAt: "2026-08-19",
-    readMinutes: 5,
-    body: `As part of preparations for the 2026/2027 Nigeria Professional Football League season, the Chairman of Bendel Insurance Football Club, Emperor Jarrett Tenebe has vowed to explore all necessary avenues and pull resources together to help reposition the Edo state owned football club to an international standard.
 
-The Benin Arsenals chairman gave the assurance when he held a strategic meeting in London with Dr Drew Uyi, a FIFA-licensed football agent and international brand strategist.
-
-## Strategic London Summit
-
-The meeting focused on innovative strategies to reposition the historic Benin-based club for greater success on and off the pitch.
-
-Tenebe, who doubles as chairman of the All Progressives Congress in Edo State, and Uyi, founder and CEO of DD Eleven Group, met on how to explore possible ways of strengthening Bendel Insurance’s global profile through:
-
-- **Modern Player Branding:** Elevating individual player profiles to international commercial standards.
-- **International Marketing:** Expanding the club's reach across global football networks.
-- **Talent Exposure & Scouting:** Creating structured pathways for European and international scout visibility.
-- **Commercialization:** Driving sustainable revenue streams and multinational sponsorships.
-
-## Elevating Marketability & Digital Footprint
-
-The discussions also centred on initiatives aimed at improving the international marketability of the club’s players while reinforcing Bendel Insurance’s reputation as one of Nigeria’s premier football clubs.
-
-One of the key proposals was the introduction of a structured **player-branding programme** designed to equip players with professional images, stronger digital profiles and increased media visibility to attract international opportunities, sponsorships, and scouting.
-
-> "Modern football requires more than talent alone. Strategic branding is increasingly important in enhancing players' market value and creating opportunities on the global stage."
-> — **Dr Drew Uyi**, *FIFA-licensed agent and brand strategist*
-
-## Commitment to Innovation and Global Growth
-
-Tenebe reaffirmed his commitment to building a stronger and more competitive Bendel Insurance, stressing the need for innovation, professionalism and strategic partnerships in driving the club’s growth.
-
-The football enthusiast and devoted Arsenal supporter Drew Uyi noted that such partnerships would be important to ensuring that the club develops both competitively and commercially.
-
-Uyi expressed his readiness to support the club’s vision by leveraging his international football network and expertise in player branding and global sports marketing.
-
-He noted that modern football requires more than talent, stressing that strategic branding is increasingly important in enhancing players’ value and creating opportunities on the global stage.
-
-## A New Era for the Benin Arsenal
-
-The London meeting marks the beginning of a proposed collaboration aimed at elevating Bendel Insurance’s international profile, empowering its players and laying the foundation for a successful 2026/2027 season.
-
-With preparations already underway, the Bendel Insurance FC boss said that management of the club remained committed to innovation, excellence and sustainable growth.
-`,
-  },
   {
     id: "p-007",
   slug: "bendel-insurance-begin-2026-27-campaign-against-warri-wolves",
