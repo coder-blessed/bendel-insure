@@ -10,6 +10,8 @@
  * an official club/NPFL feed or CMS when available.
  */
 
+import { title } from "process";
+
 /**
  * Image helper.
  *
@@ -131,6 +133,42 @@ export const heroSlides = [
  * NEWS / BLOG STORIES
  */
 export const newsStories: Story[] = [
+  {
+    slug: "tenebe-vows-to-reposition-bendel-insurance-for-global-success",
+    image: "/images/chairman.jpg",
+    category: "Club",
+    timestamp: "Today",
+    title:
+      "2026/27: Bendel Insurance FC boss Tenebe vows to reposition club for global success",
+    excerpt:
+      "Bendel Insurance FC chairman Emperor Jarrett Tenebe has pledged to reposition the Benin Arsenal for international success through strategic partnerships, player branding, global marketing and talent exposure.",
+    content: `
+As part of preparations for the 2026/2027 Nigeria Professional Football League season, the Chairman of Bendel Insurance Football Club, Emperor Jarrett Tenebe, has vowed to explore all necessary avenues and pull resources together to help reposition the Edo State-owned football club to an international standard.
+
+The Benin Arsenal chairman gave the assurance when he held a strategic meeting in London with Dr Drew Uyi, a FIFA-licensed football agent and international brand strategist.
+
+The meeting focused on innovative strategies to reposition the historic Benin-based club for greater success on and off the pitch.
+
+Tenebe, who doubles as chairman of the All Progressives Congress in Edo State, and Uyi, founder and CEO of DD Eleven Group, met to explore possible ways of strengthening Bendel Insurance's global profile through modern player branding, international marketing, talent exposure and commercialization.
+
+The discussions also centred on initiatives aimed at improving the international marketability of the club's players while reinforcing Bendel Insurance's reputation as one of Nigeria's premier football clubs.
+
+One of the key proposals was the introduction of a structured player-branding programme designed to equip players with professional images, stronger digital profiles and increased media visibility to attract international opportunities, sponsorships and scouting.
+
+Tenebe reaffirmed his commitment to building a stronger and more competitive Bendel Insurance, stressing the need for innovation, professionalism and strategic partnerships in driving the club's growth.
+
+Drew Uyi noted that such partnerships would be important to ensuring that the club develops both competitively and commercially.
+
+Uyi expressed his readiness to support the club's vision by leveraging his international football network and expertise in player branding and global sports marketing.
+
+He noted that modern football requires more than talent, stressing that strategic branding is increasingly important in enhancing players' value and creating opportunities on the global stage.
+
+The London meeting marks the beginning of a proposed collaboration aimed at elevating Bendel Insurance's international profile, empowering its players and laying the foundation for a successful 2026/2027 season.
+
+With preparations already underway, Bendel Insurance FC boss said the management of the club remained committed to innovation, excellence and sustainable growth.
+`,
+    tone: 1,
+  },
   {
     slug: "npfl-2026-27-bendel-insurance-begin-campaign-against-warri-wolves",
     image: "/images/warri-wolves-matchday-1.jpg",
@@ -289,44 +327,6 @@ The 2023 Federation Cup triumph remains one of the club's most important modern 
 `,
     tone: 0,
   },
-
-    {
-    slug: "tenebe-vows-to-reposition-bendel-insurance-for-global-success",
-    image: photo("/images/chairman.jpg"),
-    category: "Club",
-    timestamp: "Today",
-    title:
-      "2026/27: Bendel Insurance FC boss Tenebe vows to reposition club for global success",
-    excerpt:
-      "Bendel Insurance FC chairman Emperor Jarrett Tenebe has pledged to reposition the Benin Arsenal for international success through strategic partnerships, player branding, global marketing and talent exposure.",
-    content: `
-As part of preparations for the 2026/2027 Nigeria Professional Football League season, the Chairman of Bendel Insurance Football Club, Emperor Jarrett Tenebe, has vowed to explore all necessary avenues and pull resources together to help reposition the Edo State-owned football club to an international standard.
-
-The Benin Arsenal chairman gave the assurance when he held a strategic meeting in London with Dr Drew Uyi, a FIFA-licensed football agent and international brand strategist.
-
-The meeting focused on innovative strategies to reposition the historic Benin-based club for greater success on and off the pitch.
-
-Tenebe, who doubles as chairman of the All Progressives Congress in Edo State, and Uyi, founder and CEO of DD Eleven Group, met to explore possible ways of strengthening Bendel Insurance's global profile through modern player branding, international marketing, talent exposure and commercialization.
-
-The discussions also centred on initiatives aimed at improving the international marketability of the club's players while reinforcing Bendel Insurance's reputation as one of Nigeria's premier football clubs.
-
-One of the key proposals was the introduction of a structured player-branding programme designed to equip players with professional images, stronger digital profiles and increased media visibility to attract international opportunities, sponsorships and scouting.
-
-Tenebe reaffirmed his commitment to building a stronger and more competitive Bendel Insurance, stressing the need for innovation, professionalism and strategic partnerships in driving the club's growth.
-
-Drew Uyi noted that such partnerships would be important in ensuring that the club develops both competitively and commercially.
-
-Uyi expressed his readiness to support the club's vision by leveraging his international football network and expertise in player branding and global sports marketing.
-
-He noted that modern football requires more than talent, stressing that strategic branding is increasingly important in enhancing players' value and creating opportunities on the global stage.
-
-The London meeting marks the beginning of a proposed collaboration aimed at elevating Bendel Insurance's international profile, empowering its players and laying the foundation for a successful 2026/2027 season.
-
-With preparations already underway, Bendel Insurance FC boss said the management of the club remained committed to innovation, excellence and sustainable growth.
-`,
-    tone: 1,
-  },
-
   {
     slug: "life-at-samuel-ogbemudia-stadium",
     image: photo("life-at-samuel-ogbemudia-stadium"),
@@ -337,7 +337,6 @@ With preparations already underway, Bendel Insurance FC boss said the management
       "The iconic Benin City stadium remains the home of Bendel Insurance Football Club.",
     tone: 1,
   },
-
   {
     slug: "2026-27-season-expectations",
     image: photo("2026-27-season-expectations"),
