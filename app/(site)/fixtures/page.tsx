@@ -153,9 +153,7 @@ export default function FixturesPage() {
                 </div>
                 <h3 className="headline text-lg text-ink uppercase">Colours & Attire</h3>
                 <p className="mt-2 text-sm leading-relaxed text-steel">
-                  Wear your <strong>Yellow home jersey</strong> proudly at the
-                  Ogbemudia! Authentic replica kits and merchandise are on sale at
-                  the Official Club Store on Stadium Road.
+                  Wear your Yellow home jersey proudly at the Ogbemudia! Authentic replica kits and merchandise are on sale every home match and at the Official Club Store in Ogbe Stadium..
                 </p>
               </div>
             </Reveal>
@@ -167,9 +165,7 @@ export default function FixturesPage() {
                 </div>
                 <h3 className="headline text-lg text-ink uppercase">Broadcast & Streaming</h3>
                 <p className="mt-2 text-sm leading-relaxed text-steel">
-                  Every home fixture is broadcast live on <strong>Insurance TV</strong> and
-                  the official NPFL streaming platform, featuring in-depth commentary
-                  and match analysis.
+                  There will be selected live match coverage and delayed broadcasts on the official NPFL YouTube channel, free and in HD. We will announce when our matches are broadcast.
                 </p>
               </div>
             </Reveal>
