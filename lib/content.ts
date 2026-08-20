@@ -173,7 +173,7 @@ With preparations already underway, Bendel Insurance FC boss said the management
     slug: "npfl-2026-27-bendel-insurance-begin-campaign-against-warri-wolves",
     image: "/images/warri-wolves-matchday-1.jpg",
     category: "NPFL",
-    timestamp: "5 days ago",
+    timestamp: "4th august, 2026",
     title:
       "NPFL 2026/27: Bendel Insurance FC begin campaign against Warri Wolves in Benin",
     excerpt:
@@ -208,7 +208,7 @@ He said the league's consistency and operational standards represented significa
     slug: "bendel-insurance-club-profile",
     image: photo("bendel-insurance-club-profile"),
     category: "Club",
-    timestamp: "2 days ago",
+    timestamp: "7th august, 2026",
     title: "Bendel Insurance FC: The Benin Arsenal",
     excerpt:
       "Discover the history, identity, leadership and achievements of one of Nigeria's most historic football clubs.",
