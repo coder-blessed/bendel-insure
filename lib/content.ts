@@ -752,22 +752,7 @@ export const seasonFixtures: Fixture[] = [
     broadcast: "Insurance TV / SuperSport",
     ticketAvailable: true,
   },
-  {
-    id: "cup-r64",
-    matchday: undefined,
-    competition: "Federation Cup 2026/27 (R64)",
-    competitionCode: "CUP",
-    date: "Wed 14 Oct 2026",
-    month: "Oct 2026",
-    venue: "Samuel Ogbemudia Stadium, Benin City",
-    isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Calabar Rovers", tone: 2, shortName: "ROV" },
-    kickoff: "15:30 WAT",
-    status: "Upcoming",
-    broadcast: "Insurance TV",
-    ticketAvailable: true,
-  },
+  
   {
     id: "md-8",
     matchday: 8,
