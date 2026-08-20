@@ -1924,7 +1924,7 @@ export type Player = {
   position: string;
   image: string;
   tone: number;
-};
+}];
 
 export const squad: Player[] = [
   {
