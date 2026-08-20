@@ -1881,6 +1881,7 @@ export const seasonFixtures: Fixture[] = [
     ticketAvailable: false,
   },
 ];
+];
 
 /**
  * 2025/26 FINAL POSITION
