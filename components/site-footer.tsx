@@ -10,7 +10,11 @@ export function SiteFooter() {
         <div className="grid gap-12 lg:grid-cols-[auto_1fr]">
           <div className="lg:w-64">
             <Crest className="h-24" />
-            <p className="headline mt-5 text-xl uppercase">{club.name}</p>
+
+            <p className="headline mt-5 text-xl uppercase">
+              {club.name}
+            </p>
+
             <p className="mt-2 text-sm text-white/50">
               {club.stadium}
               <br />
@@ -24,6 +28,7 @@ export function SiteFooter() {
                 <h3 className="eyebrow mb-4 text-[10px] text-gold">
                   {column.title}
                 </h3>
+
                 <ul className="space-y-2.5">
                   {column.links.map((link) => (
                     <li key={link.href}>
@@ -46,6 +51,7 @@ export function SiteFooter() {
             <h3 className="eyebrow mb-3 text-[10px] text-white/50">
               Follow us
             </h3>
+
             <ul className="flex items-center gap-3">
               {socials.map((social) => (
                 <li key={social.label}>
@@ -54,6 +60,7 @@ export function SiteFooter() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
+                    title={social.label}
                     className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white/70 transition-all duration-300 hover:border-gold hover:bg-white/5 hover:text-gold"
                   >
                     <SocialIcon name={social.icon} />
@@ -67,6 +74,7 @@ export function SiteFooter() {
             <h3 className="eyebrow mb-3 text-[10px] text-white/50">
               Official app
             </h3>
+
             <div className="flex gap-3">
               {["App Store", "Google Play"].map((store) => (
                 <Link
@@ -82,8 +90,8 @@ export function SiteFooter() {
         </div>
 
         <p className="mt-10 text-xs text-white/35">
-          &copy; {new Date().getFullYear()} {club.name}. Founded {club.founded}{" "}
-          in {club.city}. Demo site built with sample fixture and squad data.
+          &copy; {new Date().getFullYear()} {club.name}. Founded{" "}
+          {club.founded} in {club.city}.
         </p>
       </div>
     </footer>

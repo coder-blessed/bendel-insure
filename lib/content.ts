@@ -491,6 +491,49 @@ export const teamTabs: { key: TeamKey; label: string }[] = [
 ];
 
 /**
+ * TEAM IDENTITIES
+ *
+ * Each team can have its own badge/logo.
+ *
+ * If a specific logo asset does not exist yet, the UI should fall back
+ * to the main Bendel Insurance crest.
+ */
+export type TeamIdentity = {
+  key: TeamKey;
+  label: string;
+  shortLabel: string;
+  logo: string;
+};
+
+export type Team = {
+  name: string;
+  shortName: string;
+  tone: number;
+  logo: string;
+};
+
+export const teamIdentities: TeamIdentity[] = [
+  {
+    key: "first",
+    label: "First Team",
+    shortLabel: "First Team",
+    logo: "/images/bendel-insurance-logo.png",
+  },
+  {
+    key: "feeder",
+    label: "Feeder Team",
+    shortLabel: "Feeder",
+    logo: "/images/bendel-insurance-feeder-logo.png",
+  },
+  {
+    key: "u17",
+    label: "Academy U17",
+    shortLabel: "U17",
+    logo: "/images/bendel-insurance-u17-logo.png",
+  },
+];
+
+/**
  * 2026/27 FIRST TEAM OPENING FIXTURES
  */
 export type TeamMatches = {
@@ -642,11 +685,79 @@ export const matches: Record<TeamKey, TeamMatches> = {
   },
 };
 
+
+
+export const TEAM_LOGOS: Record<string, string> = {
+  "Bendel Insurance":
+    "https://assets.football-logos.cc/logos/nigeria/700x700/bendel-insurance.5f4b0e7e.png",
+
+  "Warri Wolves":
+    "https://assets.football-logos.cc/logos/nigeria/700x700/warri-wolves.0d3f3f6d.png",
+
+  "Nasarawa United":
+    "https://assets.football-logos.cc/logos/nigeria/700x700/nasarawa-united.4a1d2d89.png",
+
+  "Kun Khalifat":
+    "https://assets.football-logos.cc/logos/nigeria/700x700/kun-khalifat.9c7d4d21.png",
+
+  "Ranchers Bees":
+    "https://assets.football-logos.cc/logos/nigeria/700x700/ranchers-bees.8b6d2a11.png",
+
+  "Ikorodu City":
+    "https://assets.football-logos.cc/logos/nigeria/700x700/ikorodu-city.6c8f3e22.png",
+
+  "Rivers United":
+    "https://assets.football-logos.cc/logos/nigeria/700x700/rivers-united.1f2e4d67.png",
+
+  "Enyimba International":
+    "https://assets.football-logos.cc/logos/nigeria/700x700/enyimba.a765bfe6.png",
+
+  "Enugu Rangers":
+    "https://assets.football-logos.cc/logos/nigeria/700x700/rangers-international.4d6a7e8c.png",
+
+  "Remo Stars":
+    "https://assets.football-logos.cc/logos/nigeria/700x700/remo-stars.2d7b8f91.png",
+
+  "Shooting Stars 3SC":
+    "https://r2.thesportsdb.com/images/media/team/badge/uk3c7q1720155122.png",
+
+  "Kano Pillars":
+    "https://assets.football-logos.cc/logos/nigeria/700x700/kano-pillars.9f6d2e11.png",
+
+  "Plateau United":
+    "https://r2.thesportsdb.com/images/media/team/badge/2z80yh1720154812.png",
+
+  "Sunshine Stars":
+    "https://assets.football-logos.cc/logos/nigeria/700x700/sunshine-stars.5d3e8b22.png",
+
+  "Heartland FC":
+    "https://galaxytv-api-s3-prod.s3.eu-west-2.amazonaws.com/archive/Heartland_F.C._logo.svg.png",
+
+  "Kwara United":
+    "https://assets.football-logos.cc/logos/nigeria/700x700/kwara-united.7a2c6e33.png",
+
+  "Katsina United":
+    "https://assets.football-logos.cc/logos/nigeria/700x700/katsina-united.3e8d5f44.png",
+
+  "Abia Warriors":
+    "https://assets.football-logos.cc/logos/nigeria/700x700/abia-warriors.8f1c2d55.png",
+
+  "Bayelsa United":
+    "https://assets.football-logos.cc/logos/nigeria/700x700/bayelsa-united.6d4e7a66.png",
+
+  "Akwa United":
+    "https://assets.football-logos.cc/logos/nigeria/700x700/akwa-united.1b5f9c77.png",
+};
+
+
 /**
  * COMPLETE 2026/27 NPFL SEASON FIXTURES
  */
 export const seasonFixtures: Fixture[] = [
+  // ============================================================
   // AUGUST 2026
+  // ============================================================
+
   {
     id: "md-1",
     matchday: 1,
@@ -656,15 +767,28 @@ export const seasonFixtures: Fixture[] = [
     month: "Aug 2026",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Warri Wolves", tone: 1, shortName: "WAR" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Warri Wolves",
+      tone: 1,
+      shortName: "WAR",
+      logo: TEAM_LOGOS["Warri Wolves"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
 
+  // ============================================================
   // SEPTEMBER 2026
+  // ============================================================
+
   {
     id: "md-2",
     matchday: 2,
@@ -674,13 +798,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Sep 2026",
     venue: "Lafia Township Stadium, Lafia",
     isHome: false,
-    home: { name: "Nasarawa United", tone: 4, shortName: "NAS" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Nasarawa United",
+      tone: 4,
+      shortName: "NAS",
+      logo: TEAM_LOGOS["Nasarawa United"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
+
   {
     id: "md-3",
     matchday: 3,
@@ -690,13 +825,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Sep 2026",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Kun Khalifat", tone: 2, shortName: "KUN" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Kun Khalifat",
+      tone: 2,
+      shortName: "KUN",
+      logo: TEAM_LOGOS["Kun Khalifat"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
+
   {
     id: "md-4",
     matchday: 4,
@@ -706,13 +852,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Sep 2026",
     venue: "Ahmadu Bello Stadium, Kaduna",
     isHome: false,
-    home: { name: "Ranchers Bees", tone: 4, shortName: "RAN" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Ranchers Bees",
+      tone: 4,
+      shortName: "RAN",
+      logo: TEAM_LOGOS["Ranchers Bees"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
+
   {
     id: "md-5",
     matchday: 5,
@@ -722,15 +879,28 @@ export const seasonFixtures: Fixture[] = [
     month: "Sep 2026",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Ikorodu City", tone: 5, shortName: "IKO" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Ikorodu City",
+      tone: 5,
+      shortName: "IKO",
+      logo: TEAM_LOGOS["Ikorodu City"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
 
+  // ============================================================
   // OCTOBER 2026
+  // ============================================================
+
   {
     id: "md-6",
     matchday: 6,
@@ -740,13 +910,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Oct 2026",
     venue: "Adokiye Amiesimaka Stadium, Port Harcourt",
     isHome: false,
-    home: { name: "Rivers United", tone: 3, shortName: "RIV" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Rivers United",
+      tone: 3,
+      shortName: "RIV",
+      logo: TEAM_LOGOS["Rivers United"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
+
   {
     id: "md-7",
     matchday: 7,
@@ -756,13 +937,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Oct 2026",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Enyimba International", tone: 1, shortName: "ENY" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Enyimba International",
+      tone: 1,
+      shortName: "ENY",
+      logo: TEAM_LOGOS["Enyimba International"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / SuperSport",
     ticketAvailable: true,
   },
+
   {
     id: "md-8",
     matchday: 8,
@@ -772,13 +964,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Oct 2026",
     venue: "Nnamdi Azikiwe Stadium, Enugu",
     isHome: false,
-    home: { name: "Enugu Rangers", tone: 1, shortName: "RAN" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Enugu Rangers",
+      tone: 1,
+      shortName: "RAN",
+      logo: TEAM_LOGOS["Enugu Rangers"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
+
   {
     id: "md-9",
     matchday: 9,
@@ -788,15 +991,28 @@ export const seasonFixtures: Fixture[] = [
     month: "Oct 2026",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Remo Stars", tone: 2, shortName: "REM" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Remo Stars",
+      tone: 2,
+      shortName: "REM",
+      logo: TEAM_LOGOS["Remo Stars"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
 
+  // ============================================================
   // NOVEMBER 2026
+  // ============================================================
+
   {
     id: "md-10",
     matchday: 10,
@@ -806,13 +1022,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Nov 2026",
     venue: "Lekan Salami Stadium, Ibadan",
     isHome: false,
-    home: { name: "Shooting Stars 3SC", tone: 3, shortName: "3SC" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Shooting Stars 3SC",
+      tone: 3,
+      shortName: "3SC",
+      logo: TEAM_LOGOS["Shooting Stars 3SC"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
+
   {
     id: "md-11",
     matchday: 11,
@@ -822,13 +1049,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Nov 2026",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Kano Pillars", tone: 4, shortName: "PIL" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Kano Pillars",
+      tone: 4,
+      shortName: "PIL",
+      logo: TEAM_LOGOS["Kano Pillars"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
+
   {
     id: "md-12",
     matchday: 12,
@@ -838,13 +1076,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Nov 2026",
     venue: "New Jos Stadium, Jos",
     isHome: false,
-    home: { name: "Plateau United", tone: 5, shortName: "PLA" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Plateau United",
+      tone: 5,
+      shortName: "PLA",
+      logo: TEAM_LOGOS["Plateau United"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
+
   {
     id: "md-13",
     matchday: 13,
@@ -854,13 +1103,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Nov 2026",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Sunshine Stars", tone: 1, shortName: "SUN" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Sunshine Stars",
+      tone: 1,
+      shortName: "SUN",
+      logo: TEAM_LOGOS["Sunshine Stars"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
+
   {
     id: "md-14",
     matchday: 14,
@@ -870,15 +1130,28 @@ export const seasonFixtures: Fixture[] = [
     month: "Nov 2026",
     venue: "Dan Anyiam Stadium, Owerri",
     isHome: false,
-    home: { name: "Heartland FC", tone: 2, shortName: "HEA" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Heartland FC",
+      tone: 2,
+      shortName: "HEA",
+      logo: TEAM_LOGOS["Heartland FC"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
 
+  // ============================================================
   // DECEMBER 2026
+  // ============================================================
+
   {
     id: "md-15",
     matchday: 15,
@@ -888,13 +1161,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Dec 2026",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Kwara United", tone: 3, shortName: "KWA" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Kwara United",
+      tone: 3,
+      shortName: "KWA",
+      logo: TEAM_LOGOS["Kwara United"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
+
   {
     id: "md-16",
     matchday: 16,
@@ -904,13 +1188,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Dec 2026",
     venue: "Muhammadu Dikko Stadium, Katsina",
     isHome: false,
-    home: { name: "Katsina United", tone: 4, shortName: "KAT" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Katsina United",
+      tone: 4,
+      shortName: "KAT",
+      logo: TEAM_LOGOS["Katsina United"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
+
   {
     id: "md-17",
     matchday: 17,
@@ -920,15 +1215,28 @@ export const seasonFixtures: Fixture[] = [
     month: "Dec 2026",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Abia Warriors", tone: 2, shortName: "ABI" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Abia Warriors",
+      tone: 2,
+      shortName: "ABI",
+      logo: TEAM_LOGOS["Abia Warriors"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
 
+  // ============================================================
   // JANUARY 2027
+  // ============================================================
+
   {
     id: "md-18",
     matchday: 18,
@@ -938,13 +1246,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Jan 2027",
     venue: "Samson Siasia Stadium, Yenagoa",
     isHome: false,
-    home: { name: "Bayelsa United", tone: 5, shortName: "BAY" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Bayelsa United",
+      tone: 5,
+      shortName: "BAY",
+      logo: TEAM_LOGOS["Bayelsa United"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
+
   {
     id: "md-19",
     matchday: 19,
@@ -954,13 +1273,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Jan 2027",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Akwa United", tone: 1, shortName: "AKW" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Akwa United",
+      tone: 1,
+      shortName: "AKW",
+      logo: TEAM_LOGOS["Akwa United"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
+
   {
     id: "md-20",
     matchday: 20,
@@ -970,13 +1300,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Jan 2027",
     venue: "Warri Township Stadium, Warri",
     isHome: false,
-    home: { name: "Warri Wolves", tone: 1, shortName: "WAR" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Warri Wolves",
+      tone: 1,
+      shortName: "WAR",
+      logo: TEAM_LOGOS["Warri Wolves"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
+
   {
     id: "md-21",
     matchday: 21,
@@ -986,15 +1327,28 @@ export const seasonFixtures: Fixture[] = [
     month: "Jan 2027",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Nasarawa United", tone: 4, shortName: "NAS" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Nasarawa United",
+      tone: 4,
+      shortName: "NAS",
+      logo: TEAM_LOGOS["Nasarawa United"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
 
+  // ============================================================
   // FEBRUARY 2027
+  // ============================================================
+
   {
     id: "md-22",
     matchday: 22,
@@ -1004,13 +1358,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Feb 2027",
     venue: "Dan Anyiam Stadium, Owerri",
     isHome: false,
-    home: { name: "Kun Khalifat", tone: 2, shortName: "KUN" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Kun Khalifat",
+      tone: 2,
+      shortName: "KUN",
+      logo: TEAM_LOGOS["Kun Khalifat"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
+
   {
     id: "md-23",
     matchday: 23,
@@ -1020,13 +1385,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Feb 2027",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Ranchers Bees", tone: 4, shortName: "RAN" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Ranchers Bees",
+      tone: 4,
+      shortName: "RAN",
+      logo: TEAM_LOGOS["Ranchers Bees"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
+
   {
     id: "md-24",
     matchday: 24,
@@ -1036,13 +1412,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Feb 2027",
     venue: "Mobolaji Johnson Arena, Onikan, Lagos",
     isHome: false,
-    home: { name: "Ikorodu City", tone: 5, shortName: "IKO" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Ikorodu City",
+      tone: 5,
+      shortName: "IKO",
+      logo: TEAM_LOGOS["Ikorodu City"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
+
   {
     id: "md-25",
     matchday: 25,
@@ -1052,15 +1439,28 @@ export const seasonFixtures: Fixture[] = [
     month: "Feb 2027",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Rivers United", tone: 3, shortName: "RIV" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Rivers United",
+      tone: 3,
+      shortName: "RIV",
+      logo: TEAM_LOGOS["Rivers United"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
 
+  // ============================================================
   // MARCH 2027
+  // ============================================================
+
   {
     id: "md-26",
     matchday: 26,
@@ -1070,13 +1470,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Mar 2027",
     venue: "Enyimba International Stadium, Aba",
     isHome: false,
-    home: { name: "Enyimba International", tone: 1, shortName: "ENY" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Enyimba International",
+      tone: 1,
+      shortName: "ENY",
+      logo: TEAM_LOGOS["Enyimba International"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
+
   {
     id: "md-27",
     matchday: 27,
@@ -1086,13 +1497,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Mar 2027",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Enugu Rangers", tone: 1, shortName: "RAN" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Enugu Rangers",
+      tone: 1,
+      shortName: "RAN",
+      logo: TEAM_LOGOS["Enugu Rangers"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / SuperSport",
     ticketAvailable: true,
   },
+
   {
     id: "md-28",
     matchday: 28,
@@ -1102,13 +1524,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Mar 2027",
     venue: "Remo Stars Stadium, Ikenne",
     isHome: false,
-    home: { name: "Remo Stars", tone: 2, shortName: "REM" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Remo Stars",
+      tone: 2,
+      shortName: "REM",
+      logo: TEAM_LOGOS["Remo Stars"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
+
   {
     id: "md-29",
     matchday: 29,
@@ -1118,15 +1551,28 @@ export const seasonFixtures: Fixture[] = [
     month: "Mar 2027",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Shooting Stars 3SC", tone: 3, shortName: "3SC" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Shooting Stars 3SC",
+      tone: 3,
+      shortName: "3SC",
+      logo: TEAM_LOGOS["Shooting Stars 3SC"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
 
+  // ============================================================
   // APRIL 2027
+  // ============================================================
+
   {
     id: "md-30",
     matchday: 30,
@@ -1136,13 +1582,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Apr 2027",
     venue: "Sani Abacha Stadium, Kano",
     isHome: false,
-    home: { name: "Kano Pillars", tone: 4, shortName: "PIL" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Kano Pillars",
+      tone: 4,
+      shortName: "PIL",
+      logo: TEAM_LOGOS["Kano Pillars"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
+
   {
     id: "md-31",
     matchday: 31,
@@ -1152,13 +1609,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Apr 2027",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Plateau United", tone: 5, shortName: "PLA" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Plateau United",
+      tone: 5,
+      shortName: "PLA",
+      logo: TEAM_LOGOS["Plateau United"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
+
   {
     id: "md-32",
     matchday: 32,
@@ -1168,13 +1636,24 @@ export const seasonFixtures: Fixture[] = [
     month: "Apr 2027",
     venue: "Akure Township Stadium, Akure",
     isHome: false,
-    home: { name: "Sunshine Stars", tone: 1, shortName: "SUN" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Sunshine Stars",
+      tone: 1,
+      shortName: "SUN",
+      logo: TEAM_LOGOS["Sunshine Stars"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
+
   {
     id: "md-33",
     matchday: 33,
@@ -1184,15 +1663,28 @@ export const seasonFixtures: Fixture[] = [
     month: "Apr 2027",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Heartland FC", tone: 2, shortName: "HEA" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Heartland FC",
+      tone: 2,
+      shortName: "HEA",
+      logo: TEAM_LOGOS["Heartland FC"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
 
+  // ============================================================
   // MAY 2027
+  // ============================================================
+
   {
     id: "md-34",
     matchday: 34,
@@ -1202,13 +1694,24 @@ export const seasonFixtures: Fixture[] = [
     month: "May 2027",
     venue: "Kwara State Stadium, Ilorin",
     isHome: false,
-    home: { name: "Kwara United", tone: 3, shortName: "KWA" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Kwara United",
+      tone: 3,
+      shortName: "KWA",
+      logo: TEAM_LOGOS["Kwara United"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
+
   {
     id: "md-35",
     matchday: 35,
@@ -1218,13 +1721,24 @@ export const seasonFixtures: Fixture[] = [
     month: "May 2027",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Katsina United", tone: 4, shortName: "KAT" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Katsina United",
+      tone: 4,
+      shortName: "KAT",
+      logo: TEAM_LOGOS["Katsina United"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
+
   {
     id: "md-36",
     matchday: 36,
@@ -1234,13 +1748,24 @@ export const seasonFixtures: Fixture[] = [
     month: "May 2027",
     venue: "Umuahia Township Stadium, Umuahia",
     isHome: false,
-    home: { name: "Abia Warriors", tone: 2, shortName: "ABI" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Abia Warriors",
+      tone: 2,
+      shortName: "ABI",
+      logo: TEAM_LOGOS["Abia Warriors"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
+
   {
     id: "md-37",
     matchday: 37,
@@ -1250,13 +1775,24 @@ export const seasonFixtures: Fixture[] = [
     month: "May 2027",
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
-    home: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
-    away: { name: "Bayelsa United", tone: 5, shortName: "BAY" },
+    home: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
+    away: {
+      name: "Bayelsa United",
+      tone: 5,
+      shortName: "BAY",
+      logo: TEAM_LOGOS["Bayelsa United"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
+
   {
     id: "md-38",
     matchday: 38,
@@ -1266,14 +1802,23 @@ export const seasonFixtures: Fixture[] = [
     month: "May 2027",
     venue: "Godswill Akpabio International Stadium, Uyo",
     isHome: false,
-    home: { name: "Akwa United", tone: 1, shortName: "AKW" },
-    away: { name: "Bendel Insurance", tone: 0, shortName: "BEN" },
+    home: {
+      name: "Akwa United",
+      tone: 1,
+      shortName: "AKW",
+      logo: TEAM_LOGOS["Akwa United"],
+    },
+    away: {
+      name: "Bendel Insurance",
+      tone: 0,
+      shortName: "BEN",
+      logo: TEAM_LOGOS["Bendel Insurance"],
+    },
     kickoff: "16:00 WAT",
     status: "Upcoming",
     broadcast: "NPFL Live / SuperSport",
     ticketAvailable: false,
   },
-
 ];
 
 /**
@@ -1834,14 +2379,13 @@ export const utilityNav = [
 /**
  * FOOTER
  */
+/**
+ * FOOTER
+ */
 export const footerColumns = [
   {
     title: "Club & Heritage",
     links: [
-      {
-        label: "Club overview",
-        href: "/club",
-      },
       {
         label: "Club history",
         href: "/history",
@@ -1857,10 +2401,6 @@ export const footerColumns = [
       {
         label: "Academy",
         href: "/teams/academy",
-      },
-      {
-        label: "Jobs & careers",
-        href: "/club/careers",
       },
     ],
   },
@@ -1935,34 +2475,31 @@ export const footerColumns = [
     ],
   },
 ];
-
+/**
+ * SOCIAL MEDIA
+ */
 /**
  * SOCIAL MEDIA
  */
 export const socials = [
   {
-    label: "YouTube",
-    href: "https://www.youtube.com",
-    icon: "youtube" as const,
+    label: "Instagram",
+    href: "https://www.instagram.com/bendelinsurance?igsi=c2VyZDJ5b3Y1d2s4",
+    icon: "instagram" as const,
   },
   {
     label: "Facebook",
-    href: "https://www.facebook.com",
+    href: "https://www.facebook.com/Bendelinsurancefc?mibextid=wwXIfr",
     icon: "facebook" as const,
   },
   {
     label: "X",
-    href: "https://x.com",
+    href: "https://x.com/insurance_fc?s=21&t=diHyZYuNv24vKmYfFSbXBg",
     icon: "x" as const,
   },
   {
-    label: "Instagram",
-    href: "https://www.instagram.com",
-    icon: "instagram" as const,
-  },
-  {
     label: "TikTok",
-    href: "https://www.tiktok.com",
+    href: "https://www.tiktok.com/@bendelinsuranceofficial?_r=1&_t=ZS-99B1yeIKNFA",
     icon: "tiktok" as const,
   },
 ];
