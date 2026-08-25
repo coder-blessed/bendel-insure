@@ -473,8 +473,21 @@ export type Fixture = {
   month?: string;
   venue: string;
   isHome?: boolean;
-  home: { name: string; tone: number; shortName?: string };
-  away: { name: string; tone: number; shortName?: string };
+
+  home: {
+    name: string;
+    tone: number;
+    shortName?: string;
+    logo?: string;
+  };
+
+  away: {
+    name: string;
+    tone: number;
+    shortName?: string;
+    logo?: string;
+  };
+
   score?: string;
   status?: string;
   kickoff?: string;
