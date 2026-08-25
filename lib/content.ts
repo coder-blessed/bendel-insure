@@ -168,7 +168,7 @@ He said the league's consistency and operational standards represented significa
 
   {
     slug: "tenebe-vows-to-reposition-bendel-insurance-for-global-success",
-    image: photo("tenebe-drew-uyi-london-meeting"),
+ image: "/images/chairman.jpg",
     category: "Club",
     timestamp: "Today",
     title:
