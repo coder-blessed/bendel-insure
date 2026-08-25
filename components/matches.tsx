@@ -18,7 +18,7 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 function TeamColumn({ team }: { team: Fixture["home"] }) {
   return (
     <div className="flex flex-1 flex-col items-center gap-3 text-center">
-      <TeamBadge name={team.name} tone={team.tone} />
+      <TeamBadge name={team.name} tone={team.tone} logo={team.logo} />
       <span className="text-sm leading-tight font-semibold text-ink">
         {team.name}
       </span>

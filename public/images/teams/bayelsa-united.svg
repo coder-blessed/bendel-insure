@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="grad-bayelsa-united" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EAB308"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+  </defs>
+  <path d="M50 5 C78 5, 90 18, 90 42 C90 70, 50 95, 50 95 C50 95, 10 70, 10 42 C10 18, 22 5, 50 5 Z" fill="url(#grad-bayelsa-united)" stroke="#FFFFFF" stroke-width="2.5"/>
+  <path d="M50 10 C74 10, 84 21, 84 42 C84 66, 50 88, 50 88 C50 88, 16 66, 16 42 C16 21, 26 10, 50 10 Z" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.6"/>
+  <g id="symbol"><path d="M38 52 C44 58, 56 58, 62 52 C60 48, 54 48, 50 44 C46 48, 40 48, 38 52 Z" fill="#0F766E"/><circle cx="50" cy="38" r="4" fill="#0F766E"/></g>
+  <circle cx="50" cy="72" r="6" fill="#FFFFFF" stroke="#EAB308" stroke-width="1.2"/>
+  <polygon points="50,68 53,70 52,74 48,74 47,70" fill="#EAB308"/>
+  <text x="50" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="6.5" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.4">BAYELSA UNITED</text>
+  <text x="50" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="4.5" font-weight="700" fill="#FFFFFF" text-anchor="middle" opacity="0.9" letter-spacing="0.3">RESTORATION</text>
+</svg>

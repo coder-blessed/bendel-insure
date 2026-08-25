@@ -242,6 +242,7 @@ export function FixturesClient({
                   <TeamBadge
                     name={spotlightFixture.home.name}
                     tone={spotlightFixture.home.tone}
+                    logo={spotlightFixture.home.logo}
                     className="h-20 w-20 shrink-0"
                   />
 
@@ -284,6 +285,7 @@ export function FixturesClient({
                   <TeamBadge
                     name={spotlightFixture.away.name}
                     tone={spotlightFixture.away.tone}
+                    logo={spotlightFixture.away.logo}
                     className="h-20 w-20 shrink-0"
                   />
 
@@ -625,6 +627,7 @@ export function FixturesClient({
                         <TeamBadge
                           name={fixture.home.name}
                           tone={fixture.home.tone}
+                          logo={fixture.home.logo}
                           className="h-11 w-11 shrink-0"
                         />
 
@@ -677,6 +680,7 @@ export function FixturesClient({
                         <TeamBadge
                           name={fixture.away.name}
                           tone={fixture.away.tone}
+                          logo={fixture.away.logo}
                           className="h-11 w-11 shrink-0"
                         />
                       </div>
@@ -769,6 +773,7 @@ export function FixturesClient({
                         <TeamBadge
                           name={fixture.home.name}
                           tone={fixture.home.tone}
+                          logo={fixture.home.logo}
                           className="h-14 w-14"
                         />
 
@@ -803,6 +808,7 @@ export function FixturesClient({
                         <TeamBadge
                           name={fixture.away.name}
                           tone={fixture.away.tone}
+                          logo={fixture.away.logo}
                           className="h-14 w-14"
                         />
 

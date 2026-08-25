@@ -701,65 +701,36 @@ export const matches: Record<TeamKey, TeamMatches> = {
 
 
 export const TEAM_LOGOS: Record<string, string> = {
-  "Bendel Insurance":
-    "https://assets.football-logos.cc/logos/nigeria/700x700/bendel-insurance.5f4b0e7e.png",
+  "Bendel Insurance": "/Bendel_Insurance_F.C._logo.png",
+  "Bendel Insurance FC": "/Bendel_Insurance_F.C._logo.png",
+  "Insurance Feeders": "/Bendel_Insurance_F.C._logo.png",
+  "Insurance U17": "/Bendel_Insurance_F.C._logo.png",
 
-  "Warri Wolves":
-    "https://assets.football-logos.cc/logos/nigeria/700x700/warri-wolves.0d3f3f6d.png",
-
-  "Nasarawa United":
-    "https://assets.football-logos.cc/logos/nigeria/700x700/nasarawa-united.4a1d2d89.png",
-
-  "Kun Khalifat":
-    "https://assets.football-logos.cc/logos/nigeria/700x700/kun-khalifat.9c7d4d21.png",
-
-  "Ranchers Bees":
-    "https://assets.football-logos.cc/logos/nigeria/700x700/ranchers-bees.8b6d2a11.png",
-
-  "Ikorodu City":
-    "https://assets.football-logos.cc/logos/nigeria/700x700/ikorodu-city.6c8f3e22.png",
-
-  "Rivers United":
-    "https://assets.football-logos.cc/logos/nigeria/700x700/rivers-united.1f2e4d67.png",
-
-  "Enyimba International":
-    "https://assets.football-logos.cc/logos/nigeria/700x700/enyimba.a765bfe6.png",
-
-  "Enugu Rangers":
-    "https://assets.football-logos.cc/logos/nigeria/700x700/rangers-international.4d6a7e8c.png",
-
-  "Remo Stars":
-    "https://assets.football-logos.cc/logos/nigeria/700x700/remo-stars.2d7b8f91.png",
-
-  "Shooting Stars 3SC":
-    "https://r2.thesportsdb.com/images/media/team/badge/uk3c7q1720155122.png",
-
-  "Kano Pillars":
-    "https://assets.football-logos.cc/logos/nigeria/700x700/kano-pillars.9f6d2e11.png",
-
-  "Plateau United":
-    "https://r2.thesportsdb.com/images/media/team/badge/2z80yh1720154812.png",
-
-  "Sunshine Stars":
-    "https://assets.football-logos.cc/logos/nigeria/700x700/sunshine-stars.5d3e8b22.png",
-
-  "Heartland FC":
-    "https://galaxytv-api-s3-prod.s3.eu-west-2.amazonaws.com/archive/Heartland_F.C._logo.svg.png",
-
-  "Kwara United":
-    "https://assets.football-logos.cc/logos/nigeria/700x700/kwara-united.7a2c6e33.png",
-
-  "Katsina United":
-    "https://assets.football-logos.cc/logos/nigeria/700x700/katsina-united.3e8d5f44.png",
-
-  "Abia Warriors":
-    "https://assets.football-logos.cc/logos/nigeria/700x700/abia-warriors.8f1c2d55.png",
-
-  "Bayelsa United":
-    "https://assets.football-logos.cc/logos/nigeria/700x700/bayelsa-united.6d4e7a66.png",
-
-  "Akwa United":
-    "https://assets.football-logos.cc/logos/nigeria/700x700/akwa-united.1b5f9c77.png",
+  "Warri Wolves": "/images/teams/warri-wolves.svg",
+  "Nasarawa United": "/images/teams/nasarawa-united.svg",
+  "Kun Khalifat": "/images/teams/kun-khalifat.svg",
+  "Ranchers Bees": "/images/teams/ranchers-bees.svg",
+  "Ikorodu City": "/images/teams/ikorodu-city.svg",
+  "Rivers United": "/images/teams/rivers-united.svg",
+  "Enyimba International": "/images/teams/enyimba.svg",
+  "Enyimba FC": "/images/teams/enyimba.svg",
+  "Enyimba": "/images/teams/enyimba.svg",
+  "Enugu Rangers": "/images/teams/enugu-rangers.svg",
+  "Rangers International": "/images/teams/enugu-rangers.svg",
+  "Remo Stars": "/images/teams/remo-stars.svg",
+  "Shooting Stars 3SC": "/images/teams/shooting-stars.svg",
+  "Shooting Stars": "/images/teams/shooting-stars.svg",
+  "3SC": "/images/teams/shooting-stars.svg",
+  "Kano Pillars": "/images/teams/kano-pillars.svg",
+  "Plateau United": "/images/teams/plateau-united.svg",
+  "Sunshine Stars": "/images/teams/sunshine-stars.svg",
+  "Heartland FC": "/images/teams/heartland.svg",
+  "Heartland": "/images/teams/heartland.svg",
+  "Kwara United": "/images/teams/kwara-united.svg",
+  "Katsina United": "/images/teams/katsina-united.svg",
+  "Abia Warriors": "/images/teams/abia-warriors.svg",
+  "Bayelsa United": "/images/teams/bayelsa-united.svg",
+  "Akwa United": "/images/teams/akwa-united.svg",
 };
 
 

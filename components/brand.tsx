@@ -40,20 +40,27 @@ export function Wordmark({ className = "" }: { className?: string }) {
   );
 }
 
+import { TEAM_LOGOS } from "@/lib/content";
+
 /** Our own sides get the real crest; opponents fall back to initial badges. */
 function isOurTeam(name: string) {
-  return name.includes("Insurance");
+  return (
+    name.toLowerCase().includes("insurance") ||
+    name.toLowerCase().includes("bendel")
+  );
 }
 
-/** Small team badge used in fixture strips and the league table. */
+/** Team badge used in fixture strips, match cards and the league table. */
 export function TeamBadge({
   name,
   tone = 0,
   className = "h-14 w-14",
+  logo,
 }: {
   name: string;
   tone?: number;
   className?: string;
+  logo?: string;
 }) {
   if (isOurTeam(name)) {
     return (
@@ -62,6 +69,24 @@ export function TeamBadge({
         aria-hidden="true"
       >
         <Crest className="h-full" />
+      </span>
+    );
+  }
+
+  const teamLogo = logo || TEAM_LOGOS[name];
+
+  if (teamLogo) {
+    return (
+      <span
+        className={`inline-flex items-center justify-center shrink-0 overflow-hidden rounded-full bg-white/10 p-0.5 shadow-sm transition-transform duration-300 hover:scale-105 ${className}`}
+        aria-hidden="true"
+      >
+        <img
+          src={teamLogo}
+          alt={`${name} crest`}
+          className="h-full w-full object-contain filter drop-shadow"
+          loading="lazy"
+        />
       </span>
     );
   }
@@ -89,7 +114,7 @@ export function TeamBadge({
       style={{ background: bg, borderColor: fg, color: fg }}
       aria-hidden="true"
     >
-      {initials}
+      {initials || "?"}
     </span>
   );
 }

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="grad-ikorodu-city" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A"/>
+      <stop offset="100%" stop-color="#EF4444"/>
+    </linearGradient>
+  </defs>
+  <path d="M50 5 C78 5, 90 18, 90 42 C90 70, 50 95, 50 95 C50 95, 10 70, 10 42 C10 18, 22 5, 50 5 Z" fill="url(#grad-ikorodu-city)" stroke="#FFFFFF" stroke-width="2.5"/>
+  <path d="M50 10 C74 10, 84 21, 84 42 C84 66, 50 88, 50 88 C50 88, 16 66, 16 42 C16 21, 26 10, 50 10 Z" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.6"/>
+  <g id="symbol"><path d="M38 40 L42 54 L50 46 L58 54 L62 40 L50 44 Z" fill="#EF4444"/><circle cx="50" cy="54" r="3" fill="#FFFFFF"/><circle cx="42" cy="38" r="2" fill="#FFFFFF"/><circle cx="58" cy="38" r="2" fill="#FFFFFF"/></g>
+  <circle cx="50" cy="72" r="6" fill="#FFFFFF" stroke="#1E3A8A" stroke-width="1.2"/>
+  <polygon points="50,68 53,70 52,74 48,74 47,70" fill="#1E3A8A"/>
+  <text x="50" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="6.5" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.4">IKORODU CITY</text>
+  <text x="50" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="4.5" font-weight="700" fill="#FFFFFF" text-anchor="middle" opacity="0.9" letter-spacing="0.3">OGA BOYS</text>
+</svg>

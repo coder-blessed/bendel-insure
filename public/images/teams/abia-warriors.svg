@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="grad-abia-warriors" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C2410C"/>
+      <stop offset="100%" stop-color="#1E3A8A"/>
+    </linearGradient>
+  </defs>
+  <path d="M50 5 C78 5, 90 18, 90 42 C90 70, 50 95, 50 95 C50 95, 10 70, 10 42 C10 18, 22 5, 50 5 Z" fill="url(#grad-abia-warriors)" stroke="#FFFFFF" stroke-width="2.5"/>
+  <path d="M50 10 C74 10, 84 21, 84 42 C84 66, 50 88, 50 88 C50 88, 16 66, 16 42 C16 21, 26 10, 50 10 Z" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.6"/>
+  <g id="symbol"><path d="M50 34 L60 42 L58 56 L50 62 L42 56 L40 42 Z" fill="#1E3A8A" stroke="#FFFFFF" stroke-width="1.5"/><line x1="50" y1="36" x2="50" y2="58" stroke="#FFFFFF" stroke-width="2"/><line x1="42" y1="46" x2="58" y2="46" stroke="#FFFFFF" stroke-width="2"/></g>
+  <circle cx="50" cy="72" r="6" fill="#FFFFFF" stroke="#C2410C" stroke-width="1.2"/>
+  <polygon points="50,68 53,70 52,74 48,74 47,70" fill="#C2410C"/>
+  <text x="50" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="6.5" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.4">ABIA WARRIORS</text>
+  <text x="50" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="4.5" font-weight="700" fill="#FFFFFF" text-anchor="middle" opacity="0.9" letter-spacing="0.3">UMUAHIA</text>
+</svg>
