@@ -1,44 +1,38 @@
+import Image from "next/image";
 import Link from "next/link";
 import { partners } from "@/lib/content";
 
-function LogoTile({ name, large = false }: { name: string; large?: boolean }) {
-  return (
-    <Link
-      href="/partners"
-      className={`flex items-center justify-center rounded-card border border-ink/12 bg-white px-4 text-center transition-colors duration-300 hover:border-brand ${
-        large ? "h-24" : "h-16"
-      }`}
-    >
-      <span
-        className={`headline text-steel uppercase transition-colors duration-300 hover:text-brand ${
-          large ? "text-lg sm:text-xl" : "text-xs sm:text-sm"
-        }`}
-      >
-        {name}
-      </span>
-    </Link>
-  );
-}
-
 export function Partners() {
   return (
-    <div className="space-y-10">
+    <div className="space-y-6">
       <div>
-        <h3 className="eyebrow mb-4 text-[10px] text-steel">
-          Principal partners
+        <h3 className="eyebrow mb-4 text-[10px] font-bold text-steel uppercase tracking-wider">
+          Official Club Sponsors
         </h3>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {partners.principal.map((name) => (
-            <LogoTile key={name} name={name} large />
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <h3 className="eyebrow mb-4 text-[10px] text-steel">Global partners</h3>
-        <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-6">
-          {partners.global.map((name) => (
-            <LogoTile key={name} name={name} />
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {partners.principal.map((partner) => (
+            <Link
+              key={partner.name}
+              href="/partners"
+              className="group flex flex-col items-center justify-between rounded-card border border-ink/10 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand hover:shadow-md sm:flex-row"
+            >
+              <div className="relative h-16 w-48 shrink-0 transition-transform duration-300 group-hover:scale-105">
+                <Image
+                  src={partner.logo}
+                  alt={partner.name}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="mt-3 text-center sm:mt-0 sm:text-right">
+                <span className="eyebrow text-[9px] font-bold text-brand uppercase">
+                  {partner.role}
+                </span>
+                <p className="headline mt-0.5 text-base uppercase text-ink group-hover:text-brand transition-colors">
+                  {partner.shortName}
+                </p>
+              </div>
+            </Link>
           ))}
         </div>
       </div>

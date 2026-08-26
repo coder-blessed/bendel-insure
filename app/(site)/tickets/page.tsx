@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Check, Clock, MapPin, Shield, Ticket } from "@/components/icons";
+import { ArrowRight, Check, MapPin, Ticket } from "@/components/icons";
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
 import { club, seasonFixtures } from "@/lib/content";
@@ -8,65 +8,61 @@ import { club, seasonFixtures } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Matchday Tickets & Passes | Bendel Insurance FC",
   description:
-    "Buy matchday tickets and season passes for Bendel Insurance FC at Samuel Ogbemudia Stadium. View seating prices, VIP hospitality and stadium guidelines.",
+    "Buy matchday tickets and season passes for Bendel Insurance FC at Samuel Ogbemudia Stadium. Official prices: Popular ₦500, VIP Extension ₦2,000, VVIP ₦5,000, Season Ticket ₦150,000.",
 };
 
 const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
 
 const ticketTiers = [
   {
-    name: "Popular Open Stand",
-    price: "₦1,000",
-    period: "per matchday",
-    desc: "General admission seating across the open stands with vibrant fan ambiance.",
+    name: "Popular",
+    price: "₦500",
+    period: "per match",
+    desc: "General admission seating across the open stands.",
     gate: "Gates 4, 5 & 6",
     features: [
-      "Full 90 minutes action",
-      "Passionate supporter section",
-      "Access to concessions & food stalls",
-      "Unreserved open seating",
+      "Matchday admission",
+      "General open seating",
+      "Access to stadium concessions",
     ],
     popular: false,
   },
   {
-    name: "Covered Main Stand",
-    price: "₦3,000",
-    period: "per matchday",
-    desc: "Prime elevated view shielded from sun and rain in the covered grandstand.",
+    name: "VIP Extension",
+    price: "₦2,000",
+    period: "per match",
+    desc: "Covered grandstand seating with prime elevated match perspective.",
     gate: "Gates 2 & 3",
     features: [
-      "Guaranteed covered seating",
-      "Prime central stadium perspective",
-      "Dedicated food & beverage counters",
-      "Fast-track turnstile entry",
+      "Covered stand seating",
+      "Elevated match viewing",
+      "Dedicated entrance gate",
     ],
     popular: true,
   },
   {
-    name: "VIP State Box",
-    price: "₦10,000",
-    period: "per matchday",
-    desc: "Exclusive executive luxury with VIP lounge access and padded seating.",
-    gate: "Gate 1 (VIP Entrance)",
+    name: "VVIP",
+    price: "₦5,000",
+    period: "per match",
+    desc: "State Box prime seating in the central executive tier.",
+    gate: "Gate 1 (VVIP Entrance)",
     features: [
-      "Air-conditioned VIP lounge",
-      "Complimentary refreshments & match program",
-      "Reserved prime padded seating",
-      "VIP parking pass included",
+      "State Box prime seating",
+      "Central covered view",
+      "Executive gate entry",
     ],
     popular: false,
   },
   {
-    name: "2026/27 Season Pass",
-    price: "₦35,000",
-    period: "full NPFL season",
-    desc: "All 19 NPFL home matches + domestic cup ties at guaranteed savings.",
-    gate: "All Gates (Dedicated RFID)",
+    name: "Season Ticket",
+    price: "₦150,000",
+    period: "full season",
+    desc: "Full season pass for all Bendel Insurance NPFL home games at the Ogbemudia.",
+    gate: "Dedicated Season Access",
     features: [
-      "All 19 NPFL home fixtures included",
-      "Priority tickets for cup knockouts",
-      "15% discount at official club store",
-      "Exclusive digital season badge",
+      "All NPFL home league matches",
+      "Guaranteed reserved seating",
+      "Official season ticket card",
     ],
     popular: false,
   },
@@ -105,7 +101,7 @@ export default function TicketsPage() {
               Matchday Tickets
             </h1>
             <p className="mt-4 text-base text-white/80 md:text-lg leading-relaxed">
-              Experience the thunderous roar of the Benin Arsenal live at Samuel Ogbemudia Stadium. Secure your seats for the 2026/27 season.
+              Experience the thunderous roar of the Benin Arsenal live at Samuel Ogbemudia Stadium.
             </p>
           </div>
         </div>
@@ -115,7 +111,7 @@ export default function TicketsPage() {
       <section className={`${SHELL} py-16 md:py-24`}>
         <SectionHeader
           title="Ticket Categories & Pricing"
-          subtitle="Choose the matchday experience that suits you best"
+          subtitle="Official admission rates for Samuel Ogbemudia Stadium"
         />
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -131,7 +127,7 @@ export default function TicketsPage() {
                 <div>
                   {tier.popular && (
                     <span className="eyebrow absolute -top-3 right-6 rounded-pill bg-gold px-3 py-0.5 text-[9px] font-bold text-brand-deep uppercase">
-                      Most Popular
+                      Popular
                     </span>
                   )}
                   <h3 className="headline text-lg uppercase text-ink">
@@ -169,7 +165,7 @@ export default function TicketsPage() {
                         : "bg-smoke text-ink hover:bg-brand hover:text-white"
                     }`}
                   >
-                    Select Pass
+                    Select Ticket
                   </button>
                 </div>
               </div>

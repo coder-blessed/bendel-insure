@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="edoGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="50%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </linearGradient>
+    <linearGradient id="edoGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#064E3B"/>
+    </linearGradient>
+    <filter id="shadowEdo" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Left Emblem: Queen Idia & Edo Seal -->
+  <g transform="translate(10, 5)" filter="url(#shadowEdo)">
+    <circle cx="45" cy="45" r="42" fill="url(#edoGreen)" stroke="#F59E0B" stroke-width="2.5"/>
+    <circle cx="45" cy="45" r="36" fill="none" stroke="#F59E0B" stroke-width="1" stroke-dasharray="3,2"/>
+    
+    <!-- Queen Idia Head & Crown -->
+    <path d="M45 20 C38 20, 32 24, 32 30 C32 34, 35 37, 36 40 C37 45, 39 55, 45 61 C51 55, 53 45, 54 40 C55 37, 58 34, 58 30 C58 24, 52 20, 45 20 Z" fill="url(#edoGold)"/>
+    <rect x="37" y="18" width="16" height="4" rx="1.5" fill="#FEF3C7"/>
+    <circle cx="39" cy="16" r="1.2" fill="#FEF3C7"/>
+    <circle cx="45" cy="14" r="1.6" fill="#FEF3C7"/>
+    <circle cx="51" cy="16" r="1.2" fill="#FEF3C7"/>
+    
+    <!-- Facial Features -->
+    <ellipse cx="41" cy="36" rx="1.5" ry="0.8" fill="#78350F"/>
+    <ellipse cx="49" cy="36" rx="1.5" ry="0.8" fill="#78350F"/>
+    <line x1="45" y1="37" x2="45" y2="43" stroke="#78350F" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M42 47 Q45 49 48 47" stroke="#78350F" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    
+    <!-- Laurel ribbon at bottom -->
+    <path d="M25 68 Q45 74 65 68" stroke="#F59E0B" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <text x="45" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="6" font-weight="900" fill="#FEF3C7" text-anchor="middle" letter-spacing="1">EDO STATE</text>
+  </g>
+
+  <!-- Typography Right -->
+  <g transform="translate(105, 18)">
+    <text x="0" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="800" fill="#047857" letter-spacing="2">GOVERNMENT OF</text>
+    <text x="0" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="900" fill="#0F172A" letter-spacing="1">EDO STATE</text>
+    <text x="0" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="700" fill="#D97706" letter-spacing="1.5">THE HEARTBEAT OF NIGERIA</text>
+    
+    <!-- Green-White-Green Stripe -->
+    <rect x="0" y="65" width="30" height="3" fill="#047857" rx="1.5"/>
+    <rect x="32" y="65" width="30" height="3" fill="#CBD5E1" rx="1.5"/>
+    <rect x="64" y="65" width="30" height="3" fill="#047857" rx="1.5"/>
+  </g>
+</svg>

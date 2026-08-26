@@ -2262,25 +2262,22 @@ export const tickerItems = [
  */
 export const partners = {
   principal: [
-    "EDO STATE",
-    "AITEO",
-    "ZENITH",
-    "OGBEMUDIA",
-  ],
-
-  global: [
-    "Air Peace",
-    "Bet9ja",
-    "Coca-Cola",
-    "Dangote",
-    "Ecobank",
-    "Fidelity",
-    "GTCO",
-    "Indomie",
-    "MTN",
-    "NNPC",
-    "Peak Milk",
-    "Sterling",
+    {
+      name: "Edo State Government",
+      shortName: "EDO STATE",
+      logo: "/images/sponsors/edo-state.svg",
+      role: "Principal Owner & Official Sponsor",
+      description:
+        "The Executive Government of Edo State, empowering sports excellence, talent development, and youth empowerment through the Benin Arsenal.",
+    },
+    {
+      name: "Olivia Table Water",
+      shortName: "OLIVIA TABLE WATER",
+      logo: "/images/sponsors/olivia-water.svg",
+      role: "Official Hydration Partner & Sponsor",
+      description:
+        "Official hydration partner and premium table water provider for Bendel Insurance FC senior, feeder, and academy teams.",
+    },
   ],
 };
 

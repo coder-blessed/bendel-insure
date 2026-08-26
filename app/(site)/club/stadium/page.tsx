@@ -16,120 +16,114 @@ import { club, seasonFixtures } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Samuel Ogbemudia Stadium | Home of Bendel Insurance FC",
   description:
-    "Explore the iconic Samuel Ogbemudia Stadium in Benin City, Edo State. Discover stadium history, seating capacity, FIFA-standard pitch, Olympic facilities, matchday guides and gallery.",
+    "Official guide to Samuel Ogbemudia Stadium in Benin City, Edo State. Matchday ticketing rates: Popular ₦500, VIP Extension ₦2,000, VVIP ₦5,000, Season Ticket ₦150,000.",
 };
 
 const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
 
 const stadiumStats = [
-  { label: "Capacity", value: "12,000", sub: "All-seater covered stands" },
-  { label: "Playing Surface", value: "FIFA Grade", sub: "Natural hybrid Bermuda turf" },
-  { label: "Athletics Track", value: "8-Lane", sub: "World Athletics Tartan track" },
-  { label: "Floodlights", value: "2,000+ Lux", sub: "Broadcast LED illumination" },
-  { label: "Location", value: "Benin City", sub: "Ogbe, Stadium Road, Edo State" },
-  { label: "Inaugurated", value: "1972", sub: "Renovated to Olympic grade" },
+  { label: "Capacity", value: "12,000", sub: "All-seater stadium" },
+  { label: "Athletics Track", value: "8-Lane", sub: "Tartan athletics track" },
+  { label: "Location", value: "Benin City", sub: "Stadium Road, Ogbe Quarter" },
+  { label: "Home Team", value: "Bendel Insurance", sub: "The Benin Arsenal" },
+];
+
+const ticketRates = [
+  {
+    name: "Popular",
+    price: "₦500",
+    desc: "General admission seating across the open stands.",
+    gate: "Gates 4, 5 & 6",
+  },
+  {
+    name: "VIP Extension",
+    price: "₦2,000",
+    desc: "Covered grandstand seating with prime elevated match perspective.",
+    gate: "Gates 2 & 3",
+  },
+  {
+    name: "VVIP",
+    price: "₦5,000",
+    desc: "State Box prime seating in the central executive tier.",
+    gate: "Gate 1 (VVIP Entrance)",
+  },
+  {
+    name: "Season Ticket",
+    price: "₦150,000",
+    desc: "Full season pass for all Bendel Insurance NPFL home games.",
+    gate: "Dedicated Season Access",
+  },
 ];
 
 const galleryImages = [
   {
-    title: "Main Bowl & Stadium Bowl",
+    title: "Main Bowl & Stadium Arena",
     caption:
-      "The 12,000-capacity covered arena with pristine natural turf and 8-lane Tartan track.",
+      "The 12,000-capacity arena with natural pitch and 8-lane Tartan track.",
     image: "/images/stadium/stadium-main-bowl.jpg",
     tag: "Main Bowl",
   },
   {
     title: "Grand Entrance & Main Facade",
     caption:
-      "Modern architectural facade with smart glass canopy and automated electronic turnstiles.",
+      "Modern architectural entrance facade on Stadium Road, Benin City.",
     image: "/images/stadium/stadium-entrance.jpg",
     tag: "Exterior",
   },
   {
-    title: "Matchday Night Atmosphere",
+    title: "Matchday Evening Atmosphere",
     caption:
-      "Electrifying evening matchday ambiance under high-powered LED floodlights.",
+      "Electrifying matchday atmosphere in Benin City supporting the Benin Arsenal.",
     image: "/images/stadium/stadium-night.jpg",
     tag: "Matchday",
   },
-  {
-    title: "Sports Complex & Aquatic Center",
-    caption:
-      "Olympic-standard 50m swimming pool and multipurpose indoor arena on the stadium grounds.",
-    image: "/images/stadium/stadium-facilities.jpg",
-    tag: "Facilities",
-  },
 ];
 
-const facilitiesList = [
+const stadiumFeatures = [
   {
-    title: "Natural Hybrid Grass Pitch",
+    title: "12,000 All-Seater Bowl",
     description:
-      "State-of-the-art Bermuda grass surface equipped with underground sub-air drainage, automated subterranean matrix sprinklers, and rootzone temperature monitoring to withstand heavy rainfall.",
-    icon: "🌱",
+      "Modern covered spectator stands providing clear sightlines from every angle of the stadium.",
+    icon: "🏟️",
   },
   {
-    title: "Olympic Tartan Athletics Track",
+    title: "8-Lane Tartan Athletics Track",
     description:
-      "World Athletics-certified 8-lane synthetic rubberized running track designed for high-performance sprint and middle-distance athletic championships.",
+      "Full-standard synthetic rubberized running track surrounding the main pitch.",
     icon: "🏃",
   },
   {
-    title: "Olympic Swimming & Aquatic Center",
+    title: "Matchday Gates & Turnstiles",
     description:
-      "50-meter 10-lane competition swimming pool, accompanied by a dedicated 10-meter diving well and grandstand for international aquatic events.",
-    icon: "🏊",
-  },
-  {
-    title: "Multipurpose Indoor Sports Arena",
-    description:
-      "Fully air-conditioned indoor hall accommodating basketball, volleyball, handball, badminton, gymnastics, boxing ring, wrestling mat, and weightlifting.",
-    icon: "🏀",
-  },
-  {
-    title: "Broadcast & VAR Control Suites",
-    description:
-      "Equipped with CAF/FIFA compliant Video Assistant Referee (VAR) workstations, ultra-high-definition commentary booths, and a 100-seat media workroom.",
-    icon: "📺",
-  },
-  {
-    title: "Smart Biometric Turnstiles & Security",
-    description:
-      "Contactless RFID ticketing barriers, biometric access control, full-perimeter high-resolution CCTV coverage, and segregated fan ingress corridors.",
-    icon: "🛡️",
+      "Organized turnstiles and gate access points for fast and secure fan entry.",
+    icon: "🎟️",
   },
 ];
 
 const historicalMilestones = [
   {
     year: "1972",
-    title: "Construction under Dr. Samuel Ogbemudia",
+    title: "Commissioned under Dr. Samuel Ogbemudia",
     description:
-      "Commissioned by the visionary Military Governor of Mid-Western State, Brigadier General Samuel Ogbemudia, to serve as the epicentre of sports excellence in Midwestern Nigeria.",
+      "Built under Military Governor Brigadier General Samuel Ogbemudia as the home of sports in Edo State.",
   },
   {
     year: "1978",
-    title: "The Golden Era & FA Cup Glory",
+    title: "FA Cup Glory & Championship Era",
     description:
-      "The home ground for Bendel Insurance's famous 3–0 FA Cup triumph over Enugu Rangers and the 1979 Nigerian league championship coronation.",
+      "Home fortress during Bendel Insurance's famous 3–0 FA Cup triumph and national league title runs.",
   },
   {
     year: "1994",
     title: "Continental CAF Cup Championship",
     description:
-      "Bendel Insurance overturned a 1–0 first-leg deficit against Angola's Primeiro de Maio, roaring to a legendary 3–0 second-leg victory in Benin to lift the CAF Cup.",
+      "Bendel Insurance overturned a first-leg deficit to win 3–0 in Benin and lift the continental CAF Cup.",
   },
   {
     year: "2020",
-    title: "Olympic-Standard Modernization",
+    title: "Modern Overhaul",
     description:
-      "Edo State Government completed a complete multi-billion naira transformation of the stadium into a world-class Olympic-grade sports complex ahead of the National Sports Festival (Edo 2020).",
-  },
-  {
-    year: "2023",
-    title: "Continental Return & Super Eagles Action",
-    description:
-      "Hosted Nigeria's Super Eagles in international qualifiers and saw Bendel Insurance defeat ASO Chlef and RS Berkane in the CAF Confederation Cup.",
+      "Edo State Government completed an extensive modernization of the stadium ahead of the National Sports Festival.",
   },
 ];
 
@@ -171,13 +165,13 @@ export default function StadiumPage() {
 
           <div className="max-w-3xl">
             <span className="eyebrow inline-block rounded-pill border border-gold/40 bg-gold/15 px-4 py-1.5 text-[11px] font-bold tracking-wider text-gold uppercase">
-              Fortress of the Benin Arsenal
+              Home of the Benin Arsenal
             </span>
             <h1 className="headline mt-4 text-4xl uppercase tracking-tight text-white sm:text-5xl md:text-6xl">
               Samuel Ogbemudia Stadium
             </h1>
             <p className="mt-4 text-base text-white/80 md:text-lg leading-relaxed">
-              A fortress of football heritage and Olympic-grade modern sports excellence in the heart of Benin City, Edo State.
+              The iconic home of Bendel Insurance Football Club in the heart of Benin City, Edo State.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -190,10 +184,10 @@ export default function StadiumPage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a
-                href="#guide"
+                href="#pricing"
                 className="eyebrow inline-flex items-center gap-2 rounded-pill border border-white/25 bg-white/10 px-6 py-3.5 text-xs font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 hover:border-gold"
               >
-                <span>Matchday Fan Guide</span>
+                <span>View Ticket Prices</span>
               </a>
             </div>
           </div>
@@ -201,12 +195,12 @@ export default function StadiumPage() {
       </section>
 
       {/* ========================================================
-          KEY STATS STRIP
+          KEY STATS STRIP (Cleaned: Playing Surface, Lights, Inaugurated removed)
       ========================================================= */}
       <section className="relative z-20 -mt-10 mb-14">
         <div className={SHELL}>
           <Reveal>
-            <div className="grid grid-cols-2 gap-4 rounded-card border border-ink/10 bg-white p-6 shadow-xl sm:grid-cols-3 lg:grid-cols-6">
+            <div className="grid grid-cols-2 gap-4 rounded-card border border-ink/10 bg-white p-6 shadow-xl sm:grid-cols-4">
               {stadiumStats.map((stat) => (
                 <div key={stat.label} className="border-r border-ink/5 pr-4 last:border-none">
                   <span className="eyebrow text-[10px] font-bold text-steel uppercase">
@@ -224,15 +218,57 @@ export default function StadiumPage() {
       </section>
 
       {/* ========================================================
-          IMAGE GALLERY & VIRTUAL TOUR
+          TICKET PRICES SECTION
+      ========================================================= */}
+      <section id="pricing" className={`${SHELL} py-12 md:py-16`}>
+        <SectionHeader
+          title="Stadium Ticket Pricing"
+          subtitle="Official admission rates for matches at Samuel Ogbemudia Stadium"
+        />
+
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {ticketRates.map((tier, idx) => (
+            <Reveal key={tier.name} delay={idx * 0.05}>
+              <div className="flex h-full flex-col justify-between rounded-card border border-ink/10 bg-white p-6 shadow-sm transition-all hover:border-brand hover:shadow-md">
+                <div>
+                  <h3 className="headline text-lg uppercase text-ink">
+                    {tier.name}
+                  </h3>
+                  <p className="mt-1 text-xs text-steel">{tier.desc}</p>
+                  <div className="mt-4 border-b border-ink/10 pb-4">
+                    <span className="headline text-3xl font-bold text-brand-dark">
+                      {tier.price}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-xs font-semibold text-brand">
+                    {tier.gate}
+                  </p>
+                </div>
+
+                <div className="mt-6 border-t border-ink/10 pt-4">
+                  <Link
+                    href="/tickets"
+                    className="eyebrow block w-full rounded-pill bg-brand py-2.5 text-center text-xs font-bold text-white transition-colors hover:bg-brand-dark"
+                  >
+                    Get Ticket
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ========================================================
+          IMAGE GALLERY
       ========================================================= */}
       <section className={`${SHELL} py-12 md:py-16`}>
         <SectionHeader
           title="Stadium Gallery"
-          subtitle="Experience the world-class arena from pitchside to the stands"
+          subtitle="Views of the Samuel Ogbemudia Stadium"
         />
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
+        <div className="mt-8 grid gap-6 sm:grid-cols-3">
           {galleryImages.map((item, idx) => (
             <Reveal key={item.title} delay={idx * 0.08}>
               <div className="group relative overflow-hidden rounded-card border border-ink/10 bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
@@ -241,7 +277,7 @@ export default function StadiumPage() {
                     src={item.image}
                     alt={item.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -249,11 +285,11 @@ export default function StadiumPage() {
                     {item.tag}
                   </span>
                 </div>
-                <div className="p-6">
-                  <h3 className="headline text-xl uppercase text-ink">
+                <div className="p-5">
+                  <h3 className="headline text-lg uppercase text-ink">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-sm text-steel leading-relaxed">
+                  <p className="mt-1.5 text-xs text-steel leading-relaxed">
                     {item.caption}
                   </p>
                 </div>
@@ -272,37 +308,29 @@ export default function StadiumPage() {
             <div className="lg:col-span-6">
               <Reveal>
                 <span className="eyebrow text-xs font-bold text-gold uppercase">
-                  Heritage & Evolution
+                  Heritage & History
                 </span>
                 <h2 className="headline mt-3 text-3xl uppercase tracking-tight text-white sm:text-4xl">
-                  The Story of a Cathedral of Sport
+                  The Historic Home of Edo Football
                 </h2>
                 <div className="mt-6 space-y-4 text-white/80 leading-relaxed text-sm sm:text-base">
                   <p>
-                    Named in honour of Brigadier General Dr. Samuel Osaigbovo Ogbemudia — the illustrious Military Governor of the former Mid-Western and Bendel States — the stadium has stood for over half a century as the heart of sports in Edo State.
+                    Named in honour of Brigadier General Dr. Samuel Osaigbovo Ogbemudia — the former Military Governor of Mid-Western and Bendel States — the stadium has stood for decades as the home of sports in Edo State.
                   </p>
                   <p>
-                    Originally opened as <strong>Ogbe Stadium</strong> in 1972, the venue witnessed the rise of Bendel Insurance FC into a continental giant. It was here that tactical pioneer Pa Alabi Aisien engineered historic Challenge Cup and league triumphs.
-                  </p>
-                  <p>
-                    Recognizing the stadium's historic stature, the Edo State Government embarked on a comprehensive, world-class reconstruction project that modernized every square meter into an Olympic-standard sporting complex.
+                    Originally known as <strong>Ogbe Stadium</strong>, this venue witnessed the legendary rise of Bendel Insurance FC, hosting iconic FA Cup and league championship triumphs.
                   </p>
                 </div>
 
-                <div className="mt-8 flex items-center gap-4 border-t border-white/10 pt-6">
+                <div className="mt-8 flex items-center gap-6 border-t border-white/10 pt-6">
                   <div>
-                    <p className="headline text-2xl text-gold">1972</p>
-                    <p className="text-xs text-white/60">Founded Year</p>
+                    <p className="headline text-2xl text-gold">12,000</p>
+                    <p className="text-xs text-white/60">Seating Capacity</p>
                   </div>
                   <div className="h-8 w-px bg-white/20" />
                   <div>
-                    <p className="headline text-2xl text-gold">2020</p>
-                    <p className="text-xs text-white/60">Olympic Overhaul</p>
-                  </div>
-                  <div className="h-8 w-px bg-white/20" />
-                  <div>
-                    <p className="headline text-2xl text-gold">100%</p>
-                    <p className="text-xs text-white/60">Covered Seating</p>
+                    <p className="headline text-2xl text-gold">Benin City</p>
+                    <p className="text-xs text-white/60">Location</p>
                   </div>
                 </div>
               </Reveal>
@@ -327,7 +355,7 @@ export default function StadiumPage() {
                           {m.title}
                         </h4>
                       </div>
-                      <p className="mt-2.5 text-xs text-white/75 leading-relaxed">
+                      <p className="mt-2 text-xs text-white/75 leading-relaxed">
                         {m.description}
                       </p>
                     </div>
@@ -340,16 +368,16 @@ export default function StadiumPage() {
       </section>
 
       {/* ========================================================
-          WORLD-CLASS FACILITIES & TECHNICAL SPECS
+          STADIUM FEATURES
       ========================================================= */}
       <section className={`${SHELL} py-16 md:py-24`}>
         <SectionHeader
-          title="World-Class Facilities"
-          subtitle="Built to international FIFA, CAF, and World Athletics standards"
+          title="Stadium Features"
+          subtitle="Key elements of the Samuel Ogbemudia Stadium"
         />
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {facilitiesList.map((f, i) => (
+        <div className="mt-8 grid gap-6 sm:grid-cols-3">
+          {stadiumFeatures.map((f, i) => (
             <Reveal key={f.title} delay={i * 0.05}>
               <div className="flex h-full flex-col rounded-card border border-ink/10 bg-white p-6 shadow-sm transition-all duration-300 hover:border-brand/40 hover:shadow-md">
                 <span className="text-3xl">{f.icon}</span>
@@ -372,31 +400,31 @@ export default function StadiumPage() {
         <div className={SHELL}>
           <SectionHeader
             title="Matchday Guide"
-            subtitle="Everything you need for an unforgettable visit to the Ogbemudia"
+            subtitle="Essential information for visiting the stadium on matchday"
           />
 
           <div className="mt-10 grid gap-8 lg:grid-cols-3">
             {/* Stand Allocation */}
             <div className="rounded-card border border-ink/10 bg-smoke p-6">
               <h3 className="headline text-lg uppercase text-brand-dark">
-                Stadium Stands & Entry
+                Stands & Gates
               </h3>
               <ul className="mt-4 space-y-3 text-sm text-ink/80">
                 <li className="flex items-start gap-2">
                   <span className="font-bold text-gold">●</span>
-                  <span><strong>VIP State Box:</strong> Gate 1 (Executive & VIP Hospitality passholders).</span>
+                  <span><strong>VVIP (₦5,000):</strong> Gate 1 (VVIP Entrance).</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-bold text-brand">●</span>
-                  <span><strong>Covered Main Stand:</strong> Gate 2 & 3 (Premium reserved seating).</span>
+                  <span><strong>VIP Extension (₦2,000):</strong> Gates 2 & 3 (Covered Stand).</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-bold text-steel">●</span>
-                  <span><strong>Popular Open Stands:</strong> Gates 4, 5 & 6 (General admission).</span>
+                  <span><strong>Popular (₦500):</strong> Gates 4, 5 & 6 (Open Stands).</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="font-bold text-red-600">●</span>
-                  <span><strong>Visiting Supporters:</strong> Gate 7 (Segregated away fans sector).</span>
+                  <span className="font-bold text-green-700">●</span>
+                  <span><strong>Season Ticket (₦150,000):</strong> Dedicated Pass Entry.</span>
                 </li>
               </ul>
             </div>
@@ -417,11 +445,7 @@ export default function StadiumPage() {
                 </li>
                 <li className="flex items-center gap-2">
                   <Ticket className="h-4 w-4 text-brand" />
-                  <span><strong>Ticket Scanners:</strong> E-tickets on mobile or printed barcode.</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Info className="h-4 w-4 text-brand" />
-                  <span><strong>Assistance:</strong> Fan Support Booths located at Gate 1 & 4.</span>
+                  <span><strong>Tickets:</strong> Physical tickets or digital barcode.</span>
                 </li>
               </ul>
             </div>
@@ -429,13 +453,13 @@ export default function StadiumPage() {
             {/* Location & Directions */}
             <div className="rounded-card border border-ink/10 bg-smoke p-6">
               <h3 className="headline text-lg uppercase text-brand-dark">
-                Location & Transport
+                Location
               </h3>
               <p className="mt-3 text-sm text-ink/80 leading-relaxed">
                 <strong>Address:</strong> Stadium Road, Ogbe Quarter, Benin City, Edo State, Nigeria.
               </p>
               <p className="mt-3 text-sm text-steel leading-relaxed">
-                Easily accessible from King's Square (Ring Road) via Stadium Road. Located just 10 minutes drive from Benin City Airport. Secure matchday parking is available at designated civic car parks around Ogbe.
+                Located near King's Square (Ring Road) via Stadium Road.
               </p>
             </div>
           </div>
