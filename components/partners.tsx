@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { partners } from "@/lib/content";
 
 export function Partners() {
@@ -11,9 +10,8 @@ export function Partners() {
         </h3>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {partners.principal.map((partner) => (
-            <Link
+            <div
               key={partner.name}
-              href="/partners"
               className="group flex flex-col items-center justify-between rounded-card border border-ink/10 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-brand hover:shadow-md sm:flex-row"
             >
               <div className="relative h-16 w-48 shrink-0 transition-transform duration-300 group-hover:scale-105">
@@ -32,7 +30,7 @@ export function Partners() {
                   {partner.shortName}
                 </p>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
