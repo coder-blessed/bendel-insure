@@ -1,6 +1,7 @@
 import { Hero } from "@/components/hero";
 import { HonoursBand } from "@/components/honours-band";
 import { Matches } from "@/components/matches";
+import { Partners } from "@/components/partners";
 import { PromoDuo } from "@/components/promo-duo";
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
@@ -197,6 +198,17 @@ export default async function Home() {
             <PromoDuo promos={customMembershipPromos} hrefBase="/membership" />
           </Reveal>
         </div>
+      </section>
+
+      <section className={`${SHELL} pb-16 md:pb-24`}>
+        <SectionHeader
+          title="Our partners"
+          actionLabel="All partners"
+          actionHref="/partners"
+        />
+        <Reveal delay={0.05}>
+          <Partners />
+        </Reveal>
       </section>
 
     </>
