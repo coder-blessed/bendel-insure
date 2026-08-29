@@ -4,6 +4,7 @@ import { ArrowRight, Check, MapPin, Ticket } from "@/components/icons";
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
 import { club, seasonFixtures } from "@/lib/content";
+import { ticketTiers } from "@/lib/checkout";
 
 export const metadata: Metadata = {
   title: "Matchday Tickets & Passes | Bendel Insurance FC",
@@ -13,8 +14,9 @@ export const metadata: Metadata = {
 
 const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
 
-const ticketTiers = [
+const ticketCards = [
   {
+    id: ticketTiers[0]?.id ?? "popular",
     name: "Popular",
     price: "₦500",
     period: "per match",
@@ -28,6 +30,7 @@ const ticketTiers = [
     popular: false,
   },
   {
+    id: ticketTiers[1]?.id ?? "vip-extension",
     name: "VIP Extension",
     price: "₦2,000",
     period: "per match",
@@ -41,6 +44,7 @@ const ticketTiers = [
     popular: true,
   },
   {
+    id: ticketTiers[2]?.id ?? "vvip",
     name: "VVIP",
     price: "₦5,000",
     period: "per match",
@@ -54,6 +58,7 @@ const ticketTiers = [
     popular: false,
   },
   {
+    id: ticketTiers[3]?.id ?? "season-ticket",
     name: "Season Ticket",
     price: "₦150,000",
     period: "full season",
@@ -115,7 +120,7 @@ export default function TicketsPage() {
         />
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {ticketTiers.map((tier, idx) => (
+          {ticketCards.map((tier, idx) => (
             <Reveal key={tier.name} delay={idx * 0.05}>
               <div
                 className={`flex h-full flex-col justify-between rounded-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
@@ -157,16 +162,16 @@ export default function TicketsPage() {
                 </div>
 
                 <div className="mt-8 border-t border-ink/10 pt-5">
-                  <button
-                    type="button"
-                    className={`eyebrow w-full rounded-pill py-3 text-center text-xs font-bold transition-all ${
+                  <Link
+                    href={`/checkout?type=ticket&id=${tier.id}&name=${encodeURIComponent(tier.name)}`}
+                    className={`eyebrow block w-full rounded-pill py-3 text-center text-xs font-bold transition-all ${
                       tier.popular
                         ? "bg-gold text-brand-deep hover:bg-brand-deep hover:text-white"
                         : "bg-smoke text-ink hover:bg-brand hover:text-white"
                     }`}
                   >
                     Select Ticket
-                  </button>
+                  </Link>
                 </div>
               </div>
             </Reveal>
@@ -216,13 +221,13 @@ export default function TicketsPage() {
                 </div>
 
                 <div className="mt-6">
-                  <button
-                    type="button"
+                  <Link
+                    href={`/checkout?type=ticket&id=${ticketTiers[0]?.id ?? "popular"}&name=${encodeURIComponent(ticketTiers[0]?.name ?? "Popular")}`}
                     className="eyebrow inline-flex w-full items-center justify-center gap-2 rounded-pill bg-gold py-3 text-xs font-bold text-brand-deep transition-colors hover:bg-brand-deep hover:text-gold"
                   >
                     <Ticket className="h-3.5 w-3.5" />
                     <span>Buy Match Tickets</span>
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}

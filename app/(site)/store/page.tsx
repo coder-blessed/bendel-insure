@@ -4,6 +4,7 @@ import { ArrowRight, Check, Shield } from "@/components/icons";
 import { Media } from "@/components/media";
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
+import { storeProducts } from "@/lib/checkout";
 import { club } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -14,88 +15,6 @@ export const metadata: Metadata = {
 
 const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
 
-const storeProducts = [
-  {
-    id: "home-kit-2627",
-    name: "2026/27 Official Home Jersey",
-    category: "Match Kit",
-    price: "₦25,000",
-    tag: "Official Matchwear",
-    image: "https://picsum.photos/seed/bendel-home-kit/800/1000",
-    tone: 0,
-    desc: "Iconic vibrant yellow shirt with green trim, breathable aerodynamic fabric, and high-definition crest.",
-  },
-  {
-    id: "away-kit-2627",
-    name: "2026/27 Official Away Jersey",
-    category: "Match Kit",
-    price: "₦25,000",
-    tag: "Official Matchwear",
-    image: "https://picsum.photos/seed/bendel-away-kit/800/1000",
-    tone: 3,
-    desc: "Classic green body with gold accents celebrating the heritage and forests of Edo State.",
-  },
-  {
-    id: "third-kit-2627",
-    name: "2026/27 Neutral Third Jersey",
-    category: "Match Kit",
-    price: "₦25,000",
-    tag: "Special Edition",
-    image: "https://picsum.photos/seed/bendel-third-kit/800/1000",
-    tone: 1,
-    desc: "Pristine white jersey with gold detailing and subtle Benin bronze geometric pattern weave.",
-  },
-  {
-    id: "gk-kit-2627",
-    name: "2026/27 Goalkeeper Kit",
-    category: "Goalkeeper",
-    price: "₦26,500",
-    tag: "Goalkeeper",
-    image: "https://picsum.photos/seed/bendel-gk-kit/800/1000",
-    tone: 4,
-    desc: "Vibrant lemon & pink pro goalkeeper jersey with padded forearm protection zones.",
-  },
-  {
-    id: "training-jacket",
-    name: "Benin Arsenal Training Jacket",
-    category: "Apparel",
-    price: "₦18,000",
-    tag: "Training",
-    image: "https://picsum.photos/seed/bendel-jacket/800/1000",
-    tone: 2,
-    desc: "Wind-resistant green zip-up training jacket with moisture-wicking fleece lining.",
-  },
-  {
-    id: "supporter-hoodie",
-    name: "Benin Arsenal Crest Hoodie",
-    category: "Casual",
-    price: "₦16,500",
-    tag: "Fanwear",
-    image: "https://picsum.photos/seed/bendel-hoodie/800/1000",
-    tone: 0,
-    desc: "Heavyweight premium cotton blend hoodie with embroidered 1972 heritage logo.",
-  },
-  {
-    id: "matchday-scarf",
-    name: "Official Jacquard Match Scarf",
-    category: "Accessories",
-    price: "₦5,000",
-    tag: "Accessories",
-    image: "https://picsum.photos/seed/bendel-scarf/800/1000",
-    tone: 1,
-    desc: "Double-sided knit scarf featuring 'The Benin Arsenal' and 1972 founded crest.",
-  },
-  {
-    id: "club-cap",
-    name: "Classic Curved Brim Snapback",
-    category: "Headwear",
-    price: "₦4,500",
-    tag: "Headwear",
-    image: "https://picsum.photos/seed/bendel-cap/800/1000",
-    tone: 3,
-    desc: "Deep green structured cotton snapback with 3D embroidered gold crest.",
-  },
-];
 
 export default function StorePage() {
   return (
@@ -149,7 +68,7 @@ export default function StorePage() {
                   <div className="relative aspect-[4/5] w-full overflow-hidden bg-ink/5">
                     <Media
                       src={product.image}
-                      tone={product.tone}
+                      tone={0}
                       monogram={false}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
@@ -169,18 +88,18 @@ export default function StorePage() {
                       {product.desc}
                     </p>
                     <p className="headline mt-4 text-xl font-bold text-brand-dark">
-                      {product.price}
+                      ₦{product.price.toLocaleString("en-NG")}
                     </p>
                   </div>
                 </div>
 
                 <div className="p-5 pt-0">
-                  <button
-                    type="button"
-                    className="eyebrow w-full rounded-pill bg-brand py-3 text-center text-xs font-bold text-white transition-colors hover:bg-brand-dark"
+                  <Link
+                    href={`/checkout?type=merch&id=${product.id}&name=${encodeURIComponent(product.name)}`}
+                    className="eyebrow block w-full rounded-pill bg-brand py-3 text-center text-xs font-bold text-white transition-colors hover:bg-brand-dark"
                   >
-                    Add to Bag
-                  </button>
+                    Checkout
+                  </Link>
                 </div>
               </div>
             </Reveal>

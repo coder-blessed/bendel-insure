@@ -132,6 +132,43 @@ export const heroSlides = [
  */
 export const newsStories: Story[] = [
   {
+    slug: "bendel-insurance-fc-begin-new-season-with-warri-wolves",
+    image: "/images/warri-wolves-matchday-1.jpg",
+    category: "NPFL",
+    timestamp: "Today",
+    title: "Bendel Insurance FC begin new season with Warri Wolves as management targets the league title",
+    excerpt:
+      "Bendel Insurance FC are set to begin their 2026/27 NPFL title chase at home against Warri Wolves, with a packed Samuel Ogbemudia Stadium expected to welcome fans back for the opening day showdown.",
+    content: `
+Bendel Insurance Football Club of Benin is set to begin their title chase campaign in the 2026/27 Nigeria Premier Football League (NPFL) tomorrow afternoon at the famous Samuel Ogbemudia Stadium in Benin City.
+
+The opening-day clash in Benin brings together two proud old Bendel clubs with rich history and passion, as the Benin Arsenal look to make home advantage count in what is expected to be a fierce Bendel derby.
+
+Kickoff time is 4pm at the Samuel Ogbemudia Stadium.
+
+Bendel Insurance FC look to build on last season's fifth-place finish, while Warri Wolves will want to show determination and resistance in Benin City.
+
+Speaking ahead of the clash, the technical manager of Bendel Insurance, Coach Kennedy Boboye, said his team is in good shape and ready for the Sunday opener and the huge tasks ahead. He said he was not under any pressure despite management's demand for a league title.
+
+He believes in taking one game at a time and preparing for the next.
+
+The Benin Arsenal head into the fixture buoyed by the return of supporters and fans to the stands after serving a three-match behind-closed-doors stadium sanction.
+
+A packed Samuel Ogbemudia Stadium is expected to provide a vibrant backdrop and a roaring, intimidating atmosphere from the fans for the season opener.
+
+The chairman of Bendel Insurance, Jarrett Tenebe, has already spoken about the club's ambition, saying management's target this season is a stronger finish, preferably the league title.
+
+He revealed that management was determined to invest in bringing top-class players to beef up the team so they can compete favourably with other big clubs in the league.
+
+Chairman Tenebe assured Edo football stakeholders and fans to expect good football this season and called on Benin residents to come out in large numbers to cheer Bendel Insurance FC against Warri Wolves tomorrow.
+
+However, Bendel Insurance will have to navigate the opening weeks of the season without head coach Kennedy Boboye on the touchline. Boboye is currently in Ouagadougou, Burkina Faso, where he is leading reigning NWFL champions Edo Queens at the WAFU B CAF Women's Champions League qualifiers on an interim basis. The experienced tactician is expected to miss Insurance's first two league matches, leaving his assistants with the responsibility of steering the team through the opening fixtures.
+
+For Warri Wolves, the derby presents the perfect opportunity to test themselves against one of the league's most consistent sides.
+`,
+    tone: 0,
+  },
+  {
     slug: "npfl-2026-27-bendel-insurance-begin-campaign-against-warri-wolves",
     image: "/images/warri-wolves-matchday-1.jpg",
     category: "NPFL",
