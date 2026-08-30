@@ -40,6 +40,7 @@ const npflTableData = [
 
 
 
+
 export default function LeagueTablePage() {
   return (
     <main className="bg-smoke text-ink">
