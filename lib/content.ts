@@ -833,13 +833,13 @@ export const seasonFixtures: Fixture[] = [
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
     home: {
-      name: "Bendel Insurance",
+      name: "Bendel Insurance. 2",
       tone: 0,
       shortName: "BEN 2",
       logo: TEAM_LOGOS["Bendel Insurance"],
     },
     away: {
-      name: "Warri Wolves",
+      name: "Warri Wolves.   1",
       tone: 1,
       shortName: "WAR. 1",
       logo: TEAM_LOGOS["Warri Wolves"],
