@@ -15,27 +15,31 @@ const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
 
 // 20 NPFL Clubs Table
 const npflTableData = [
-  { pos: 1, team: "Remo Stars", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 2, team: "Rivers United", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 3, team: "Enyimba International", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 4, team: "Enugu Rangers", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 5, team: "Bendel Insurance", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 6, team: "Shooting Stars 3SC", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 7, team: "Plateau United", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 8, team: "Kano Pillars", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 9, team: "Katsina United", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 10, team: "Abia Warriors", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 11, team: "Sunshine Stars", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 12, team: "Kwara United", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 13, team: "Heartland FC", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 14, team: "Bayelsa United", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 15, team: "Akwa United", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 16, team: "Warri Wolves", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 17, team: "Nasarawa United", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 18, team: "Ikorodu City", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 19, team: "Ranchers Bees", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
-  { pos: 20, team: "Kun Khalifat", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: ["—", "—", "—", "—", "—"] },
+  { pos: 1, team: "Enugu Rangers", p: 38, w: 19, d: 11, l: 8, gf: 47, ga: 27, gd: 20, pts: 68, form: ["W", "W", "W", "W", "D"] },
+  { pos: 2, team: "Rivers United", p: 38, w: 19, d: 10, l: 9, gf: 44, ga: 31, gd: 13, pts: 67, form: ["W", "L", "W", "W", "W"] },
+  { pos: 3, team: "Shooting Stars 3SC", p: 38, w: 18, d: 6, l: 14, gf: 41, ga: 40, gd: 1, pts: 60, form: ["W", "W", "W", "L", "W"] },
+  { pos: 4, team: "Ikorodu City", p: 38, w: 16, d: 10, l: 12, gf: 43, ga: 39, gd: 4, pts: 58, form: ["W", "L", "W", "L", "L"] },
+  { pos: 5, team: "Bendel Insurance", p: 38, w: 14, d: 14, l: 10, gf: 44, ga: 38, gd: 6, pts: 56, form: ["W", "W", "W", "L", "D"] },
+  { pos: 6, team: "Nasarawa United", p: 38, w: 16, d: 8, l: 14, gf: 37, ga: 34, gd: 3, pts: 56, form: ["L", "W", "L", "W", "L"] },
+  { pos: 7, team: "Abia Warriors", p: 38, w: 16, d: 7, l: 15, gf: 31, ga: 34, gd: -3, pts: 55, form: ["L", "W", "L", "L", "L"] },
+  { pos: 8, team: "Barau FC", p: 38, w: 13, d: 13, l: 12, gf: 34, ga: 30, gd: 4, pts: 52, form: ["W", "L", "W", "L", "W"] },
+  { pos: 9, team: "Katsina United", p: 38, w: 14, d: 10, l: 14, gf: 36, ga: 39, gd: -3, pts: 52, form: ["L", "W", "L", "W", "L"] },
+  { pos: 10, team: "Plateau United", p: 38, w: 15, d: 5, l: 18, gf: 39, ga: 40, gd: -1, pts: 50, form: ["L", "L", "L", "W", "L"] },
+  { pos: 11, team: "Enyimba International", p: 38, w: 13, d: 10, l: 15, gf: 44, ga: 42, gd: 2, pts: 49, form: ["W", "L", "W", "L", "W"] },
+  { pos: 12, team: "Kun Khalifat FC", p: 38, w: 13, d: 10, l: 15, gf: 42, ga: 40, gd: 2, pts: 49, form: ["W", "W", "W", "W", "L"] },
+  { pos: 13, team: "Warri Wolves", p: 38, w: 13, d: 10, l: 15, gf: 36, ga: 41, gd: -5, pts: 49, form: ["L", "L", "W", "L", "W"] },
+  { pos: 14, team: "Niger Tornadoes", p: 38, w: 13, d: 9, l: 16, gf: 37, ga: 36, gd: 1, pts: 48, form: ["L", "W", "D", "L", "W"] },
+  { pos: 15, team: "Kano Pillars", p: 38, w: 15, d: 6, l: 17, gf: 34, ga: 39, gd: -5, pts: 48, form: ["L", "W", "L", "W", "L"] },
+  { pos: 16, team: "Kwara United", p: 38, w: 13, d: 11, l: 14, gf: 32, ga: 36, gd: -4, pts: 47, form: ["W", "W", "L", "D", "L"] },
+  { pos: 17, team: "Remo Stars", p: 38, w: 14, d: 5, l: 19, gf: 42, ga: 47, gd: -5, pts: 47, form: ["L", "W", "L", "W", "L"] },
+  { pos: 18, team: "El-Kanemi Warriors", p: 38, w: 13, d: 8, l: 17, gf: 27, ga: 46, gd: -19, pts: 47, form: ["W", "L", "L", "L", "D"] },
+  { pos: 19, team: "Bayelsa United", p: 38, w: 11, d: 10, l: 17, gf: 37, ga: 42, gd: -5, pts: 43, form: ["L", "L", "L", "L", "W"] },
+  { pos: 20, team: "Wikki Tourists", p: 38, w: 9, d: 13, l: 16, gf: 36, ga: 48, gd: -12, pts: 40, form: ["W", "L", "L", "L", "L"] },
 ];
+
+
+
+
 
 export default function LeagueTablePage() {
   return (

@@ -765,11 +765,11 @@ export const matches: Record<TeamKey, TeamMatches> = {
       date: "Sun 30 Aug 2026",
       venue: "Samuel Ogbemudia Stadium, Benin City",
       home: {
-        name: "Bendel Insurance",
+        name: "Bendel Insurance  2",
         tone: 0,
       },
       away: {
-        name: "Warri Wolves",
+        name: "Warri Wolves.  1",
         tone: 1,
       },
       kickoff: "TBA",
@@ -940,15 +940,15 @@ export const seasonFixtures: Fixture[] = [
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
     home: {
-      name: "Bendel Insurance",
+      name: "Bendel Insurance. 2",
       tone: 0,
-      shortName: "BEN",
+      shortName: "BEN 2",
       logo: TEAM_LOGOS["Bendel Insurance"],
     },
     away: {
-      name: "Warri Wolves",
+      name: "Warri Wolves.   1",
       tone: 1,
-      shortName: "WAR",
+      shortName: "WAR. 1",
       logo: TEAM_LOGOS["Warri Wolves"],
     },
     kickoff: "16:00 WAT",
