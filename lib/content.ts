@@ -132,6 +132,113 @@ export const heroSlides = [
  */
 export const newsStories: Story[] = [
   {
+    slug: "npfl27-tenebe-confident-insurance-fc-will-win-league-title",
+    image: "/images/chairman.jpg",
+    category: "NPFL",
+    timestamp: "Today",
+    title: "NPFL27: Tenebe confident Insurance FC will win league title as new football season begins Friday",
+    excerpt:
+      "Bendel Insurance FC chairman Jarrett Tenebe says the Benin Arsenals are moving with belief and intent to challenge for and win the 2026/27 Nigeria Premier Football League title.",
+    content: `
+The chairman of Bendel Insurance Football Club, Jarrett Tenebe, has expressed high confidence that the Benin Arsenals are primed to challenge for and win the Nigeria Premier Football League (NPFL) title in the 2026/27 season.
+
+The Benin Arsenals boss disclosed the ambition of the club in an interview with journalists ahead of Edo Queens' match against Asec Mimosas in Burkina Faso on Wednesday.
+
+Tenebe said he has confidence in the ability of the current team of Bendel Insurance FC to win the premier league title in 2027.
+
+Insurance FC have their first match of the new season coming up on Sunday, August 30, against Warri Wolves. The match is scheduled to kick off at 4pm at the Samuel Ogbemudia Stadium in Benin.
+
+According to the chairman, the Benin-based club is targeting its third top-flight league trophy, aiming to end a domestic title drought stretching back to 1979.
+
+Insurance FC achieved back-to-back fifth-place finishes in the 2024/25 and 2025/26 seasons. The management believes recent recruitment and player incentives will elevate them to the top spot.
+
+The Benin-based premier league club have only won the league title twice, in 1973 and 1979.
+
+Chairman Tenebe highlighted that tying direct monetary bonuses to goals scored turned around the team's fortunes last season, addressing scoring struggles and pushing them into upper-table contention.
+
+> "When I joined Bendel Insurance FC last year as chairman, they were at the bottom of the table and I met with the players and officials and told them to wake up. I saw that they were having goal-scoring problems. The first thing I did was to tie a certain amount of money to every goal scored. Each goal attracted a reasonable amount of money and that changed everything. We started getting the goals and I did not miss redeeming my pledges. I am happy the strategy worked for us and we almost secured a place on the continent. I have the confidence that we are going to get it right this time with the preparations we have made."
+
+The chairman said the strategy changed the mindset of the squad and created a sharper edge in the final third as the club pushed for a stronger finish.
+`,
+    tone: 2,
+  },
+  {
+    slug: "bendel-insurance-fc-begin-new-season-with-warri-wolves-title-chase",
+    image: "/images/warri-wolves-matchday-1.jpg",
+    category: "NPFL",
+    timestamp: "Today",
+    title: "Bendel Insurance FC begin new season with Warri Wolves as management targets Premier League title",
+    excerpt:
+      "Bendel Insurance FC are set to begin their title chase in the 2026/27 NPFL campaign at home against Warri Wolves as supporters return to Samuel Ogbemudia Stadium.",
+    content: `
+Bendel Insurance football club of Benin is set to begin their title chase campaign in the 2026/27 Nigeria Premier Football League, NPFL, tomorrow afternoon at the famous Samuel Ogbemudia Stadium in Benin City.
+
+The opening-day clash in Benin brings together two proud old Bendel clubs with rich history and passion, as the Benin Arsenals will be eager to make home advantage count in the anticipated fierce battle of the Bendel Derby.
+
+Kickoff time is 4pm at the Samuel Ogbemudia Stadium.
+
+Bendel Insurance FC look to build on last season's fifth-place finish, while Warri Wolves will want to show determination and resistance in Benin City.
+
+Speaking ahead of the clash, the technical manager of Bendel Insurance, Coach Kennedy Boboye, said his team is in good shape and ready for the Sunday opener and other huge tasks ahead. He said he was not under any pressure despite management's demand for a league title.
+
+He believes in taking one game at a time and preparing for the next.
+
+The Benin Arsenals head into the fixture buoyed by the return of their supporters and fans to the stands after serving out a three-match behind-closed-doors stadium sanction.
+
+A packed Samuel Ogbemudia Stadium is expected to provide a vibrant backdrop with roaring chants from the fans for the season opener.
+
+The chairman of Bendel Insurance, Jarrett Tenebe, has already spoken of the club's ambition. He said the target of management this season is a stronger finish, preferably the league title.
+
+He revealed that management was determined to invest in bringing top-class players to beef up the team to enable them to compete favourably with other big clubs in the premier league.
+
+Chairman Tenebe assures Edo football stakeholders and fans to expect good football this season and called on Benin residents to come out in large numbers to cheer Bendel Insurance FC against Warri Wolves tomorrow.
+
+However, Bendel Insurance will have to navigate the opening weeks of the season without head coach Kennedy Boboye on the touchline. Boboye is currently in Ouagadougou, Burkina Faso, where he is leading reigning NWFL champions Edo Queens at the WAFU B CAF Women's Champions League qualifiers on an interim basis. The experienced tactician is expected to miss Insurance's first two league matches, leaving the assistants with the responsibility of steering the team through the opening fixtures.
+
+For Warri Wolves, the derby presents the perfect opportunity to test themselves against one of the league's most consistent sides.
+`,
+    tone: 0,
+  },
+  {
+    slug: "bendel-insurance-fc-beat-warri-wolves-2-1-season-opener",
+    image: "/images/warri-wolves-matchday-1.jpg",
+    category: "Matchday",
+    timestamp: "Today",
+    title: "Bendel Insurance FC beat Warri Wolves 2-1 in season opener",
+    excerpt:
+      "The Benin Arsenals came from behind to beat Warri Wolves 2-1 and begin the 2026/27 NPFL campaign with all three points at Samuel Ogbemudia Stadium.",
+    content: `
+Bendel Insurance Football Club began the 2026/27 Nigeria Premier Football League (NPFL) campaign on a positive note as they defeated Warri Wolves 2-1.
+
+The Benin Arsenals came from behind with goals from Kayode Oke and Alex Oweileyefa to secure the three maximum points in the South-South derby against Warri Wolves at the Samuel Ogbemudia Stadium in Benin City.
+
+The visiting Deltans took the lead in the 3rd minute of the game through Towo Eventus before Kayode Oke converted a penalty kick to get the equalizer for Bendel Insurance FC.
+
+The battle raged on after the equalizer as the host team came all out in search of more goals, but the visitors were lucky not to concede more before halftime as Insurance danger men Alex Oweileyefa and Kayode Oke missed several scoring chances.
+
+On return from the halftime break, Insurance's coaching crew effected a quick tactical switch, introducing Shimagande Terdoo in place of Shamsudeen Usman to add bite to the attack. The changes paid off immediately as Chinedu Nwosu braced through the middle with a through pass from Stanley Okorom and fired a long-range shot on target which fell off the grasping hands of goalkeeper Bamidele before Alex Oweileyefa finished the task to make it 2-1 in the 47th minute.
+
+The Benin Arsenals maintained the lead to the end of the game with more goal attempts, but the visitors' defence were alive to their responsibility.
+
+Bendel Insurance FC will be making a trip to Lafia to face Nasarawa United in their second league match of the season.
+
+In a post-match interview, Insurance assistant coach Jolomi Atune, who stood in for technical manager Kennedy Boboye, praised the team for their efforts, particularly their ability to respond quickly to the early goal they conceded.
+
+He said the team is still a work in progress, noting that it will take some time for the new players in the team to blend well with the old.
+
+Coach Jolomi assured Bendel Insurance fans to expect free-flowing and beautiful football this season, maintaining that the depth and quality of players in the team will help them achieve greater success this season.
+
+> "I am happy we got the important three points. First game is usually difficult. Our team will get better as the league progresses. I know we will not disappoint our people. When Warri Wolves scored very early, I remained positive because I knew we were going to come back to beat them. I believe in the boys we have. Our fans and supporters should be patient with us. We need their support to succeed."
+
+On the other hand, coach Hassan Abdullah admitted that he noticed a technical imbalance in his team despite getting the early goal. He expressed the hope that they will get better, adding that Insurance FC won the game because they were better.
+
+Coach Abdullah, however, stated that his team can never be intimidated by any big name in Nigeria, adding that he has a philosophy of approaching each game with a different strategy but with midfield possession and great passes.
+
+Bendel Insurance enjoyed the return of their supporters and fans, who came out in their numbers to cheer them on after serving a three-match stadium sanction.
+`,
+    tone: 1,
+  },
+  {
     slug: "bendel-insurance-fc-begin-new-season-with-warri-wolves",
     image: "/images/warri-wolves-matchday-1.jpg",
     category: "NPFL",
