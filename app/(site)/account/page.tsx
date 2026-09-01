@@ -1,19 +1,96 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, Check, Shield, Ticket, User } from "@/components/icons";
-import { Reveal } from "@/components/reveal";
-import { SectionHeader } from "@/components/section-header";
-import { club } from "@/lib/content";
+"use client";
 
-export const metadata: Metadata = {
-  title: "My Account | Bendel Insurance FC",
-  description:
-    "Manage your Bendel Insurance FC fan account, ticket wallet, digital membership card and profile preferences.",
-};
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { ArrowRight, Shield, Ticket, User } from "@/components/icons";
+import { Reveal } from "@/components/reveal";
+import { apiRequest, getStoredAuthToken } from "@/lib/api";
 
 const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
 
+type ProfilePayload = {
+  id?: string;
+  userId?: string;
+  email?: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  phone?: string | null;
+  displayName?: string | null;
+  favoritePlayer?: string | null;
+  avatarUrl?: string | null;
+  city?: string | null;
+  address?: string | null;
+};
+
 export default function AccountPage() {
+  const [profile, setProfile] = useState<ProfilePayload>({});
+  const [status, setStatus] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const token = getStoredAuthToken();
+    if (!token) {
+      setStatus("Sign in to save your fan profile and ticket preferences.");
+      setLoading(false);
+      return;
+    }
+
+    apiRequest<ProfilePayload>("/profile")
+      .then((data) => {
+        setProfile({
+          ...data,
+          firstName: data.firstName ?? "",
+          lastName: data.lastName ?? "",
+          phone: data.phone ?? "",
+          displayName: data.displayName ?? "",
+          favoritePlayer: data.favoritePlayer ?? "",
+          city: data.city ?? "",
+          address: data.address ?? "",
+        });
+      })
+      .catch((error) => {
+        setStatus(error instanceof Error ? error.message : "Unable to load profile.");
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setStatus(null);
+
+    const token = getStoredAuthToken();
+    if (!token) {
+      setStatus("Sign in before saving your fan account details.");
+      return;
+    }
+
+    setSaving(true);
+
+    try {
+      const payload = {
+        firstName: profile.firstName ?? "",
+        lastName: profile.lastName ?? "",
+        phone: profile.phone ?? "",
+        displayName: profile.displayName ?? "",
+        favoritePlayer: profile.favoritePlayer ?? "",
+        city: profile.city ?? "",
+        address: profile.address ?? "",
+      };
+
+      await apiRequest<ProfilePayload>("/profile", {
+        method: "PUT",
+        body: JSON.stringify(payload),
+      });
+
+      setStatus("Profile saved successfully.");
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "Unable to save profile.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
   return (
     <main className="bg-smoke text-ink">
       {/* Hero Banner */}
@@ -132,7 +209,7 @@ export default function AccountPage() {
                   Account Preferences
                 </h3>
 
-                <form className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
                       <label className="block text-xs font-semibold text-steel uppercase mb-1">
@@ -140,7 +217,8 @@ export default function AccountPage() {
                       </label>
                       <input
                         type="text"
-                        defaultValue="Arsenal"
+                        value={profile.firstName ?? ""}
+                        onChange={(event) => setProfile((current) => ({ ...current, firstName: event.target.value }))}
                         className="w-full rounded-control border border-ink/15 bg-smoke px-4 py-2.5 text-sm text-ink focus:border-brand focus:outline-none"
                       />
                     </div>
@@ -150,7 +228,8 @@ export default function AccountPage() {
                       </label>
                       <input
                         type="text"
-                        defaultValue="Supporter"
+                        value={profile.lastName ?? ""}
+                        onChange={(event) => setProfile((current) => ({ ...current, lastName: event.target.value }))}
                         className="w-full rounded-control border border-ink/15 bg-smoke px-4 py-2.5 text-sm text-ink focus:border-brand focus:outline-none"
                       />
                     </div>
@@ -162,7 +241,8 @@ export default function AccountPage() {
                     </label>
                     <input
                       type="email"
-                      defaultValue="supporter@bendelinsurancefc.com"
+                      value={profile.email ?? ""}
+                      onChange={(event) => setProfile((current) => ({ ...current, email: event.target.value }))}
                       className="w-full rounded-control border border-ink/15 bg-smoke px-4 py-2.5 text-sm text-ink focus:border-brand focus:outline-none"
                     />
                   </div>
@@ -173,7 +253,8 @@ export default function AccountPage() {
                     </label>
                     <input
                       type="tel"
-                      defaultValue="+234 800 000 0000"
+                      value={profile.phone ?? ""}
+                      onChange={(event) => setProfile((current) => ({ ...current, phone: event.target.value }))}
                       className="w-full rounded-control border border-ink/15 bg-smoke px-4 py-2.5 text-sm text-ink focus:border-brand focus:outline-none"
                     />
                   </div>
@@ -182,23 +263,52 @@ export default function AccountPage() {
                     <label className="block text-xs font-semibold text-steel uppercase mb-1">
                       Favorite Bendel Insurance Player
                     </label>
-                    <select className="w-full rounded-control border border-ink/15 bg-smoke px-4 py-2.5 text-sm text-ink focus:border-brand focus:outline-none">
-                      <option>Amas Obasogie (#1)</option>
-                      <option>Divine Nwachukwu (#8)</option>
-                      <option>Imade Osarenkhoe</option>
-                      <option>Osaretin Igbinoba (#10)</option>
-                      <option>Ndifreke Effiong (#4)</option>
-                    </select>
+                    <input
+                      type="text"
+                      value={profile.favoritePlayer ?? ""}
+                      onChange={(event) => setProfile((current) => ({ ...current, favoritePlayer: event.target.value }))}
+                      placeholder="Amas Obasogie (#1)"
+                      className="w-full rounded-control border border-ink/15 bg-smoke px-4 py-2.5 text-sm text-ink focus:border-brand focus:outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-steel uppercase mb-1">
+                      City
+                    </label>
+                    <input
+                      type="text"
+                      value={profile.city ?? ""}
+                      onChange={(event) => setProfile((current) => ({ ...current, city: event.target.value }))}
+                      className="w-full rounded-control border border-ink/15 bg-smoke px-4 py-2.5 text-sm text-ink focus:border-brand focus:outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-steel uppercase mb-1">
+                      Home Address
+                    </label>
+                    <textarea
+                      value={profile.address ?? ""}
+                      onChange={(event) => setProfile((current) => ({ ...current, address: event.target.value }))}
+                      rows={3}
+                      className="w-full rounded-control border border-ink/15 bg-smoke px-4 py-2.5 text-sm text-ink focus:border-brand focus:outline-none"
+                    />
                   </div>
 
                   <div className="pt-2">
                     <button
-                      type="button"
-                      className="eyebrow rounded-pill bg-brand px-6 py-3 text-xs font-bold text-white transition-colors hover:bg-brand-dark"
+                      type="submit"
+                      disabled={saving || loading}
+                      className="eyebrow rounded-pill bg-brand px-6 py-3 text-xs font-bold text-white transition-colors hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                      Save Preferences
+                      {saving ? "Saving…" : "Save Preferences"}
                     </button>
                   </div>
+
+                  {status ? (
+                    <p className="text-sm text-steel">{status}</p>
+                  ) : null}
                 </form>
               </div>
             </Reveal>

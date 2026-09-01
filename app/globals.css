@@ -13,9 +13,9 @@
   --color-smoke: #f4f5f4;
   --color-steel: #6e7370;
 
-  --font-display: var(--font-archivo), var(--font-geist-sans), sans-serif;
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), monospace;
+  --font-display: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SFMono-Regular", "Consolas", "Liberation Mono", monospace;
 
   /* Rounding scale: pill for controls, card for panels, media for imagery. */
   --radius-pill: 999px;

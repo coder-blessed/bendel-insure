@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
 import { CheckoutFlow } from "@/components/checkout-flow";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
   title: "Checkout | Bendel Insurance FC",
@@ -19,15 +17,6 @@ export default async function CheckoutPage({
   const itemType = params.type ?? "ticket";
   const itemId = params.id ?? "popular";
   const itemName = params.name ?? "Popular";
-
-  const supabase = await createSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/account?redirect=/checkout");
-  }
 
   return (
     <main className="bg-smoke pb-20 pt-28 text-ink">

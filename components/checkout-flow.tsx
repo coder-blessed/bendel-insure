@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { apiRequest, getStoredAuthToken } from "@/lib/api";
 import {
   calculateOrderTotal,
   deliveryFee,
@@ -26,6 +27,8 @@ export function CheckoutFlow({
   const [phone, setPhone] = useState("+234 800 000 0000");
   const [address, setAddress] = useState("4 Stadium Road, Benin City, Edo State");
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const item = useMemo(
     () => getCheckoutItem(itemType, itemId, itemName),
@@ -42,9 +45,57 @@ export function CheckoutFlow({
 
   const total = calculateOrderTotal(item, deliveryMethod);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    setError(null);
+
+    if (!item) {
+      setError("This item is unavailable to purchase right now.");
+      return;
+    }
+
+    const token = getStoredAuthToken();
+    if (!token) {
+      setError("Please sign in before completing your purchase.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      await apiRequest("/orders", {
+        method: "POST",
+        body: JSON.stringify({
+          type: item.type,
+          itemId: item.id,
+          itemName: item.name,
+          itemCategory: item.category,
+          customerName,
+          customerEmail,
+          phone,
+          deliveryMethod,
+          address: deliveryMethod === "delivery" ? address : null,
+          amount: total,
+          deliveryFee: deliveryMethod === "delivery" ? deliveryFee : 0,
+          paymentReference: `bendel-${item.type}-${Date.now()}`,
+          metadata: {
+            itemType: item.type,
+            itemId: item.id,
+            itemName: item.name,
+          },
+        }),
+      });
+
+      setSubmitted(true);
+    } catch (submitError) {
+      setError(
+        submitError instanceof Error
+          ? submitError.message
+          : "The checkout request could not be completed.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -158,15 +209,22 @@ export function CheckoutFlow({
           </Link>
           <button
             type="submit"
-            className="eyebrow rounded-pill bg-brand px-6 py-3 text-[10px] text-white transition-colors hover:bg-brand-dark"
+            disabled={isSubmitting}
+            className="eyebrow rounded-pill bg-brand px-6 py-3 text-[10px] text-white transition-colors hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-60"
           >
-            Pay with Paystack
+            {isSubmitting ? "Processing…" : "Pay with Paystack"}
           </button>
         </div>
 
+        {error ? (
+          <div className="mt-6 rounded-card border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+            {error}
+          </div>
+        ) : null}
+
         {submitted ? (
           <div className="mt-6 rounded-card border border-green-200 bg-green-50 p-4 text-sm text-green-900">
-            Secure checkout prepared for {customerEmail}. Your ticket or order will be verified and emailed once the Paystack backend is connected.
+            Your order has been submitted successfully for {customerEmail}. We have recorded the request in the backend and it is now awaiting payment confirmation.
           </div>
         ) : null}
       </form>

@@ -1,8 +1,9 @@
 "use client";
 
-import { useActionState } from "react";
-import { type LoginState, loginAction } from "./actions";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Crest } from "@/components/brand";
+import { API_BASE_URL, setStoredAuthToken } from "@/lib/api";
 
 function SubmitButton({ pending }: { pending: boolean }) {
   return (
@@ -28,20 +29,66 @@ function SubmitButton({ pending }: { pending: boolean }) {
 }
 
 function LoginForm() {
-  const [state, action, pending] = useActionState<LoginState, FormData>(
-    loginAction,
-    undefined,
-  );
+  const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
+  const [pending, setPending] = useState(false);
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setError(null);
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const email = String(formData.get("email") ?? "").trim();
+    const password = String(formData.get("password") ?? "").trim();
+
+    if (!email || !password) {
+      setError("Email and password are required.");
+      return;
+    }
+
+    setPending(true);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const payload = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        throw new Error(payload?.message ?? "Invalid email or password.");
+      }
+
+      const token = payload?.data?.token as string | undefined;
+      if (!token) {
+        throw new Error("The backend did not return a valid session token.");
+      }
+
+      setStoredAuthToken(token);
+      router.push("/admin/posts");
+    } catch (submitError) {
+      setError(
+        submitError instanceof Error
+          ? submitError.message
+          : "Unable to sign in. Please try again.",
+      );
+    } finally {
+      setPending(false);
+    }
+  }
 
   return (
-    <form action={action} className="flex flex-col gap-4" noValidate>
-      {state?.error && (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
+      {error && (
         <p
           id="login-error"
           role="alert"
           className="rounded-control bg-red-50 px-4 py-3 text-sm text-red-700"
         >
-          {state.error}
+          {error}
         </p>
       )}
 

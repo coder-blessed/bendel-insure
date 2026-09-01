@@ -85,7 +85,7 @@ export default function StorePage() {
                       {product.name}
                     </h3>
                     <p className="mt-2 text-xs text-steel leading-relaxed line-clamp-2">
-                      {product.desc}
+                      {product.description}
                     </p>
                     <p className="headline mt-4 text-xl font-bold text-brand-dark">
                       ₦{product.price.toLocaleString("en-NG")}
