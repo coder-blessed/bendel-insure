@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ArrowRight, Shield, Ticket, User } from "@/components/icons";
 import { Reveal } from "@/components/reveal";
+import { useAuth } from "@/context/auth-context";
 import { apiRequest, getStoredAuthToken } from "@/lib/api";
 
 const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
@@ -23,15 +24,18 @@ type ProfilePayload = {
 };
 
 export default function AccountPage() {
+  const { user, openAuthModal, logout, resendVerification } = useAuth();
   const [profile, setProfile] = useState<ProfilePayload>({});
   const [status, setStatus] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [resendStatus, setResendStatus] = useState<string | null>(null);
+  const [resending, setResending] = useState(false);
 
   useEffect(() => {
     const token = getStoredAuthToken();
     if (!token) {
-      setStatus("Sign in to save your fan profile and ticket preferences.");
+      setStatus("Sign in to view your fan profile, tickets, and official orders.");
       setLoading(false);
       return;
     }
@@ -40,9 +44,10 @@ export default function AccountPage() {
       .then((data) => {
         setProfile({
           ...data,
-          firstName: data.firstName ?? "",
-          lastName: data.lastName ?? "",
-          phone: data.phone ?? "",
+          email: data.email || user?.email || "",
+          firstName: data.firstName ?? user?.firstName ?? "",
+          lastName: data.lastName ?? user?.lastName ?? "",
+          phone: data.phone ?? user?.phone ?? "",
           displayName: data.displayName ?? "",
           favoritePlayer: data.favoritePlayer ?? "",
           city: data.city ?? "",
@@ -53,7 +58,7 @@ export default function AccountPage() {
         setStatus(error instanceof Error ? error.message : "Unable to load profile.");
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [user]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -62,6 +67,7 @@ export default function AccountPage() {
     const token = getStoredAuthToken();
     if (!token) {
       setStatus("Sign in before saving your fan account details.");
+      openAuthModal("signin");
       return;
     }
 
@@ -90,6 +96,19 @@ export default function AccountPage() {
       setSaving(false);
     }
   }
+
+  const handleResendVerification = async () => {
+    setResending(true);
+    setResendStatus(null);
+    try {
+      await resendVerification(user?.email);
+      setResendStatus("Verification email sent from admin@bendelinsurancefootball.com.");
+    } catch (err) {
+      setResendStatus(err instanceof Error ? err.message : "Failed to send verification email.");
+    } finally {
+      setResending(false);
+    }
+  };
 
   return (
     <main className="bg-smoke text-ink">
@@ -129,6 +148,59 @@ export default function AccountPage() {
 
       {/* Account Dashboard Content */}
       <section className={`${SHELL} py-16 md:py-24`}>
+        {/* If user is not logged in */}
+        {!user && !loading && (
+          <div className="mb-10 rounded-card border-2 border-gold/30 bg-brand-deep p-8 text-white text-center shadow-lg">
+            <h3 className="headline text-2xl uppercase text-gold">
+              Supporter Sign In Required
+            </h3>
+            <p className="mt-2 text-sm text-white/80 max-w-lg mx-auto">
+              Please sign in or create an account with your email and password to view and manage your supporter pass, match tickets, and official merchandise receipts.
+            </p>
+            <div className="mt-6 flex justify-center gap-4">
+              <button
+                type="button"
+                onClick={() => openAuthModal("signin")}
+                className="eyebrow rounded-pill bg-gold px-8 py-3.5 text-xs font-bold text-brand-deep transition-colors hover:bg-white cursor-pointer"
+              >
+                Sign In
+              </button>
+              <button
+                type="button"
+                onClick={() => openAuthModal("signup")}
+                className="eyebrow rounded-pill border border-white/30 bg-white/10 px-8 py-3.5 text-xs font-bold text-white transition-colors hover:bg-white/20 cursor-pointer"
+              >
+                Create Account
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Email verification reminder banner if user is logged in but unverified */}
+        {user && !user.isEmailVerified && (
+          <div className="mb-8 rounded-card border border-gold/40 bg-gold/10 p-5 text-ink flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider text-brand-deep">
+                Email Verification Pending
+              </p>
+              <p className="mt-1 text-sm text-steel">
+                Please verify your email address (<strong>{user.email}</strong>) to receive matchday tickets and jersey purchase receipts.
+              </p>
+              {resendStatus && (
+                <p className="mt-2 text-xs font-semibold text-brand">{resendStatus}</p>
+              )}
+            </div>
+            <button
+              type="button"
+              onClick={handleResendVerification}
+              disabled={resending}
+              className="eyebrow whitespace-nowrap rounded-pill bg-brand px-5 py-2.5 text-xs font-bold text-white transition-colors hover:bg-brand-dark disabled:opacity-50 cursor-pointer"
+            >
+              {resending ? "Sending…" : "Resend Verification Email"}
+            </button>
+          </div>
+        )}
+
         <div className="grid gap-8 lg:grid-cols-12">
           {/* Member Card Box */}
           <div className="lg:col-span-5">
@@ -144,25 +216,45 @@ export default function AccountPage() {
                 </div>
 
                 <div className="my-8">
-                  <p className="text-xs text-white/60 uppercase">Member Name</p>
-                  <h3 className="headline text-2xl uppercase text-white mt-1">
-                    Benin Arsenal Supporter
+                  <p className="text-xs text-white/60 uppercase">Member Email</p>
+                  <h3 className="headline text-xl uppercase text-white mt-1 break-all">
+                    {user?.email || "Benin Arsenal Supporter"}
                   </h3>
                   <p className="mt-2 text-xs font-mono text-gold">
-                    ID: BI-2026-884920
+                    ID: {user?.id ? `BI-${user.id.slice(0, 8).toUpperCase()}` : "BI-2026-MEMBER"}
                   </p>
                 </div>
 
                 <div className="flex items-center justify-between border-t border-white/10 pt-4 text-xs">
                   <div>
                     <span className="text-white/60">Status:</span>{" "}
-                    <span className="text-green-400 font-semibold">Active Member</span>
+                    {user?.isEmailVerified ? (
+                      <span className="text-green-400 font-semibold">Verified Member</span>
+                    ) : user ? (
+                      <span className="text-yellow-400 font-semibold">Verification Pending</span>
+                    ) : (
+                      <span className="text-white/60 font-semibold">Guest</span>
+                    )}
                   </div>
                   <div>
-                    <span className="text-white/60">Tier:</span>{" "}
-                    <span className="text-gold font-semibold">Gold Supporter</span>
+                    <span className="text-white/60">Role:</span>{" "}
+                    <span className="text-gold font-semibold uppercase">
+                      {user?.role || "Member"}
+                    </span>
                   </div>
                 </div>
+
+                {user && (
+                  <div className="mt-6 border-t border-white/10 pt-4 text-right">
+                    <button
+                      type="button"
+                      onClick={logout}
+                      className="eyebrow text-xs text-red-300 hover:text-red-100 uppercase tracking-wider cursor-pointer"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
+                )}
               </div>
 
               {/* Quick Links */}
@@ -173,7 +265,7 @@ export default function AccountPage() {
                 >
                   <div className="flex items-center gap-3">
                     <Ticket className="h-5 w-5 text-brand" />
-                    <span className="font-semibold text-sm text-ink">My Match Tickets (0)</span>
+                    <span className="font-semibold text-sm text-ink">Match Tickets &amp; Fixtures</span>
                   </div>
                   <ArrowRight className="h-4 w-4 text-steel" />
                 </Link>
@@ -183,7 +275,7 @@ export default function AccountPage() {
                 >
                   <div className="flex items-center gap-3">
                     <Shield className="h-5 w-5 text-brand" />
-                    <span className="font-semibold text-sm text-ink">Renew Membership</span>
+                    <span className="font-semibold text-sm text-ink">Official Club Membership</span>
                   </div>
                   <ArrowRight className="h-4 w-4 text-steel" />
                 </Link>
@@ -193,7 +285,7 @@ export default function AccountPage() {
                 >
                   <div className="flex items-center gap-3">
                     <User className="h-5 w-5 text-brand" />
-                    <span className="font-semibold text-sm text-ink">Official Store Orders</span>
+                    <span className="font-semibold text-sm text-ink">Official Store &amp; Jerseys</span>
                   </div>
                   <ArrowRight className="h-4 w-4 text-steel" />
                 </Link>
@@ -241,9 +333,10 @@ export default function AccountPage() {
                     </label>
                     <input
                       type="email"
-                      value={profile.email ?? ""}
+                      disabled={Boolean(user?.email)}
+                      value={profile.email ?? user?.email ?? ""}
                       onChange={(event) => setProfile((current) => ({ ...current, email: event.target.value }))}
-                      className="w-full rounded-control border border-ink/15 bg-smoke px-4 py-2.5 text-sm text-ink focus:border-brand focus:outline-none"
+                      className="w-full rounded-control border border-ink/15 bg-smoke px-4 py-2.5 text-sm text-ink focus:border-brand focus:outline-none disabled:opacity-75"
                     />
                   </div>
 
@@ -255,6 +348,7 @@ export default function AccountPage() {
                       type="tel"
                       value={profile.phone ?? ""}
                       onChange={(event) => setProfile((current) => ({ ...current, phone: event.target.value }))}
+                      placeholder="+234 800 000 0000"
                       className="w-full rounded-control border border-ink/15 bg-smoke px-4 py-2.5 text-sm text-ink focus:border-brand focus:outline-none"
                     />
                   </div>
@@ -280,18 +374,20 @@ export default function AccountPage() {
                       type="text"
                       value={profile.city ?? ""}
                       onChange={(event) => setProfile((current) => ({ ...current, city: event.target.value }))}
+                      placeholder="Benin City"
                       className="w-full rounded-control border border-ink/15 bg-smoke px-4 py-2.5 text-sm text-ink focus:border-brand focus:outline-none"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-semibold text-steel uppercase mb-1">
-                      Home Address
+                      Home Address (For Merchandise Deliveries)
                     </label>
                     <textarea
                       value={profile.address ?? ""}
                       onChange={(event) => setProfile((current) => ({ ...current, address: event.target.value }))}
                       rows={3}
+                      placeholder="Street address, Benin City, Edo State"
                       className="w-full rounded-control border border-ink/15 bg-smoke px-4 py-2.5 text-sm text-ink focus:border-brand focus:outline-none"
                     />
                   </div>
@@ -299,8 +395,8 @@ export default function AccountPage() {
                   <div className="pt-2">
                     <button
                       type="submit"
-                      disabled={saving || loading}
-                      className="eyebrow rounded-pill bg-brand px-6 py-3 text-xs font-bold text-white transition-colors hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-60"
+                      disabled={saving || loading || !user}
+                      className="eyebrow rounded-pill bg-brand px-6 py-3 text-xs font-bold text-white transition-colors hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer"
                     >
                       {saving ? "Saving…" : "Save Preferences"}
                     </button>
