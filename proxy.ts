@@ -13,23 +13,35 @@ export async function proxy(request: NextRequest) {
     request: { headers: request.headers },
   });
 
-  // Refresh session (keeps the access token alive)
-  const supabase = createSupabaseProxyClient(request, response);
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  // Check custom backend admin token cookie
+  const adminTokenCookie = request.cookies.get("bendel_admin_token")?.value;
 
+  // Refresh Supabase session (if configured)
+  let supabaseUser = null;
+  try {
+    if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      const supabase = createSupabaseProxyClient(request, response);
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      supabaseUser = user;
+    }
+  } catch (err) {
+    console.warn("Supabase proxy check skipped/failed:", err);
+  }
+
+  const isAuthenticated = Boolean(supabaseUser || adminTokenCookie);
   const isLoginPage = pathname === "/admin/login";
 
   // Unauthenticated → redirect to login
-  if (!user && !isLoginPage) {
+  if (!isAuthenticated && !isLoginPage) {
     const loginUrl = new URL("/admin/login", request.url);
     return NextResponse.redirect(loginUrl);
   }
 
-  // Already authenticated → redirect away from login
-  if (user && isLoginPage) {
-    const dashboardUrl = new URL("/admin/posts", request.url);
+  // Already authenticated → redirect away from login to overview
+  if (isAuthenticated && isLoginPage) {
+    const dashboardUrl = new URL("/admin", request.url);
     return NextResponse.redirect(dashboardUrl);
   }
 

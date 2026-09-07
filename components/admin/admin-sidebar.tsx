@@ -10,49 +10,37 @@ import {
   Close,
   Eye,
   FileText,
+  LayoutDashboard,
   Logout,
   Menu,
-  Photo,
   Settings,
+  ShoppingBag,
+  Ticket,
+  Users,
 } from "@/components/icons";
 import { useReducedMotionSafe } from "@/lib/use-reduced-motion-safe";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-/**
- * Media and Settings are shown but inert. Listing the intended shape of the
- * dashboard is more useful than hiding it, and a disabled item is honest in a
- * way a link to a 404 is not.
- */
 const NAV = [
-  { label: "Posts", href: "/admin/posts", icon: FileText, ready: true },
-  { label: "Settings", href: "/admin/settings", icon: Settings, ready: true },
+  { label: "Overview", href: "/admin", icon: LayoutDashboard, exact: true },
+  { label: "Orders", href: "/admin/orders", icon: ShoppingBag },
+  { label: "Tickets", href: "/admin/tickets", icon: Ticket },
+  { label: "Members", href: "/admin/users", icon: Users },
+  { label: "Posts", href: "/admin/posts", icon: FileText },
+  { label: "Settings", href: "/admin/settings", icon: Settings },
 ];
 
 function NavList({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
 
   return (
-    <nav aria-label="Dashboard" className="flex flex-col gap-1">
+    <nav aria-label="Dashboard Navigation" className="flex flex-col gap-1">
       {NAV.map((item) => {
         const Icon = item.icon;
-        const active =
-          pathname === item.href || pathname.startsWith(`${item.href}/`);
-
-        if (!item.ready) {
-          return (
-            <span
-              key={item.href}
-              className="flex items-center gap-3 rounded-control px-3 py-2.5 text-sm font-medium text-white/30"
-            >
-              <Icon className="h-4.5 w-4.5 shrink-0" />
-              {item.label}
-              <span className="eyebrow ml-auto rounded-pill bg-white/8 px-2 py-0.5 text-[8px] text-white/40">
-                Soon
-              </span>
-            </span>
-          );
-        }
+        const active = item.exact
+          ? pathname === item.href
+          : pathname === item.href || pathname.startsWith(`${item.href}/`);
 
         return (
           <Link
@@ -60,9 +48,9 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
             href={item.href}
             onClick={onNavigate}
             aria-current={active ? "page" : undefined}
-            className={`flex items-center gap-3 rounded-control px-3 py-2.5 text-sm font-medium transition-colors ${
+            className={`flex items-center gap-3 rounded-control px-3.5 py-2.5 text-sm font-medium transition-colors ${
               active
-                ? "bg-gold text-brand-deep"
+                ? "bg-gold text-brand-deep font-semibold shadow-sm"
                 : "text-white/75 hover:bg-white/8 hover:text-white"
             }`}
           >
@@ -81,30 +69,31 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
       <div className="flex items-center gap-2.5 px-3 py-1">
         <Crest className="h-9 shrink-0" />
         <span className="leading-[0.9]">
-          <span className="headline block text-[13px] text-white uppercase">
+          <span className="headline block text-[13px] text-white uppercase tracking-tight">
             Bendel Insurance
           </span>
-          <span className="eyebrow block text-[9px] text-gold">Admin</span>
+          <span className="eyebrow block text-[9px] text-gold">Admin Console</span>
         </span>
       </div>
 
-      <div className="mt-8 flex-1">
+      <div className="mt-8 flex-1 overflow-y-auto">
         <NavList onNavigate={onNavigate} />
       </div>
 
       <div className="mt-8 flex flex-col gap-1 border-t border-white/10 pt-4">
         <Link
-          href="/blog"
+          href="/"
+          target="_blank"
           onClick={onNavigate}
-          className="flex items-center gap-3 rounded-control px-3 py-2.5 text-sm font-medium text-white/60 transition-colors hover:bg-white/8 hover:text-white"
+          className="flex items-center gap-3 rounded-control px-3.5 py-2.5 text-sm font-medium text-white/60 transition-colors hover:bg-white/8 hover:text-white"
         >
           <Eye className="h-4.5 w-4.5 shrink-0" />
-          View blog
+          Live Website
         </Link>
         <form action={logoutAction}>
           <button
             type="submit"
-            className="flex w-full items-center gap-3 rounded-control px-3 py-2.5 text-left text-sm font-medium text-white/60 transition-colors hover:bg-white/8 hover:text-white"
+            className="flex w-full items-center gap-3 rounded-control px-3.5 py-2.5 text-left text-sm font-medium text-white/60 transition-colors hover:bg-white/8 hover:text-white"
           >
             <Logout className="h-4.5 w-4.5 shrink-0" />
             Sign out
@@ -142,7 +131,7 @@ export function AdminMobileNav() {
           <Menu className="h-6 w-6" />
         </button>
         <Crest className="h-7 shrink-0" />
-        <span className="eyebrow text-[10px] text-gold">Admin</span>
+        <span className="eyebrow text-[10px] text-gold">Admin Console</span>
       </div>
 
       <AnimatePresence>

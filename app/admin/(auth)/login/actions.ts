@@ -1,33 +1,23 @@
 "use server";
 
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export type LoginState = { error?: string } | undefined;
 
-export async function loginAction(
-  _prev: LoginState,
-  formData: FormData,
-): Promise<LoginState> {
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
-
-  if (!email || !password) {
-    return { error: "Email and password are required." };
-  }
-
-  const supabase = await createSupabaseServerClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-
-  if (error) {
-    return { error: "Invalid email or password. Please try again." };
-  }
-
-  redirect("/admin/posts");
-}
-
 export async function logoutAction() {
-  const supabase = await createSupabaseServerClient();
-  await supabase.auth.signOut();
+  const cookieStore = await cookies();
+  cookieStore.delete("bendel_admin_token");
+
+  try {
+    if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      const supabase = await createSupabaseServerClient();
+      await supabase.auth.signOut();
+    }
+  } catch (err) {
+    console.warn("Supabase signout skipped:", err);
+  }
+
   redirect("/admin/login");
 }

@@ -50,11 +50,21 @@ function LoginForm() {
     setPending(true);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/login`, {
+      // First try dedicated admin login endpoint
+      let response = await fetch(`${API_BASE_URL}/admin/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
+
+      // If /admin/login is not available, fallback to /auth/login
+      if (response.status === 404) {
+        response = await fetch(`${API_BASE_URL}/auth/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+      }
 
       const payload = await response.json().catch(() => null);
 
@@ -63,12 +73,21 @@ function LoginForm() {
       }
 
       const token = payload?.data?.token as string | undefined;
+      const user = payload?.data?.user;
+
       if (!token) {
         throw new Error("The backend did not return a valid session token.");
       }
 
+      if (user && user.role !== "admin") {
+        throw new Error("Access denied. Administrator privileges required.");
+      }
+
+      // Store token in localStorage and set cookie for SSR proxy
       setStoredAuthToken(token);
-      router.push("/admin/posts");
+      document.cookie = `bendel_admin_token=${token}; path=/; max-age=604800; SameSite=Lax`;
+
+      router.push("/admin");
     } catch (submitError) {
       setError(
         submitError instanceof Error
@@ -105,7 +124,7 @@ function LoginForm() {
           type="email"
           autoComplete="email"
           required
-          placeholder="admin@example.com"
+          placeholder="admin@bendelinsurancefootball.com"
           className="rounded-control border border-gray-200 bg-white px-4 py-3 text-sm text-ink placeholder:text-gray-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
         />
       </div>

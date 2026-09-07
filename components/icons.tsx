@@ -775,3 +775,45 @@ export function HomeIcon({ className = base }: IconProps) {
     </svg>
   );
 }
+
+export function LayoutDashboard({ className = base }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      aria-hidden="true"
+    >
+      <rect x="3" y="3" width="7" height="9" rx="1" stroke="currentColor" strokeWidth="2.2" />
+      <rect x="14" y="3" width="7" height="5" rx="1" stroke="currentColor" strokeWidth="2.2" />
+      <rect x="14" y="12" width="7" height="9" rx="1" stroke="currentColor" strokeWidth="2.2" />
+      <rect x="3" y="16" width="7" height="5" rx="1" stroke="currentColor" strokeWidth="2.2" />
+    </svg>
+  );
+}
+
+export function ShoppingBag({ className = base }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4H6Z"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M3 6h18M16 10a4 4 0 0 1-8 0"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
