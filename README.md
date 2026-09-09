@@ -1,8 +1,14 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bendel Insurance FC
+
+The public supporter site and admin CMS for Bendel Insurance FC. This Next.js app talks to the separate Express API in `../bendel-backend` for authentication, profiles, orders, tickets, and admin operations.
 
 ## Getting Started
 
-First, run the development server:
+## Setup
+
+1. Copy `.env.example` to `.env.local` and set the Supabase values. Set `NEXT_PUBLIC_API_BASE_URL` if the backend is not running on `http://localhost:4000/api`.
+2. In `../bendel-backend`, copy `.env.example` to `.env`, configure `DATABASE_URL` and `JWT_SECRET`, and run its migrations.
+3. Start the backend, then start this app:
 
 ```bash
 npm run dev
@@ -12,25 +18,16 @@ yarn dev
 pnpm dev
 # or
 bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000).
 
-To learn more about Next.js, take a look at the following resources:
+## Validation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+```bash
+npm run lint
+npm run build
+```
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Supabase migrations are in `supabase/migrations`. Run them in order in the Supabase SQL editor before using the admin posts and settings screens.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
