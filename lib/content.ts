@@ -1039,13 +1039,13 @@ export const seasonFixtures: Fixture[] = [
     home: {
       name: "Bendel Insurance",
       tone: 0,
-      shortName: "BEN",
+      shortName: "BEN 4",
       logo: TEAM_LOGOS["Bendel Insurance"],
     },
     away: {
       name: "Kun Khalifat",
       tone: 2,
-      shortName: "KUN",
+      shortName: "KUN  2",
       logo: TEAM_LOGOS["Kun Khalifat"],
     },
     kickoff: "16:00 WAT",
