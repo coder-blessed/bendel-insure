@@ -432,6 +432,45 @@ Kennedy Boboye is the Technical Manager while Greg Ikhenoba serves as Chief Coac
 `,
     tone: 1,
   },
+  {
+    slug: "bendel-insurance-club-profile",
+       image: "/images/khunkhalifat.png",
+    category: "Club",
+    timestamp: "2 days ago",
+    title: "Bendel Insurance beat khunkhalifat fc 4-2",
+    excerpt:
+      "chinedu nwosu shines as bendel insurance beat khunkhalifat fc 4-2",
+    content: `
+NPFL27: MD3: Chinedu Nwosu Shines As Bendel Insurance Beat Kunkalifat FC 4-2
+
+
+Bendel Insurance Football Club on Sunday evening produced an impressive performance as they bounced back from Match Day 2 setback in Lafia and recorded a 4-2 victory over Kunkalifat FC of Owerri .
+Alex Oweileyefa opened scoring for the resurgent  Benin Arsenal at the Samuel Ogbemudia Stadium as early as 5 minutes into the game that lived up to it's expectation. 
+Insurance continued to dictate the pace as the combination of Alex Oweileyefa, Kayode Oke and Suraju Lawal in the attack remained potent and dangerous for the visitors.
+
+In the 19th minute ,Suraju Lawal registered his goal account with the Benin Arsenals. Kayode Oke supplied the clean assist to make it easy for Lawal.
+
+Insurance FC went into the halftime break with a comfortable 2-0 lead over the visitors.
+
+On return from the halftime break,Insurance FC technical crew made immediate substitution as Kayode Oke and Suraju Lawal gave way to Emmanuel Dung and Shimagande Terdoo. A minute later,Chinedu Nwosu scored to increase the tally after connecting well with Kayode's assist 
+
+Amas Obasogie made great saves and parried off a penalty kick in the 58th minute. In the 68th minute, another spot kick was awarded to Kunkalifat as Chigozie hand ball in the box was spotted. The penalty was well converted to reduce the deficit to 3-1 by Kunkalifat FC.
+In the 66th minute, Chinedu Nwosu went solo in the middle and fired in a close range shot to get his second goal to make it 4-1 for Insurance FC.
+
+The visitors however fought back, and got a late goal to reduce the deficit in the 88th minute to make it 4-2.  Jonathan James inclusion added the necessary flair to Insurance attacking midfield with more possession and several attempts to increase the tally until the end of proceedings.
+
+In the post match interview, Insurance assistant coach Jolomi Atune expressed worries over the poor communication between the defenders and goalkeeper, noting that the goals and penalty offences committed by Insurance players were unnecessary.
+" Iam happy we won deservedly but we are not happy about the cheap goals we conceded. The present Squad is still work in progress and we will get better.
+Insurance FC now have six points in the three outings in the current premier league season.
+They will be on the road to Ranchers Bees FC next week.
+
+Bendel Insurance began the campaign on a winning note, defeating neighbours Warri Wolves 2-1 at home with Kayode Oke and Oweifaleya Alex scoring to secure the 2-1victory.
+
+The Benin Arsenal, however, were unable to maintain that momentum in Lafia, where they suffered a narrow 1-0 defeat to Nasarawa United. 
+
+Insurance were in the 9th position on the NPFL table with three points in their opening two matches before the match day three encounter in Benin with Kunkalifat FC.`,
+    tone: 1,
+  },
 
   {
     slug: "bendel-insurance-history-golden-era-to-modern-resurgence",
