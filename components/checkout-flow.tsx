@@ -92,7 +92,6 @@ export function CheckoutFlow({
           address: deliveryMethod === "delivery" ? address : null,
           amount: total,
           deliveryFee: deliveryMethod === "delivery" ? deliveryFee : 0,
-          paymentReference: `bendel-${item.type}-${Date.now()}`,
           metadata: {
             itemType: item.type,
             itemId: item.id,
