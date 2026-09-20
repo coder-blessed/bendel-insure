@@ -67,7 +67,7 @@ export const ticketTiers = [
 
 export const storeProducts = [
   {
-    id: "home-kit-2627",
+    id: "first-kit-2627",
     type: "merch" as const,
     name: "2026/27 Official Home Jersey",
     category: "Match Kit",
@@ -77,7 +77,7 @@ export const storeProducts = [
     image: "https://picsum.photos/seed/bendel-home-kit/800/1000",
   },
   {
-    id: "away-kit-2627",
+    id: "second-kit-2627",
     type: "merch" as const,
     name: "2026/27 Official Away Jersey",
     category: "Match Kit",
@@ -96,46 +96,7 @@ export const storeProducts = [
     description: "Pristine white jersey with gold detailing and subtle Benin bronze geometric pattern weave.",
     image: "https://picsum.photos/seed/bendel-third-kit/800/1000",
   },
-  {
-    id: "gk-kit-2627",
-    type: "merch" as const,
-    name: "2026/27 Goalkeeper Kit",
-    category: "Goalkeeper",
-    price: 26500,
-    tag: "Goalkeeper",
-    description: "Vibrant lemon & pink pro goalkeeper jersey with padded forearm protection zones.",
-    image: "https://picsum.photos/seed/bendel-gk-kit/800/1000",
-  },
-  {
-    id: "training-jacket",
-    type: "merch" as const,
-    name: "Benin Arsenal Training Jacket",
-    category: "Apparel",
-    price: 18000,
-    tag: "Training",
-    description: "Wind-resistant green zip-up training jacket with moisture-wicking fleece lining.",
-    image: "https://picsum.photos/seed/bendel-jacket/800/1000",
-  },
-  {
-    id: "supporter-hoodie",
-    type: "merch" as const,
-    name: "Benin Arsenal Crest Hoodie",
-    category: "Casual",
-    price: 16500,
-    tag: "Fanwear",
-    description: "Heavyweight premium cotton blend hoodie with embroidered 1972 heritage logo.",
-    image: "https://picsum.photos/seed/bendel-hoodie/800/1000",
-  },
-  {
-    id: "matchday-scarf",
-    type: "merch" as const,
-    name: "Official Jacquard Match Scarf",
-    category: "Accessories",
-    price: 5000,
-    tag: "Accessories",
-    description: "Double-sided knit scarf featuring 'The Benin Arsenal' and 1972 founded crest.",
-    image: "https://picsum.photos/seed/bendel-scarf/800/1000",
-  },
+ 
   {
     id: "club-cap",
     type: "merch" as const,
