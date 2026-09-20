@@ -29,6 +29,7 @@ export function CheckoutFlow({
   const [address, setAddress] = useState("4 Stadium Road, Benin City, Edo State");
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [paymentRedirecting, setPaymentRedirecting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // Sync user info into form fields when user logs in
@@ -74,9 +75,10 @@ export function CheckoutFlow({
     }
 
     setIsSubmitting(true);
+    setPaymentRedirecting(false);
 
     try {
-      await apiRequest("/orders", {
+      const createdOrder = (await apiRequest<{ id: string; [key: string]: unknown }>("/orders", {
         method: "POST",
         body: JSON.stringify({
           type: item.type,
@@ -97,9 +99,26 @@ export function CheckoutFlow({
             itemName: item.name,
           },
         }),
-      });
+      })) as { id: string; [key: string]: unknown };
+
+      if (!createdOrder?.id) {
+        throw new Error("The order was created without a valid identifier.");
+      }
+
+      const squadPayment = (await apiRequest<{ checkoutUrl?: string; reference?: string; orderId?: string }>("/payments/squad/initialize", {
+        method: "POST",
+        body: JSON.stringify({ orderId: createdOrder.id }),
+      })) as { checkoutUrl?: string; reference?: string; orderId?: string };
+
+      const checkoutUrl = squadPayment?.checkoutUrl;
+
+      if (!checkoutUrl) {
+        throw new Error("Squad did not return a valid checkout URL.");
+      }
 
       setSubmitted(true);
+      setPaymentRedirecting(true);
+      window.location.assign(checkoutUrl);
     } catch (submitError) {
       setError(
         submitError instanceof Error
@@ -269,7 +288,7 @@ export function CheckoutFlow({
             disabled={isSubmitting}
             className="eyebrow rounded-pill bg-brand px-8 py-3.5 text-xs font-bold text-white transition-colors hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer"
           >
-            {isSubmitting ? "Processing…" : "Confirm Order"}
+            {isSubmitting ? (paymentRedirecting ? "Redirecting to payment…" : "Processing…") : "Confirm Order"}
           </button>
         </div>
 
@@ -280,12 +299,12 @@ export function CheckoutFlow({
         ) : null}
 
         {submitted ? (
-          <div className="mt-6 rounded-card border border-green-300 bg-green-50 p-5 text-sm text-green-900">
-            <p className="font-bold text-green-950">
-              ✓ Order Confirmed Successfully!
+          <div className="mt-6 rounded-card border border-amber-300 bg-amber-50 p-5 text-sm text-amber-900">
+            <p className="font-bold text-amber-950">
+              ✓ Order reserved. Secure payment is now required.
             </p>
             <p className="mt-1">
-              Your {item.type === "ticket" ? "match ticket" : "order receipt"} has been registered for <strong>{customerEmail || user?.email}</strong>. A confirmation email has been dispatched to your inbox from <span className="font-semibold text-brand">admin@bendelinsurancefootball.com</span>.
+              Your {item.type === "ticket" ? "match ticket" : "order receipt"} has been reserved for <strong>{customerEmail || user?.email}</strong>. You are being redirected to the secure Squad payment page to choose your payment method and complete checkout.
             </p>
           </div>
         ) : null}
