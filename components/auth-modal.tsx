@@ -96,7 +96,7 @@ export function AuthModal() {
       const result = await signup(email, password);
       setSuccessMessage(
         result.message ||
-          "Account created! We've sent a verification link to your email from admin@bendelinsurancefootball.com.",
+          `Account created successfully. A verification email has been sent to ${email}. Please check your inbox and confirm your email to activate your account.`,
       );
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unable to create account.");
@@ -220,11 +220,19 @@ export function AuthModal() {
           )}
 
           {successMessage && (
-            <div className="mt-4 rounded-control border border-green-500/40 bg-green-950/70 p-3 text-xs text-green-200">
-              <p className="font-semibold">{successMessage}</p>
-              <p className="mt-1 text-[11px] text-green-300/80">
-                Sender: admin@bendelinsurancefootball.com
-              </p>
+            <div className="mt-4 rounded-2xl border border-emerald-400/40 bg-gradient-to-r from-emerald-500/15 to-green-500/10 p-4 text-left shadow-lg shadow-emerald-950/20">
+              <div className="flex items-start gap-3">
+                <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full border border-emerald-300/30 bg-emerald-500/20 text-lg font-bold text-emerald-200">
+                  ✓
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-emerald-100">Account created successfully</p>
+                  <p className="mt-1 text-sm leading-relaxed text-emerald-50/90">{successMessage}</p>
+                  <p className="mt-2 text-[11px] uppercase tracking-[0.18em] text-emerald-200/80">
+                    From: admin@bendelinsurancefootball.com
+                  </p>
+                </div>
+              </div>
             </div>
           )}
 
