@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function PaymentSuccessPage() {
+function PaymentSuccessContent() {
   const searchParams = useSearchParams();
   const reference = searchParams.get("reference") ?? searchParams.get("transaction_ref") ?? "";
 
@@ -42,5 +43,13 @@ export default function PaymentSuccessPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function PaymentSuccessPage() {
+  return (
+    <Suspense fallback={<main className="mx-auto max-w-3xl px-6 py-16"><div className="rounded-card border border-ink/10 bg-white p-8 text-sm text-steel shadow-sm">Loading payment details…</div></main>}>
+      <PaymentSuccessContent />
+    </Suspense>
   );
 }
