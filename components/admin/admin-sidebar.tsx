@@ -104,10 +104,10 @@ function SidebarBody({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
-/** Desktop rail. Sticks for the full viewport height so long lists scroll under it. */
+/** Desktop rail. Fixed for the full viewport height so long lists scroll under it. */
 export function AdminSidebar() {
   return (
-    <aside className="hidden w-64 shrink-0 bg-brand-deep lg:sticky lg:top-0 lg:flex lg:h-svh lg:flex-col lg:p-5">
+    <aside className="fixed left-0 top-0 z-30 hidden h-svh w-60 shrink-0 border-r border-white/10 bg-brand-deep/95 bg-[radial-gradient(circle_at_top,_rgba(245,158,11,0.16),_transparent_40%)] shadow-[0_18px_48px_rgba(0,0,0,0.28)] backdrop-blur-[2px] lg:flex lg:flex-col lg:p-4">
       <SidebarBody />
     </aside>
   );
@@ -119,8 +119,8 @@ export function AdminMobileNav() {
   const reduceMotion = useReducedMotionSafe();
 
   return (
-    <div className="lg:hidden">
-      <div className="flex items-center gap-3 bg-brand-deep px-4 py-3">
+    <div className="fixed inset-x-0 top-0 z-50 lg:hidden">
+      <div className="flex items-center gap-3 border-b border-white/10 bg-brand-deep/95 px-4 py-3 shadow-[0_12px_30px_rgba(0,0,0,0.22)] backdrop-blur-sm">
         <button
           type="button"
           onClick={() => setOpen(true)}

@@ -16,10 +16,10 @@ export default function AdminDashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-svh flex-1 flex-col bg-smoke lg:flex-row">
+    <div className="relative min-h-svh bg-smoke lg:pl-60">
       <AdminMobileNav />
       <AdminSidebar />
-      <main className="min-w-0 flex-1 px-4 py-8 md:px-8 md:py-10">
+      <main className="min-w-0 flex-1 px-4 py-8 pt-20 md:px-8 md:py-10 lg:pt-8">
         {children}
       </main>
     </div>
