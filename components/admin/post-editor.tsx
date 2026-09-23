@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useActionState } from "react";
 import { useCallback, useState } from "react";
 import { FIELD_CONTROL, Field } from "@/components/admin/field";
+import { MediaUploader } from "@/components/admin/media-uploader";
 import { ArrowLeft, Check, ChevronDown, Eye } from "@/components/icons";
 import { Markdown } from "@/components/markdown";
 import { type BlogPost, postCategories, slugify } from "@/lib/blog";
@@ -39,6 +40,7 @@ export function PostEditor({ post }: { post?: BlogPost }) {
   const [title, setTitle] = useState(post?.title ?? "");
   const [slug, setSlug] = useState(post?.slug ?? "");
   const [body, setBody] = useState(post?.body ?? "");
+  const [image, setImage] = useState(post?.image ?? "");
 
   /* Once the slug has been typed into by hand, the title stops driving it. */
   const [slugTouched, setSlugTouched] = useState(isEdit);
@@ -67,6 +69,7 @@ export function PostEditor({ post }: { post?: BlogPost }) {
       <input type="hidden" name="title" value={title} />
       <input type="hidden" name="slug" value={slug} />
       <input type="hidden" name="body" value={body} />
+      <input type="hidden" name="image" value={image} />
 
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
@@ -246,16 +249,35 @@ export function PostEditor({ post }: { post?: BlogPost }) {
           <Field
             label="Cover image"
             htmlFor="post-image"
-            hint="Falls back to a branded gradient when empty."
+            hint="Upload directly from the dashboard or paste a URL manually."
           >
-            <input
-              id="post-image"
-              name="image"
-              type="url"
-              defaultValue={post?.image}
-              placeholder="https://"
-              className={`${FIELD_CONTROL} font-mono text-[13px]`}
-            />
+            <div className="space-y-3">
+              <MediaUploader
+                folder="bendel-insurance/blog"
+                label="Upload cover image"
+                onUploaded={(url) => setImage(url)}
+              />
+
+              <input
+                id="post-image"
+                name="image"
+                type="url"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+                placeholder="https://"
+                className={`${FIELD_CONTROL} font-mono text-[13px]`}
+              />
+
+              {image ? (
+                <div className="overflow-hidden rounded-lg border border-ink/10 bg-smoke">
+                  <img
+                    src={image}
+                    alt="Cover preview"
+                    className="h-28 w-full object-cover"
+                  />
+                </div>
+              ) : null}
+            </div>
           </Field>
         </div>
       </div>
