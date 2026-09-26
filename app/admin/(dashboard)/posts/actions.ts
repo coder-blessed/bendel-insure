@@ -15,11 +15,15 @@ function estimateReadMinutes(body: string): number {
 }
 
 function buildPostRow(formData: FormData, isNew: boolean) {
-  const title = (formData.get("title") as string).trim();
+  const title = ((formData.get("title") as string) || "").trim();
   const slug =
     ((formData.get("slug") as string) || "").trim() || slugify(title);
-  const body = (formData.get("body") as string).trim();
-  const status = formData.get("status") as "draft" | "published";
+  const body = ((formData.get("body") as string) || "").trim();
+  const status = (formData.get("status") as "draft" | "published") || "draft";
+
+  if (!title || !body) {
+    throw new Error("Title and body are required before saving a post.");
+  }
 
   return {
     title,
@@ -33,7 +37,6 @@ function buildPostRow(formData: FormData, isNew: boolean) {
     tone: 0,
     read_minutes: estimateReadMinutes(body),
     updated_at: new Date().toISOString(),
-    // Only set published_at on new posts or when first publishing
     ...(isNew
       ? { published_at: new Date().toISOString().slice(0, 10) }
       : {}),
@@ -50,19 +53,29 @@ export async function savePostAction(
   _prev: PostActionState,
   formData: FormData,
 ): Promise<PostActionState> {
-  const supabase = await createSupabaseServerClient();
-  const row = buildPostRow(formData, true);
+  try {
+    const supabase = await createSupabaseServerClient();
+    const row = buildPostRow(formData, true);
 
-  const { error } = await supabase.from("posts").insert(row);
+    const { error } = await supabase.from("posts").insert(row);
 
-  if (error) {
-    console.error("savePostAction:", error.message);
-    return { error: "Failed to save post. Please try again." };
+    if (error) {
+      console.error("savePostAction:", error.message);
+      return { error: `Failed to save post: ${error.message}` };
+    }
+
+    revalidatePath("/blog");
+    revalidatePath("/admin/posts");
+    redirect("/admin/posts");
+  } catch (error) {
+    console.error("savePostAction exception:", error);
+    return {
+      error:
+        error instanceof Error
+          ? error.message
+          : "Failed to save post. Please check your Supabase configuration.",
+    };
   }
-
-  revalidatePath("/blog");
-  revalidatePath("/admin/posts");
-  redirect("/admin/posts");
 }
 
 // ---------------------------------------------------------------------------
@@ -74,38 +87,47 @@ export async function updatePostAction(
   _prev: PostActionState,
   formData: FormData,
 ): Promise<PostActionState> {
-  const supabase = await createSupabaseServerClient();
-  const row = buildPostRow(formData, false);
+  try {
+    const supabase = await createSupabaseServerClient();
+    const row = buildPostRow(formData, false);
 
-  const { data: existing } = await supabase
-    .from("posts")
-    .select("published_at, status")
-    .eq("id", id)
-    .single();
+    const { data: existing } = await supabase
+      .from("posts")
+      .select("published_at, status")
+      .eq("id", id)
+      .single();
 
-  // Set published_at when transitioning from draft → published
-  if (
-    existing &&
-    existing.status === "draft" &&
-    row.status === "published" &&
-    !existing.published_at
-  ) {
-    (row as Record<string, unknown>).published_at = new Date()
-      .toISOString()
-      .slice(0, 10);
+    if (
+      existing &&
+      existing.status === "draft" &&
+      row.status === "published" &&
+      !existing.published_at
+    ) {
+      (row as Record<string, unknown>).published_at = new Date()
+        .toISOString()
+        .slice(0, 10);
+    }
+
+    const { error } = await supabase.from("posts").update(row).eq("id", id);
+
+    if (error) {
+      console.error("updatePostAction:", error.message);
+      return { error: `Failed to update post: ${error.message}` };
+    }
+
+    revalidatePath("/blog");
+    revalidatePath(`/blog/${row.slug}`);
+    revalidatePath("/admin/posts");
+    redirect("/admin/posts");
+  } catch (error) {
+    console.error("updatePostAction exception:", error);
+    return {
+      error:
+        error instanceof Error
+          ? error.message
+          : "Failed to update post. Please check your Supabase configuration.",
+    };
   }
-
-  const { error } = await supabase.from("posts").update(row).eq("id", id);
-
-  if (error) {
-    console.error("updatePostAction:", error.message);
-    return { error: "Failed to update post. Please try again." };
-  }
-
-  revalidatePath("/blog");
-  revalidatePath(`/blog/${row.slug}`);
-  revalidatePath("/admin/posts");
-  redirect("/admin/posts");
 }
 
 // ---------------------------------------------------------------------------
