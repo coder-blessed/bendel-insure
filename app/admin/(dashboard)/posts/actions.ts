@@ -43,6 +43,23 @@ function buildPostRow(formData: FormData, isNew: boolean) {
   };
 }
 
+function getSupabaseStorageError() {
+  const hasUrl = Boolean(
+    process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.SUPABASE_URL,
+  );
+  const hasKey = Boolean(
+    process.env.SUPABASE_SERVICE_ROLE_KEY ??
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ??
+      process.env.SUPABASE_ANON_KEY,
+  );
+
+  if (!hasUrl || !hasKey) {
+    return "Cloudinary is used for cover-image uploads. Supabase is still required for blog post metadata storage. Add NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY (or NEXT_PUBLIC_SUPABASE_ANON_KEY) to the app environment before publishing.";
+  }
+
+  return null;
+}
+
 // ---------------------------------------------------------------------------
 // Save (new post)
 // ---------------------------------------------------------------------------
@@ -54,6 +71,11 @@ export async function savePostAction(
   formData: FormData,
 ): Promise<PostActionState> {
   try {
+    const supabaseConfigError = getSupabaseStorageError();
+    if (supabaseConfigError) {
+      return { error: supabaseConfigError };
+    }
+
     const supabase = await createSupabaseServerClient();
     const row = buildPostRow(formData, true);
 
@@ -88,6 +110,11 @@ export async function updatePostAction(
   formData: FormData,
 ): Promise<PostActionState> {
   try {
+    const supabaseConfigError = getSupabaseStorageError();
+    if (supabaseConfigError) {
+      return { error: supabaseConfigError };
+    }
+
     const supabase = await createSupabaseServerClient();
     const row = buildPostRow(formData, false);
 
