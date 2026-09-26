@@ -13,7 +13,7 @@ export async function createSupabaseServerClient() {
 
   if (!supabaseUrl || !supabaseKey) {
     throw new Error(
-      "Cloudinary handles image uploads, but Supabase metadata storage is still required. Set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY (or NEXT_PUBLIC_SUPABASE_ANON_KEY).",
+      "Missing Supabase environment variables. Set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY (or NEXT_PUBLIC_SUPABASE_ANON_KEY).",
     );
   }
 

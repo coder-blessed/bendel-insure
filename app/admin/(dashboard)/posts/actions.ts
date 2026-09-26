@@ -2,8 +2,13 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { slugify } from "@/lib/blog";
+import { type BlogPost, slugify } from "@/lib/blog";
+import {
+  createPostInCloudinary,
+  deletePostFromCloudinary,
+  getCloudinaryPostById,
+  updatePostInCloudinary,
+} from "@/lib/cloudinary-posts";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -14,15 +19,18 @@ function estimateReadMinutes(body: string): number {
   return Math.max(1, Math.round(words / 200));
 }
 
-function buildPostRow(formData: FormData, isNew: boolean) {
+function parsePostFormData(formData: FormData) {
   const title = ((formData.get("title") as string) || "").trim();
   const slug =
     ((formData.get("slug") as string) || "").trim() || slugify(title);
   const body = ((formData.get("body") as string) || "").trim();
   const status = (formData.get("status") as "draft" | "published") || "draft";
 
-  if (!title || !body) {
-    throw new Error("Title and body are required before saving a post.");
+  if (!title) {
+    throw new Error("A post title is required before saving.");
+  }
+  if (!body) {
+    throw new Error("Post body content cannot be empty.");
   }
 
   return {
@@ -32,32 +40,11 @@ function buildPostRow(formData: FormData, isNew: boolean) {
     status,
     excerpt: ((formData.get("excerpt") as string) || "").trim(),
     category: ((formData.get("category") as string) || "Club").trim(),
-    author: ((formData.get("author") as string) || "").trim(),
+    author: ((formData.get("author") as string) || "Club Media").trim(),
     image: ((formData.get("image") as string) || "").trim(),
     tone: 0,
-    read_minutes: estimateReadMinutes(body),
-    updated_at: new Date().toISOString(),
-    ...(isNew
-      ? { published_at: new Date().toISOString().slice(0, 10) }
-      : {}),
+    readMinutes: estimateReadMinutes(body),
   };
-}
-
-function getSupabaseStorageError() {
-  const hasUrl = Boolean(
-    process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.SUPABASE_URL,
-  );
-  const hasKey = Boolean(
-    process.env.SUPABASE_SERVICE_ROLE_KEY ??
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ??
-      process.env.SUPABASE_ANON_KEY,
-  );
-
-  if (!hasUrl || !hasKey) {
-    return "Cloudinary is used for cover-image uploads. Supabase is still required for blog post metadata storage. Add NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY (or NEXT_PUBLIC_SUPABASE_ANON_KEY) to the app environment before publishing.";
-  }
-
-  return null;
 }
 
 // ---------------------------------------------------------------------------
@@ -70,34 +57,46 @@ export async function savePostAction(
   _prev: PostActionState,
   formData: FormData,
 ): Promise<PostActionState> {
+  let createdSlug = "";
   try {
-    const supabaseConfigError = getSupabaseStorageError();
-    if (supabaseConfigError) {
-      return { error: supabaseConfigError };
-    }
+    const parsed = parsePostFormData(formData);
+    createdSlug = parsed.slug;
+    const now = new Date().toISOString().slice(0, 10);
 
-    const supabase = await createSupabaseServerClient();
-    const row = buildPostRow(formData, true);
+    const newPost: BlogPost = {
+      id: `p-${Date.now()}`,
+      title: parsed.title,
+      slug: parsed.slug,
+      excerpt: parsed.excerpt,
+      body: parsed.body,
+      category: parsed.category,
+      author: parsed.author,
+      image: parsed.image,
+      tone: parsed.tone,
+      status: parsed.status,
+      publishedAt: parsed.status === "published" ? now : "",
+      updatedAt: now,
+      readMinutes: parsed.readMinutes,
+    };
 
-    const { error } = await supabase.from("posts").insert(row);
-
-    if (error) {
-      console.error("savePostAction:", error.message);
-      return { error: `Failed to save post: ${error.message}` };
-    }
-
-    revalidatePath("/blog");
-    revalidatePath("/admin/posts");
-    redirect("/admin/posts");
+    await createPostInCloudinary(newPost);
   } catch (error) {
     console.error("savePostAction exception:", error);
     return {
       error:
         error instanceof Error
           ? error.message
-          : "Failed to save post. Please check your Supabase configuration.",
+          : "Failed to persist post to Cloudinary.",
     };
   }
+
+  revalidatePath("/blog");
+  if (createdSlug) {
+    revalidatePath(`/blog/${createdSlug}`);
+  }
+  revalidatePath("/admin/posts");
+  revalidatePath("/admin");
+  redirect("/admin/posts");
 }
 
 // ---------------------------------------------------------------------------
@@ -109,52 +108,52 @@ export async function updatePostAction(
   _prev: PostActionState,
   formData: FormData,
 ): Promise<PostActionState> {
+  let targetSlug = "";
   try {
-    const supabaseConfigError = getSupabaseStorageError();
-    if (supabaseConfigError) {
-      return { error: supabaseConfigError };
+    const parsed = parsePostFormData(formData);
+    targetSlug = parsed.slug;
+    const existing = await getCloudinaryPostById(id);
+
+    const now = new Date().toISOString().slice(0, 10);
+    let publishedAt = existing?.publishedAt ?? "";
+
+    // Set publishedAt when transitioning from draft → published for the first time
+    if (parsed.status === "published" && !publishedAt) {
+      publishedAt = now;
     }
 
-    const supabase = await createSupabaseServerClient();
-    const row = buildPostRow(formData, false);
+    const updates: Partial<BlogPost> = {
+      title: parsed.title,
+      slug: parsed.slug,
+      excerpt: parsed.excerpt,
+      body: parsed.body,
+      category: parsed.category,
+      author: parsed.author,
+      image: parsed.image,
+      status: parsed.status,
+      publishedAt,
+      updatedAt: now,
+      readMinutes: parsed.readMinutes,
+    };
 
-    const { data: existing } = await supabase
-      .from("posts")
-      .select("published_at, status")
-      .eq("id", id)
-      .single();
-
-    if (
-      existing &&
-      existing.status === "draft" &&
-      row.status === "published" &&
-      !existing.published_at
-    ) {
-      (row as Record<string, unknown>).published_at = new Date()
-        .toISOString()
-        .slice(0, 10);
-    }
-
-    const { error } = await supabase.from("posts").update(row).eq("id", id);
-
-    if (error) {
-      console.error("updatePostAction:", error.message);
-      return { error: `Failed to update post: ${error.message}` };
-    }
-
-    revalidatePath("/blog");
-    revalidatePath(`/blog/${row.slug}`);
-    revalidatePath("/admin/posts");
-    redirect("/admin/posts");
+    await updatePostInCloudinary(id, updates);
   } catch (error) {
     console.error("updatePostAction exception:", error);
     return {
       error:
         error instanceof Error
           ? error.message
-          : "Failed to update post. Please check your Supabase configuration.",
+          : "Failed to update post in Cloudinary.",
     };
   }
+
+  revalidatePath("/blog");
+  if (targetSlug) {
+    revalidatePath(`/blog/${targetSlug}`);
+  }
+  revalidatePath("/admin/posts");
+  revalidatePath("/admin");
+  redirect("/admin/posts");
 }
 
 // ---------------------------------------------------------------------------
@@ -162,15 +161,16 @@ export async function updatePostAction(
 // ---------------------------------------------------------------------------
 
 export async function deletePostAction(id: string, slug: string) {
-  const supabase = await createSupabaseServerClient();
-  const { error } = await supabase.from("posts").delete().eq("id", id);
+  try {
+    await deletePostFromCloudinary(id);
 
-  if (error) {
-    console.error("deletePostAction:", error.message);
-    return;
+    revalidatePath("/blog");
+    if (slug) {
+      revalidatePath(`/blog/${slug}`);
+    }
+    revalidatePath("/admin/posts");
+    revalidatePath("/admin");
+  } catch (error) {
+    console.error("deletePostAction exception:", error);
   }
-
-  revalidatePath("/blog");
-  revalidatePath(`/blog/${slug}`);
-  revalidatePath("/admin/posts");
 }

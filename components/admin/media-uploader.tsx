@@ -12,7 +12,7 @@ type MediaUploaderProps = {
 
 export function MediaUploader({
   onUploaded,
-  folder = "bendel-insurance",
+  folder = "bendel-insurance/blog",
   label = "Upload Image to Cloudinary",
 }: MediaUploaderProps) {
   const [uploading, setUploading] = useState(false);
@@ -31,14 +31,39 @@ export function MediaUploader({
     reader.onload = async () => {
       const base64 = reader.result as string;
       try {
-        const res = await apiRequest<{ url: string }>("/admin/upload", {
-          method: "POST",
-          body: JSON.stringify({ file: base64, folder }),
-        });
+        let uploadedUrlResult: string | null = null;
 
-        if (res?.url) {
-          setUploadedUrl(res.url);
-          if (onUploaded) onUploaded(res.url);
+        // 1. Try Next.js direct upload API
+        try {
+          const directRes = await fetch("/api/admin/upload", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ file: base64, folder }),
+          });
+          const payload = await directRes.json().catch(() => null);
+          if (directRes.ok && (payload?.url || payload?.data?.url)) {
+            uploadedUrlResult = payload.url || payload.data.url;
+          }
+        } catch {
+          // Fall back to external backend
+        }
+
+        // 2. Fall back to backend apiRequest if direct route didn't handle it
+        if (!uploadedUrlResult) {
+          const res = await apiRequest<{ url: string }>("/admin/upload", {
+            method: "POST",
+            body: JSON.stringify({ file: base64, folder }),
+          });
+          if (res?.url) {
+            uploadedUrlResult = res.url;
+          }
+        }
+
+        if (uploadedUrlResult) {
+          setUploadedUrl(uploadedUrlResult);
+          if (onUploaded) onUploaded(uploadedUrlResult);
+        } else {
+          throw new Error("Could not retrieve uploaded image URL.");
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : "Upload failed.");
