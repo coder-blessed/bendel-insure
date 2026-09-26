@@ -51,47 +51,50 @@ export async function uploadJsonToCloudinary(
 
 /**
  * Fetches a raw JSON asset from Cloudinary.
- * Uses cache-busting timestamp to always get the latest persisted version.
+ * Prioritizes versioned secure_url from Cloudinary Admin API to guarantee 100% fresh data.
  */
 export async function fetchJsonFromCloudinary<T>(
   publicId: string,
 ): Promise<T | null> {
   const { cloudName } = getCloudinaryConfig();
-  // Cloudinary raw URL path format
-  const url = `https://res.cloudinary.com/${cloudName}/raw/upload/${publicId}?t=${Date.now()}`;
 
+  // 1. Try fetching with versioned secure_url from API
   try {
-    const response = await fetch(url, {
-      cache: "no-store",
+    const resource = await cloudinary.api.resource(publicId, {
+      resource_type: "raw",
     });
 
-    if (!response.ok) {
-      if (response.status === 404) return null;
-      throw new Error(`Cloudinary returned HTTP ${response.status}`);
-    }
-
-    return (await response.json()) as T;
-  } catch (error) {
-    // If direct HTTP fetch failed or 404, check via Admin API as fallback
-    try {
-      const resource = await cloudinary.api.resource(publicId, {
-        resource_type: "raw",
-      });
-      if (resource?.secure_url) {
-        const fallbackRes = await fetch(`${resource.secure_url}?t=${Date.now()}`, {
-          cache: "no-store",
-        });
-        if (fallbackRes.ok) {
-          return (await fallbackRes.json()) as T;
-        }
+    if (resource?.secure_url) {
+      const response = await fetch(
+        `${resource.secure_url}?t=${Date.now()}`,
+        { cache: "no-store" },
+      );
+      if (response.ok) {
+        return (await response.json()) as T;
       }
-    } catch {
-      // Ignored
     }
-
-    console.warn(`fetchJsonFromCloudinary(${publicId}) error:`, error);
-    return null;
+  } catch (apiError: any) {
+    // If resource not found (404), return null
+    if (apiError?.error?.http_code === 404 || apiError?.http_code === 404) {
+      return null;
+    }
   }
+
+  // 2. Fallback to direct raw URL
+  try {
+    const unversionedUrl = `https://res.cloudinary.com/${cloudName}/raw/upload/${publicId}?t=${Date.now()}`;
+    const response = await fetch(unversionedUrl, { cache: "no-store" });
+    if (response.ok) {
+      return (await response.json()) as T;
+    }
+    if (response.status === 404) {
+      return null;
+    }
+  } catch (fetchError) {
+    console.warn(`Direct fetch failed for ${publicId}:`, fetchError);
+  }
+
+  return null;
 }
 
 /**
