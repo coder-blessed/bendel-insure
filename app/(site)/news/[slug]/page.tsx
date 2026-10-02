@@ -7,7 +7,7 @@ import { Markdown } from "@/components/markdown";
 import { Media } from "@/components/media";
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
-import { newsStories } from "@/lib/content";
+import { getNewsStories } from "@/lib/blog-server";
 
 const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
 
@@ -19,7 +19,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const story = newsStories.find((item) => item.slug === slug);
+  const stories = await getNewsStories();
+  const story = stories.find((item) => item.slug === slug);
 
   if (!story) {
     return { title: "Story not found" };
@@ -42,13 +43,14 @@ export default async function NewsStoryPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const story = newsStories.find((item) => item.slug === slug);
+  const stories = await getNewsStories();
+  const story = stories.find((item) => item.slug === slug);
 
   if (!story || !story.content) {
     notFound();
   }
 
-  const related = newsStories.filter((item) => item.slug !== story.slug).slice(0, 3);
+  const related = stories.filter((item) => item.slug !== story.slug).slice(0, 3);
 
   return (
     <>

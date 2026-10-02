@@ -91,8 +91,10 @@ export async function savePostAction(
   }
 
   revalidatePath("/blog");
+  revalidatePath("/news");
   if (createdSlug) {
     revalidatePath(`/blog/${createdSlug}`);
+    revalidatePath(`/news/${createdSlug}`);
   }
   revalidatePath("/admin/posts");
   revalidatePath("/admin");
@@ -148,8 +150,10 @@ export async function updatePostAction(
   }
 
   revalidatePath("/blog");
+  revalidatePath("/news");
   if (targetSlug) {
     revalidatePath(`/blog/${targetSlug}`);
+    revalidatePath(`/news/${targetSlug}`);
   }
   revalidatePath("/admin/posts");
   revalidatePath("/admin");
@@ -165,8 +169,10 @@ export async function deletePostAction(id: string, slug: string) {
     await deletePostFromCloudinary(id);
 
     revalidatePath("/blog");
+    revalidatePath("/news");
     if (slug) {
       revalidatePath(`/blog/${slug}`);
+      revalidatePath(`/news/${slug}`);
     }
     revalidatePath("/admin/posts");
     revalidatePath("/admin");

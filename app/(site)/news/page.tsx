@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
 import { StoryCard, StoryGrid } from "@/components/story-card";
-import { club, newsStories } from "@/lib/content";
+import { club } from "@/lib/content";
+import { getNewsStories } from "@/lib/blog-server";
 
 const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
 
@@ -12,8 +13,9 @@ export const metadata: Metadata = {
     "Latest Bendel Insurance FC news, matchday updates and club stories from Benin City.",
 };
 
-export default function NewsPage() {
-  const [lead, ...rest] = newsStories;
+export default async function NewsPage() {
+  const stories = await getNewsStories();
+  const [lead, ...rest] = stories;
 
   return (
     <>
@@ -61,7 +63,7 @@ export default function NewsPage() {
         <div className={`${SHELL} py-14 md:py-20`}>
           <SectionHeader title="More news" subtitle="The rest of the club's story" />
           <Reveal delay={0.05}>
-            <StoryGrid stories={lead ? rest : newsStories} />
+            <StoryGrid stories={lead ? rest : stories} />
           </Reveal>
         </div>
       </section>

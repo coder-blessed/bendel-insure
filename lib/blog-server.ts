@@ -1,5 +1,7 @@
 import "server-only";
 import type { BlogPost } from "@/lib/blog";
+import { formatPostDate } from "@/lib/blog";
+import { newsStories, type Story } from "@/lib/content";
 import {
   getCloudinaryPostById,
   getCloudinaryPostBySlug,
@@ -20,6 +22,27 @@ export async function getPublishedPosts(): Promise<BlogPost[]> {
     console.error("getPublishedPosts error:", error);
     return [];
   }
+}
+
+/** Combines published admin posts with the existing newsroom stories. */
+export async function getNewsStories(): Promise<Story[]> {
+  const posts = await getPublishedPosts();
+  const publishedSlugs = new Set(posts.map((post) => post.slug));
+  const publishedStories: Story[] = posts.map((post) => ({
+    slug: post.slug,
+    category: post.category,
+    timestamp: formatPostDate(post.publishedAt),
+    image: post.image,
+    title: post.title,
+    excerpt: post.excerpt,
+    content: post.body,
+    tone: post.tone,
+  }));
+
+  return [
+    ...publishedStories,
+    ...newsStories.filter((story) => !publishedSlugs.has(story.slug)),
+  ];
 }
 
 /**

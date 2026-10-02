@@ -7,16 +7,22 @@ import { FIELD_CONTROL, Field } from "@/components/admin/field";
 import { MediaUploader } from "@/components/admin/media-uploader";
 import { ArrowLeft, Check, ChevronDown, Eye } from "@/components/icons";
 import { Markdown } from "@/components/markdown";
-import { type BlogPost, postCategories, slugify } from "@/lib/blog";
+import { type BlogPost, postCategories, posts, slugify } from "@/lib/blog";
 import {
   type PostActionState,
   savePostAction,
   updatePostAction,
 } from "@/app/admin/(dashboard)/posts/actions";
+import { url } from "inspector";
+import { input, h1, div, label, body } from "motion/react-client";
+import image from "next/image";
+import { type } from "os";
+import { title } from "process";
 
 const STATUSES = [
   { value: "draft", label: "Draft" },
   { value: "published", label: "Published" },
+  
 ];
 
 const BODY_PLACEHOLDER = `Open with the line that makes someone keep reading.
