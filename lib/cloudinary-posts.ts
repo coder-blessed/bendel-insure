@@ -7,10 +7,8 @@ import {
   uploadJsonToCloudinary,
 } from "@/lib/cloudinary";
 
-// In-memory fallback / quick cache
+// Keep the last known posts only as a fallback if Cloudinary is temporarily unavailable.
 let memoryCache: BlogPost[] | null = null;
-let lastFetchTime = 0;
-const CACHE_TTL_MS = 15000; // 15 seconds
 
 function getManifestPublicId(): string {
   const { folder } = getCloudinaryConfig();
@@ -31,7 +29,6 @@ export async function seedCloudinaryPostsIfEmpty(): Promise<BlogPost[]> {
 
   if (existing && Array.isArray(existing) && existing.length > 0) {
     memoryCache = existing;
-    lastFetchTime = Date.now();
     return existing;
   }
 
@@ -43,7 +40,6 @@ export async function seedCloudinaryPostsIfEmpty(): Promise<BlogPost[]> {
       await uploadJsonToCloudinary(getPostPublicId(post.id), post).catch(() => {});
     }
     memoryCache = defaultPosts;
-    lastFetchTime = Date.now();
     return defaultPosts;
   } catch (err) {
     console.warn("Could not seed Cloudinary manifest:", err);
@@ -55,18 +51,12 @@ export async function seedCloudinaryPostsIfEmpty(): Promise<BlogPost[]> {
  * Retrieves all blog posts from Cloudinary.
  */
 export async function getCloudinaryPosts(): Promise<BlogPost[]> {
-  const now = Date.now();
-  if (memoryCache && now - lastFetchTime < CACHE_TTL_MS) {
-    return memoryCache;
-  }
-
   try {
     const manifestId = getManifestPublicId();
     const remotePosts = await fetchJsonFromCloudinary<BlogPost[]>(manifestId);
 
     if (remotePosts && Array.isArray(remotePosts) && remotePosts.length > 0) {
       memoryCache = remotePosts;
-      lastFetchTime = now;
       return remotePosts;
     }
 
@@ -141,7 +131,6 @@ export async function createPostInCloudinary(
 
   // Update in-memory cache
   memoryCache = updatedList;
-  lastFetchTime = Date.now();
 
   return post;
 }
@@ -179,7 +168,6 @@ export async function updatePostInCloudinary(
 
   // Update in-memory cache
   memoryCache = updatedList;
-  lastFetchTime = Date.now();
 
   return updated;
 }
@@ -199,5 +187,4 @@ export async function deletePostFromCloudinary(id: string): Promise<void> {
 
   // Update in-memory cache
   memoryCache = updatedList;
-  lastFetchTime = Date.now();
 }

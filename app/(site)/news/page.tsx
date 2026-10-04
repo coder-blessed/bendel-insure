@@ -7,6 +7,8 @@ import { getNewsStories } from "@/lib/blog-server";
 
 const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "News",
   description:
