@@ -30,6 +30,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "galaxytv-api-s3-prod.s3.eu-west-2.amazonaws.com",
       },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
+      },
     ],
   },
 };
