@@ -9,12 +9,12 @@ import { SquadRail } from "@/components/squad-rail";
 import { StoryGrid, StoryShowcase } from "@/components/story-card";
 import { Ticker } from "@/components/ticker";
 import { VideoRail } from "@/components/video-rail";
+import { getNewsStories } from "@/lib/blog-server";
 import {
   club,
   featureStories,
   kitPromos,
   membershipPromos,
-  newsStories,
   ticketPromos,
 } from "@/lib/content";
 import { getHeroSlides, getSiteSettings } from "@/lib/site-content-server";
@@ -24,6 +24,7 @@ const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
 export default async function Home() {
   const slides = await getHeroSlides();
   const settings = await getSiteSettings();
+  const newsStories = await getNewsStories();
 
   const customKitPromos = kitPromos.map((p) => {
     if (p.slug === "home-kit" && settings.homeKitImage)

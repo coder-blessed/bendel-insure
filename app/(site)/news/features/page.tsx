@@ -3,8 +3,9 @@ import Link from "next/link";
 import { ArrowLeft } from "@/components/icons";
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
-import { StoryCard, StoryGrid } from "@/components/story-card";
-import { featureStories, newsStories } from "@/lib/content";
+import { StoryGrid } from "@/components/story-card";
+import { getNewsStories } from "@/lib/blog-server";
+import { featureStories } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Features & Opinion | Bendel Insurance FC",
@@ -14,8 +15,14 @@ export const metadata: Metadata = {
 
 const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
 
-export default function FeaturesPage() {
-  const combinedFeatures = [...featureStories, ...newsStories.filter((s) => s.category === "History" || s.category === "Club")];
+export default async function FeaturesPage() {
+  const newsStories = await getNewsStories();
+  const combinedFeatures = [
+    ...featureStories,
+    ...newsStories.filter(
+      (story) => story.category === "History" || story.category === "Club",
+    ),
+  ];
 
   return (
     <main className="bg-smoke text-ink">
