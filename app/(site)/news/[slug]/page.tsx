@@ -8,6 +8,9 @@ import { Media } from "@/components/media";
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
 import { getNewsStories } from "@/lib/blog-server";
+import { delay } from "motion";
+import { div, span, h1 } from "motion/react-client";
+import { title } from "process";
 
 const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
 
@@ -40,6 +43,7 @@ export async function generateMetadata({
 export default async function NewsStoryPage({
   params,
 }: {
+    
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;

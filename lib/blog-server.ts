@@ -1,12 +1,12 @@
 import "server-only";
 import type { BlogPost } from "@/lib/blog";
 import { formatPostDate } from "@/lib/blog";
-import { newsStories, type Story } from "@/lib/content";
 import {
   getCloudinaryPostById,
   getCloudinaryPostBySlug,
   getCloudinaryPosts,
 } from "@/lib/cloudinary-posts";
+import { newsStories, type Story } from "@/lib/content";
 
 /**
  * Retrieves all published blog posts from Cloudinary, newest first.
@@ -39,9 +39,12 @@ export async function getNewsStories(): Promise<Story[]> {
     tone: post.tone,
   }));
 
+  const [leadStory, ...otherStories] = newsStories;
+
   return [
+    ...(leadStory && !publishedSlugs.has(leadStory.slug) ? [leadStory] : []),
     ...publishedStories,
-    ...newsStories.filter((story) => !publishedSlugs.has(story.slug)),
+    ...otherStories.filter((story) => !publishedSlugs.has(story.slug)),
   ];
 }
 

@@ -797,9 +797,11 @@ export function FixturesClient({
                         </span>
 
                         <span className="mt-1 text-[9px] font-bold uppercase text-steel">
-                          {fixture.isHome
-                            ? "Home"
-                            : "Away"}
+                          {fixture.status?.toLowerCase() === "played"
+                            ? "Full Time"
+                            : fixture.isHome
+                              ? "Home"
+                              : "Away"}
                         </span>
                       </div>
 
@@ -850,7 +852,11 @@ export function FixturesClient({
 
                   {/* Action */}
                   <div className="border-t border-ink/10 p-5">
-                    {fixture.ticketAvailable ? (
+                    {fixture.status?.toLowerCase() === "played" ? (
+                      <div className="eyebrow flex w-full items-center justify-center rounded-pill border border-ink/10 bg-smoke py-2.5 text-[10px] font-semibold text-steel">
+                        Full Time · {fixture.score}
+                      </div>
+                    ) : fixture.ticketAvailable ? (
                       <Link
                         href="/tickets"
                         className="eyebrow flex w-full items-center justify-center gap-2 rounded-pill bg-gold py-2.5 text-[10px] font-bold text-brand-deep transition-colors hover:bg-brand-deep hover:text-gold"

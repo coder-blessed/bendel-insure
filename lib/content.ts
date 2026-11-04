@@ -132,6 +132,35 @@ export const heroSlides = [
  */
 export const newsStories: Story[] = [
   {
+    slug: "bendel-insurance-target-first-away-points-at-kwara-united",
+    image: "/images/bendel-insurance-kwara-away.jpg",
+    category: "NPFL",
+    timestamp: "4 November 2026",
+    title: "Bendel Insurance Target First Away Points at Kwara United",
+    excerpt:
+      "Bendel Insurance travel to Ilorin on Sunday seeking their first away points of the season after a 2-1 home win over Rivers United.",
+    content: `
+## By Kehinde Osagiede
+
+Bendel Insurance will seek their first away points of the season when they visit Kwara United at the Rashidi Yekini Stadium in Ilorin on Sunday, in Matchday 11 of the Nigeria Premier Football League (NPFL). Kick-off is at 4pm.
+
+The Benin Arsenals arrived in a confident mood after a 2-1 home win over league leaders Rivers United last Sunday, which ended the Pride of Rivers' unbeaten run at the Samuel Ogbemudia Stadium in Benin.
+
+Freeman Wuchirwere put Insurance ahead early in the second half. Chijioke Oboama levelled for the visitors in the 82nd minute, but substitute Jonathan James struck in the 90th minute to win it.
+
+The result adds to a strong home record this season, which also includes ending the unbeaten run of Barau FC.
+
+Insurance have 15 points from nine games and sit 9th on the table. Kwara United, nicknamed the Harmony Boys, are 13th on the table with 12 points after forcing a point from their Matchday 10 encounter against Barau FC, which ended 0-0 in Kano last weekend.
+
+Boboye said his side would keep pushing, and believes Ilorin has historically been a favourable ground for the Benin Arsenals.
+
+> "We will keep pushing. Nothing is impossible. The league is still fresh. We are going to Kwara in our next game, we will see what happens," he said. "I am happy, we are getting better and hopefully we get a positive result in Ilorin."
+
+Insurance still have a postponed fixture (MD 9) against Rangers International of Enugu, now rescheduled for Wednesday, November 4.
+`,
+    tone: 1,
+  },
+  {
     slug: "npfl27-tenebe-confident-insurance-fc-will-win-league-title",
     image: "/images/chairman.jpg",
     category: "NPFL",
@@ -979,19 +1008,20 @@ export const seasonFixtures: Fixture[] = [
     venue: "Samuel Ogbemudia Stadium, Benin City",
     isHome: true,
     home: {
-      name: "Bendel Insurance. 2",
+      name: "Bendel Insurance",
       tone: 0,
-      shortName: "BEN 2",
+      shortName: "BEN",
       logo: TEAM_LOGOS["Bendel Insurance"],
     },
     away: {
-      name: "Warri Wolves.   1",
+      name: "Warri Wolves",
       tone: 1,
-      shortName: "WAR. 1",
+      shortName: "WAR",
       logo: TEAM_LOGOS["Warri Wolves"],
     },
+    score: "2–1",
     kickoff: "16:00 WAT",
-    status: "Upcoming",
+    status: "Played",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
@@ -1021,8 +1051,9 @@ export const seasonFixtures: Fixture[] = [
       shortName: "BEN",
       logo: TEAM_LOGOS["Bendel Insurance"],
     },
+    score: "1–0",
     kickoff: "16:00 WAT",
-    status: "Upcoming",
+    status: "Played",
     broadcast: "NPFL Live",
     ticketAvailable: false,
   },
@@ -1039,17 +1070,18 @@ export const seasonFixtures: Fixture[] = [
     home: {
       name: "Bendel Insurance",
       tone: 0,
-      shortName: "BEN 4",
+      shortName: "BEN",
       logo: TEAM_LOGOS["Bendel Insurance"],
     },
     away: {
       name: "Kun Khalifat",
       tone: 2,
-      shortName: "KUN  2",
+      shortName: "KUN",
       logo: TEAM_LOGOS["Kun Khalifat"],
     },
+    score: "4–2",
     kickoff: "16:00 WAT",
-    status: "Upcoming",
+    status: "Played",
     broadcast: "Insurance TV / NPFL Live",
     ticketAvailable: true,
   },
