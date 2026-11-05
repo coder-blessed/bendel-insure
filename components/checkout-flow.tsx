@@ -90,7 +90,7 @@ export function CheckoutFlow({
           phone,
           deliveryMethod,
           address: deliveryMethod === "delivery" ? address : null,
-          amount: total,
+          amount: item.price,
           deliveryFee: deliveryMethod === "delivery" ? deliveryFee : 0,
           metadata: {
             itemType: item.type,
@@ -138,7 +138,7 @@ export function CheckoutFlow({
           </p>
           <h2 className="headline mt-2 text-2xl uppercase text-ink">Complete your order</h2>
           <p className="mt-2 text-sm text-steel">
-            Orders and tickets are linked to your supporter account and e-receipts are sent automatically via email.
+            Orders and tickets are linked to your supporter account. Your receipt is emailed after payment is confirmed.
           </p>
         </div>
 
@@ -237,12 +237,12 @@ export function CheckoutFlow({
               }`}
             >
               <span className="headline block text-sm uppercase text-ink">
-                {item.type === "ticket" ? "Electronic Ticket (Email)" : "Pick up at Club Desk"}
+                {item.type === "ticket" ? "Electronic Ticket (Email)" : "Pick up at Ogbemudia Stadium"}
               </span>
               <span className="mt-2 block text-xs text-steel">
                 {item.type === "ticket"
                   ? "Instant e-ticket code sent to your email."
-                  : "Collect at the Samuel Ogbemudia Stadium secretariat."}
+                  : "Collect your order at Ogbemudia Stadium, Benin City."}
               </span>
             </button>
             <button
@@ -256,7 +256,7 @@ export function CheckoutFlow({
             >
               <span className="headline block text-sm uppercase text-ink">Home delivery</span>
               <span className="mt-2 block text-xs text-steel">
-                Additional {formatCurrency(deliveryFee)} courier delivery fee.
+                Rider delivery to your address for an additional {formatCurrency(deliveryFee)}.
               </span>
             </button>
           </div>
@@ -334,7 +334,7 @@ export function CheckoutFlow({
             <span className="headline text-2xl text-brand-dark">{formatCurrency(total)}</span>
           </div>
           <p className="mt-3 text-xs text-steel leading-relaxed">
-            Match tickets are sent electronically to your verified email. Official store merchandise can be collected in person at Samuel Ogbemudia Stadium or shipped to your address.
+            Match tickets are sent electronically to your verified email. Pick up merchandise at Ogbemudia Stadium or have it delivered to your address by rider for the delivery fee shown above.
           </p>
         </div>
       </aside>

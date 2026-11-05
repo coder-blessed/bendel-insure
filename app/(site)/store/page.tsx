@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Check, Shield } from "@/components/icons";
+import { Check, Shield } from "@/components/icons";
 import { Media } from "@/components/media";
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
 import { storeProducts } from "@/lib/checkout";
-import { club } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Official Club Store | Bendel Insurance FC",
+  title: "Jersey Room | Bendel Insurance FC",
   description:
-    "Shop official 2026/27 Bendel Insurance FC home, away and third kits, training wear, caps, scarves and merchandise.",
+    "Order the official Bendel Insurance FC first kit for ₦25,000. Choose stadium pickup or home delivery.",
 };
 
 const SHELL = "mx-auto w-full max-w-[1440px] px-4 md:px-8";
@@ -41,13 +40,13 @@ export default function StorePage() {
 
           <div className="max-w-3xl">
             <span className="eyebrow inline-block rounded-pill border border-gold/40 bg-gold/15 px-4 py-1.5 text-[11px] font-bold tracking-wider text-gold uppercase">
-              Official Merchandise
+              Jersey Room
             </span>
             <h1 className="headline mt-4 text-4xl uppercase tracking-tight text-white sm:text-5xl md:text-6xl">
-              The Club Store
+              The Jersey Room
             </h1>
             <p className="mt-4 text-base text-white/80 md:text-lg leading-relaxed">
-              Wear the yellow and green with pride. Official 2026/27 NPFL match kits, training gear, and authentic supporter merchandise.
+              Wear the yellow and green with pride. Order the official first kit for ₦25,000, with stadium pickup or home delivery.
             </p>
           </div>
         </div>
@@ -56,8 +55,8 @@ export default function StorePage() {
       {/* Products Grid */}
       <section className={`${SHELL} py-16 md:py-24`}>
         <SectionHeader
-          title="2026/27 Collection"
-          subtitle="Authentic merchandise delivered across Nigeria and worldwide"
+          title="Official First Kit"
+          subtitle="₦25,000 · Pick up at Ogbemudia Stadium or choose home delivery for an extra ₦2,500"
         />
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -123,14 +122,14 @@ export default function StorePage() {
                 <Check className="h-6 w-6" />
               </div>
               <h4 className="headline mt-3 text-base uppercase text-ink">Nationwide & Global Delivery</h4>
-              <p className="mt-1 text-xs text-steel">Speedy dispatch across Nigeria and international diaspora</p>
+              <p className="mt-1 text-xs text-steel">Home delivery by rider for an additional ₦2,500</p>
             </div>
             <div className="p-4">
               <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gold/20 text-brand">
                 <Shield className="h-6 w-6" />
               </div>
               <h4 className="headline mt-3 text-base uppercase text-ink">Matchday Pickup Available</h4>
-              <p className="mt-1 text-xs text-steel">Collect at Samuel Ogbemudia Stadium Store on matchday</p>
+              <p className="mt-1 text-xs text-steel">Collect your order at Ogbemudia Stadium</p>
             </div>
           </div>
         </div>

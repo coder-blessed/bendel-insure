@@ -2582,7 +2582,7 @@ export const primaryNav = [
     href: "/tickets",
   },
   {
-    label: "Store",
+    label: "Jersey Room",
     href: "/store",
   },
   {

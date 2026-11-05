@@ -69,12 +69,12 @@ export const storeProducts = [
   {
     id: "first-kit-2627",
     type: "merch" as const,
-    name: "2026/27 Official Home Jersey",
+    name: "Official First Kit Jersey",
     category: "Match Kit",
     price: 25000,
     tag: "Official Matchwear",
-    description: "Iconic vibrant yellow shirt with green trim, breathable aerodynamic fabric, and high-definition crest.",
-    image: "https://picsum.photos/seed/bendel-home-kit/800/1000",
+    description: "The official Bendel Insurance FC first kit in the club's iconic yellow and green.",
+    image: "/images/first-kit-jersey.jpeg",
   },
   {
     id: "second-kit-2627",
